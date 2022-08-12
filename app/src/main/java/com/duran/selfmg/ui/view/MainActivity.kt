@@ -1,7 +1,8 @@
-package com.duran.selfmg
+package com.duran.selfmg.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.duran.selfmg.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

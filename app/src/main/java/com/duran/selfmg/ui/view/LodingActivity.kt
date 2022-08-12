@@ -1,9 +1,10 @@
-package com.duran.selfmg
+package com.duran.selfmg.ui.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
+import com.duran.selfmg.R
 
 class LodingActivity : AppCompatActivity() {
 
@@ -16,7 +17,7 @@ class LodingActivity : AppCompatActivity() {
 
         val handler = Handler()
         handler.postDelayed({
-            val intent = Intent(applicationContext, LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }, SPLASH_TIME_OUT)
