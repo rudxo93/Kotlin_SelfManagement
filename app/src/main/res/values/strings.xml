@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SelfMg</string>
+
+    <!-- Loding Activity -->
+    <string name="loding_activity_title">Self Management</string>
+    <!-- Loding Activity -->
 </resources>
