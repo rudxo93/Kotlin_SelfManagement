@@ -51,4 +51,7 @@ dependencies {
     // Firebase SDK
     implementation platform('com.google.firebase:firebase-bom:30.3.2')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Firebase Google Login
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
 }
