@@ -4,4 +4,17 @@
     <!-- Loding Activity -->
     <string name="loding_activity_title">Self Management</string>
     <!-- Loding Activity -->
+
+    <!-- Login Activity -->
+    <string name="login_title1">Self</string>
+    <string name="login_title2">Management</string>
+    <string name="login_hint_email">아이디/이메일</string>
+    <string name="login_hint_password">비밀번호</string>
+    <string name="login_btn_login">로그인</string>
+    <string name="login_btn_google">구글 아이디 로그인</string>
+    <string name="login_signup">회원가입</string>
+    <string name="login_division">|</string>
+    <string name="login_findId">아이디 찾기</string>
+    <string name="login_findPw">비밀번호 찾기</string>
+    <!-- Login Activity -->
 </resources>
