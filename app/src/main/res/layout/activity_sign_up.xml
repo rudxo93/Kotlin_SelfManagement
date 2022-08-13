@@ -34,12 +34,12 @@
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
-            android:id="@+id/li_create_id"
+            android:id="@+id/li_used_email"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -52,22 +52,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:text="@string/signup_create_id" />
+                    android:text="@string/signup_user_email_check" />
 
                 <EditText
-                    android:id="@+id/ed_create_id"
+                    android:id="@+id/ed_used_email"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="@string/signup_create_id_hint" />
+                    android:layout_height="50dp"/>
 
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_check_create_id"
+                android:id="@+id/btn_used_email_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/signup_create_id_check_btn"
                 android:background="@color/base_app_color"
+                android:text="@string/signup_user_email_check_btn"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -76,10 +75,10 @@
             android:id="@+id/li_create_password"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/li_create_id">
+            app:layout_constraintTop_toBottomOf="@+id/li_used_email">
 
             <LinearLayout
                 android:layout_width="320dp"
@@ -105,7 +104,7 @@
             android:id="@+id/li_create_password_check"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -141,53 +140,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/li_used_email"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/li_create_password_check">
-
-            <LinearLayout
-                android:layout_width="320dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:text="@string/signup_user_email_check" />
-
-                <EditText
-                    android:id="@+id/ed_used_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
-
-            </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_used_email_check"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/base_app_color"
-                android:text="@string/signup_user_email_check_btn"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/li_create_nickname"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/li_used_email">
+            app:layout_constraintTop_toBottomOf="@+id/li_create_password_check">
 
             <LinearLayout
                 android:layout_width="320dp"

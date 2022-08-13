@@ -8,7 +8,7 @@
     <!-- Login Activity -->
     <string name="login_title1">Self</string>
     <string name="login_title2">Management</string>
-    <string name="login_hint_email">아이디/이메일</string>
+    <string name="login_hint_email">이메일</string>
     <string name="login_hint_password">비밀번호</string>
     <string name="login_btn_login">로그인</string>
     <string name="login_btn_google">구글 아이디 로그인</string>
@@ -19,11 +19,10 @@
     <!-- Login Activity -->
 
     <!-- SignUp Activity -->
-    <!-- 아이디 -->
-    <string name="signup_create_id">아이디</string>
-    <string name="signup_create_id_hint">6~12글자 사이의 아이디</string>
-    <string name="signup_create_id_check_btn">중복확인</string>
-    <!-- 아이디 -->
+    <!-- 이메일 -->
+    <string name="signup_user_email_check">이메일</string>
+    <string name="signup_user_email_check_btn">중복확인</string>
+    <!-- 이메일 -->
 
     <!-- 패스워드 -->
     <string name="signup_create_password">비밀번호</string>
@@ -31,11 +30,6 @@
     <string name="signup_create_password_check">비밀번호 확인</string>
     <string name="signup_create_password_check_btn">일치 확인</string>
     <!-- 패스워드 -->
-
-    <!-- 이메일 -->
-    <string name="signup_user_email_check">이메일</string>
-    <string name="signup_user_email_check_btn">중복확인</string>
-    <!-- 이메일 -->
 
     <!-- 닉네임 -->
     <string name="signup_create_nickname">닉네임</string>
@@ -46,4 +40,6 @@
     <string name="btn_signup_finish">회원가입 완료</string>
     <!-- 회원가입 완료 버튼 -->
     <!-- SignUp Activity -->
+
+
 </resources>
