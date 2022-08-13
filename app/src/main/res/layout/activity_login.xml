@@ -150,7 +150,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/facebook_login_button"
+                android:id="@+id/kakao_login_button"
                 android:layout_width="320dp"
                 android:layout_height="45dp"
                 android:layout_marginLeft="20dp"

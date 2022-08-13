@@ -47,11 +47,12 @@ dependencies {
 
     // lottie Animation for Loding
     implementation "com.airbnb.android:lottie:3.7.0"
-
     // Firebase SDK
     implementation platform('com.google.firebase:firebase-bom:30.3.2')
     implementation 'com.google.firebase:firebase-analytics-ktx'
-
-    // Firebase Google Login
+    // Firebase 계정인증
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
+    // 구글 로그인
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
+
 }
