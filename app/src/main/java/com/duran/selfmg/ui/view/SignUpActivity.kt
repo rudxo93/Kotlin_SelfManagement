@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.databinding.DataBindingUtil
 import com.duran.selfmg.R
 import com.duran.selfmg.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
@@ -36,7 +38,10 @@ class SignUpActivity : AppCompatActivity() {
         initPassword()
         // 비밀번호 입력 확인
         initPasswordCheck()
-
+        // 회원가입 버튼 클릭
+        binding.btnSignupFinish.setOnClickListener {
+            initSignUp()
+        }
     }
 
     // =======================================이메일=======================================
@@ -216,8 +221,29 @@ class SignUpActivity : AppCompatActivity() {
     }
     // =======================================비밀번호 확인=======================================
 
+    // auth.currentUser?.email.toString()
+
+    // =======================================회원가입 완료=======================================
+    private fun initSignUp() {
+        val email = binding.edUsedEmail.text.toString()
+        val pw = binding.edCreatePassword.text.toString()
+
+       auth.createUserWithEmailAndPassword(email, pw).addOnCompleteListener {
+            task ->
+            if(task.isSuccessful) {
+                // 신규계정 생성
+                Toast.makeText(this, "회원가입이 완료되었습니다. 로그인 해주세요.", Toast.LENGTH_SHORT).show()
+                moveLogin(task.result?.user)
+            } else {
+                // 계정 생성이 안된다면?
+
+            }
+        }
+    }
+    // =======================================회원가입 완료=======================================
+
     /* 회원가입 성공 시 Login 페이지로 이동 */
-    private fun moveLogin() {
+    private fun moveLogin(user: FirebaseUser?) {
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
