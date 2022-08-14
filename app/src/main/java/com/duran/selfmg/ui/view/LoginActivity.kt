@@ -36,6 +36,14 @@ class LoginActivity : AppCompatActivity() {
         binding.googleLoginButton.setOnClickListener {
             googleLogin()
         }
+
+        initGoogleLoginClient()
+
+        // 회원가입
+        initSingUpBtnClicked()
+    }
+
+    private fun initGoogleLoginClient() {
         // 구글 로그인 클라이언트 설정 및 생성
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id)) // 구글 API키 -> ID Token 가져온다.
@@ -43,9 +51,6 @@ class LoginActivity : AppCompatActivity() {
             .build()
         // 옵션값 구글로그인 클라이언트 세팅
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        // 회원가입
-        initSingUpBtnClicked()
     }
 
     /* 구글 로그인 */
@@ -54,7 +59,6 @@ class LoginActivity : AppCompatActivity() {
         googleLoginResult.launch(intent)
     }
     /* 구글 로그인 */
-
     /* 구글 로그인 결과 */
     var googleLoginResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val data = result.data // ActivityResult객체 result로 data를 받아온다.
@@ -74,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
                 if(auth.currentUser!!.isEmailVerified){
                     // 구글 로그인 인증되었을때
                     moveMain(auth.currentUser)
+                    Toast.makeText(this, "구글 로그인 성공", Toast.LENGTH_SHORT).show()
                 } else {
                     // 구글 로그인 인증 실패
                     Toast.makeText(this, "구글 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()

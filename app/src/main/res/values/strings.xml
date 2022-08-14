@@ -20,21 +20,19 @@
 
     <!-- SignUp Activity -->
     <!-- 이메일 -->
-    <string name="signup_user_email_check">이메일</string>
-    <string name="signup_user_email_check_btn">중복확인</string>
+    <string name="signup_create_email">이메일</string>
+    <string name="signup_create_email_hint">이메일을 입력해주세요</string>
+    <string name="signup_user_email_use_alarm">사용가능한 이메일입니다.</string>
     <!-- 이메일 -->
 
     <!-- 패스워드 -->
     <string name="signup_create_password">비밀번호</string>
-    <string name="signup_create_password_hint">8~16자 사이의 비밀번호</string>
+    <string name="signup_create_password_hint">비밀번호를 입력해주세요</string>
+    <string name="signup_create_password_use_alarm">사용가능한 비밀번호입니다.</string>
     <string name="signup_create_password_check">비밀번호 확인</string>
-    <string name="signup_create_password_check_btn">일치 확인</string>
+    <string name="signup_create_password_check_hint">비밀번호 확인입니다.</string>
+    <string name="signup_create_password_check_alarm">비밀번호가 일치합니다.</string>
     <!-- 패스워드 -->
-
-    <!-- 닉네임 -->
-    <string name="signup_create_nickname">닉네임</string>
-    <string name="signup_create_nickname_hint">6글자 이내</string>
-    <!-- 닉네임 -->
 
     <!-- 회원가입 완료 버튼 -->
     <string name="btn_signup_finish">회원가입 완료</string>
