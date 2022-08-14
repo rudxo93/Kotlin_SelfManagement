@@ -54,20 +54,20 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:hint="@string/signup_create_email_hint"
                     android:id="@+id/ed_used_email"
-                    android:singleLine="true"
-                    android:lines="1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:hint="@string/signup_create_email_hint"
+                    android:lines="1"
+                    android:singleLine="true" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/li_email_check_alarm"
                 android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="20dp">
+                android:layout_height="20dp"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_email_alarm"
@@ -112,15 +112,18 @@
                     android:id="@+id/ed_create_password"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/signup_create_password_hint" />
+                    android:hint="@string/signup_create_password_hint"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:singleLine="true" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/li_pw"
-                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
+                android:layout_height="20dp"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_pw_alarm"
@@ -165,15 +168,18 @@
                     android:id="@+id/ed_create_password_check"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/signup_create_password_check_hint" />
+                    android:hint="@string/signup_create_password_check_hint"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:singleLine="true" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/li_pw_check"
-                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
+                android:layout_height="20dp"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_pw_check_alarm"
