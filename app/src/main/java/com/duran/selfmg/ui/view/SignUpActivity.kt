@@ -234,10 +234,19 @@ class SignUpActivity : AppCompatActivity() {
 
         if(email.isEmpty()) {
             Toast.makeText(this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
+            binding.liEmailCheckAlarm.visibility = View.VISIBLE
+            binding.ivEmailAlarm.setImageResource(R.drawable.ic_cancel)
+            binding.tvEmailAlarm.text = "이메일을 입력해주세요"
         } else if(pw.isEmpty()){
             Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+            binding.liPwCheck.visibility = View.VISIBLE
+            binding.ivPwCheckAlarm.setImageResource(R.drawable.ic_cancel)
+            binding.tvPwCheckAlarm.text = "비밀번호를 입력해주세요"
         } else if(pwCheck.isEmpty()){
             Toast.makeText(this, "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+            binding.liPwCheck.visibility = View.VISIBLE
+            binding.ivPwCheckAlarm.setImageResource(R.drawable.ic_cancel)
+            binding.tvPwCheckAlarm.text = "비밀번호를 입력해주세요"
         } else {
             auth.createUserWithEmailAndPassword(email, pw).addOnCompleteListener {
                     task ->
