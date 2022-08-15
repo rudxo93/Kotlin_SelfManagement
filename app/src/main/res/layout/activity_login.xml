@@ -98,7 +98,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linear_ed_emailAndPassword">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/email_login_button"
+                android:id="@+id/btn_email_login"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

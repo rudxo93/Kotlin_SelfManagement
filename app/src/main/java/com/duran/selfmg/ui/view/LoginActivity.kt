@@ -37,12 +37,32 @@ class LoginActivity : AppCompatActivity() {
             googleLogin()
         }
 
+        // 일반 로그인
+        binding.btnEmailLogin.setOnClickListener {
+            initSignIn()
+        }
+        // 구글 로그인 클라이언트 설정 밑 생성
         initGoogleLoginClient()
-
         // 회원가입
-        initSingUpBtnClicked()
+        initSignUpBtnClicked()
     }
 
+    // =======================================일반 로그인=======================================
+    private fun initSignIn() {
+        val email = binding.edittextId.text.toString()
+        val pw = binding.edittextPassword.text.toString()
+
+        auth.signInWithEmailAndPassword(email, pw).addOnCompleteListener {
+            task ->
+            if (task.isSuccessful) {
+                moveMain(task.result?.user)
+                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    // =======================================일반 로그인=======================================
+
+    // =======================================구글 로그인 관련=======================================
     private fun initGoogleLoginClient() {
         // 구글 로그인 클라이언트 설정 및 생성
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -87,16 +107,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     /* 구글 로그인 */
+    // =======================================구글 로그인 관련=======================================
 
+    // =======================================회원가입 이동=======================================
     /* 회원가입 버튼 클릭 -> 회원가입 페이지 이동 */
-    private fun initSingUpBtnClicked() {
+    private fun initSignUpBtnClicked() {
         binding.tvSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
     }
     /* 회원가입 버튼 클릭 -> 회원가입 페이지 이동 */
+    // =======================================회원가입 이동=======================================
 
+    // =======================================로그인 성공=======================================
     /* 로그인 성공했다면 Main Activity로 이동 */
     private fun moveMain(user: FirebaseUser?) {
         if(user != null) {
@@ -105,4 +129,5 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     /* 로그인 성공했다면 Main Activity로 이동 */
+    // =======================================로그인 성공=======================================
 }
