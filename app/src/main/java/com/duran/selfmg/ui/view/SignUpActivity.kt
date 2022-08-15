@@ -68,7 +68,7 @@ class SignUpActivity : AppCompatActivity() {
                     // 이메일 패턴을 가져와서 패턴이 맞다면
                     binding.liEmailCheckAlarm.visibility = View.VISIBLE
                     binding.ivEmailAlarm.setImageResource(R.drawable.ic_check_circle)
-                    binding.tvEmailAlarm.text = "성공"
+                    binding.tvEmailAlarm.text = "사용가능한 이메일입니다."
                 } else {
                     // 이메일 입력이 되어있고 패턴이 틀리다면
                     binding.liEmailCheckAlarm.visibility = View.VISIBLE
@@ -227,16 +227,31 @@ class SignUpActivity : AppCompatActivity() {
     private fun initSignUp() {
         val email = binding.edUsedEmail.text.toString()
         val pw = binding.edCreatePassword.text.toString()
+        val pwCheck = binding.edCreatePasswordCheck.text
 
-       auth.createUserWithEmailAndPassword(email, pw).addOnCompleteListener {
-            task ->
-            if(task.isSuccessful) {
-                // 신규계정 생성
-                Toast.makeText(this, "회원가입이 완료되었습니다. 로그인 해주세요.", Toast.LENGTH_SHORT).show()
-                moveLogin(task.result?.user)
-            } else {
-                // 계정 생성이 안된다면?
+        /*Log.e("ff", binding.edUsedEmail.text.toString())
+        Log.e("ff", auth.currentUser?.email.toString())*/
 
+        if(email.isEmpty()) {
+            Toast.makeText(this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
+        } else if(pw.isEmpty()){
+            Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+        } else if(pwCheck.isEmpty()){
+            Toast.makeText(this, "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+        } else {
+            auth.createUserWithEmailAndPassword(email, pw).addOnCompleteListener {
+                    task ->
+                if(task.isSuccessful) {
+                    // 신규계정 생성
+                    Toast.makeText(this, "회원가입이 완료되었습니다. 로그인 해주세요.", Toast.LENGTH_SHORT).show()
+                    moveLogin(task.result?.user)
+                } else {
+                    // 이미 계정이 존재한다면?
+                    Toast.makeText(this, "이미 존재하는 계정입니다.", Toast.LENGTH_SHORT).show()
+                    binding.liEmailCheckAlarm.visibility = View.VISIBLE
+                    binding.ivEmailAlarm.setImageResource(R.drawable.ic_cancel)
+                    binding.tvEmailAlarm.text = "이미 존재하는 이메일입니다."
+                }
             }
         }
     }
@@ -244,8 +259,10 @@ class SignUpActivity : AppCompatActivity() {
 
     /* 회원가입 성공 시 Login 페이지로 이동 */
     private fun moveLogin(user: FirebaseUser?) {
-        startActivity(Intent(this, LoginActivity::class.java))
-        finish()
+        if(user != null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
     /* 회원가입 성공 시 Login 페이지로 이동 */
 
