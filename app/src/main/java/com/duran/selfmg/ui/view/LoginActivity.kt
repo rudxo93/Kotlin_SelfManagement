@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         binding.tvSignUp.setOnClickListener {
             val intent = Intent(this, SignUpPhActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
     /* 회원가입 버튼 클릭 -> 회원가입 페이지 이동 */
