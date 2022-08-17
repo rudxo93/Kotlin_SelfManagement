@@ -17,6 +17,15 @@
     <string name="login_findPw">비밀번호 찾기</string>
     <!-- Login Activity -->
 
+    <!-- SignUp Phone Activity -->
+    <string name="signUp_phone_title">전화번호를 입력해 주세요</string>
+    <string name="signUp_input_phone_num">휴대전화번호</string>
+    <string name="signUp_btn_send_sms">인증하기</string>
+    <string name="signUp_input_check_num">인증번호를 입력해주세요</string>
+    <string name="signUp_btn_success">확인</string>
+    <string name="signUp_move_first">처음으로 돌아가기</string>
+    <!-- SignUp Phone Activity -->
+
     <!-- SignUp Activity -->
     <!-- 이메일 -->
     <string name="signup_create_email">이메일</string>
