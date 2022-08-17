@@ -3,49 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.duran.selfmg.ui.view.fragment.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_signUpPhFragment"
-            app:destination="@id/signUpPhFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.duran.selfmg.ui.view.fragment.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+    app:startDestination="@id/mainFragment">
     <activity
         android:id="@+id/lodingActivity"
         android:name="com.duran.selfmg.ui.view.LodingActivity"
         android:label="activity_loding"
         tools:layout="@layout/activity_loding" />
     <fragment
-        android:id="@+id/signUpPhFragment"
-        android:name="com.duran.selfmg.ui.view.fragment.SignUpPhFragment"
-        android:label="fragment_sign_up_ph"
-        tools:layout="@layout/fragment_sign_up_ph" >
-        <action
-            android:id="@+id/action_signUpPhFragment_to_signUpPhFailFragment"
-            app:destination="@id/signUpPhFailFragment" />
-        <action
-            android:id="@+id/action_signUpPhFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.duran.selfmg.ui.view.fragment.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
-    <fragment
-        android:id="@+id/signUpPhFailFragment"
-        android:name="com.duran.selfmg.ui.view.fragment.SignUpPhFailFragment"
-        android:label="fragment_sign_up_ph_fail"
-        tools:layout="@layout/fragment_sign_up_ph_fail" />
+        android:id="@+id/mainFragment"
+        android:name="com.duran.selfmg.ui.view.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 </navigation>
