@@ -11,7 +11,6 @@
     <string name="login_hint_email">이메일</string>
     <string name="login_hint_password">비밀번호</string>
     <string name="login_btn_login">로그인</string>
-    <string name="login_btn_google">구글 아이디 로그인</string>
     <string name="login_signup">회원가입</string>
     <string name="login_division">|</string>
     <string name="login_findId">아이디 찾기</string>
@@ -36,6 +35,8 @@
 
     <!-- 회원가입 완료 버튼 -->
     <string name="btn_signup_finish">회원가입 완료</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- 회원가입 완료 버튼 -->
     <!-- SignUp Activity -->
 

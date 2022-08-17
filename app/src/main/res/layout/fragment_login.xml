@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.view.fragment.LoginFragment"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -10,8 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.view.LoginActivity">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_title_logo"
@@ -148,27 +147,6 @@
                     android:textSize="14sp" />
 
             </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/kakao_login_button"
-                android:layout_width="320dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/btn_kakao_login"
-                android:textColor="@android:color/white" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/google_login_button"
-                android:layout_width="320dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/btn_signin_google"
-                android:text="@string/login_btn_google"
-                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
