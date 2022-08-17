@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
     /* 회원가입 버튼 클릭 -> 회원가입 페이지 이동 */
     private fun initSignUpBtnClicked() {
         binding.tvSignUp.setOnClickListener {
-            val intent = Intent(this, SignUpPhActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
             finish()
         }
