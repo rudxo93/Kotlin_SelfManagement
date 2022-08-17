@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.duran.selfmg.R
 import com.duran.selfmg.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +27,6 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
-
         auth = FirebaseAuth.getInstance()
 
         initToolBarSetting()
@@ -221,8 +219,6 @@ class SignUpActivity : AppCompatActivity() {
     }
     // =======================================비밀번호 확인=======================================
 
-    // auth.currentUser?.email.toString()
-
     // =======================================회원가입 완료=======================================
     private fun initSignUp() {
         val email = binding.edUsedEmail.text.toString()
@@ -232,17 +228,17 @@ class SignUpActivity : AppCompatActivity() {
         /*Log.e("ff", binding.edUsedEmail.text.toString())
         Log.e("ff", auth.currentUser?.email.toString())*/
 
-        if(email.isEmpty()) {
+        if(email.isEmpty()) { // 이메일 입력이 비었다면
             Toast.makeText(this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
             binding.liEmailCheckAlarm.visibility = View.VISIBLE
             binding.ivEmailAlarm.setImageResource(R.drawable.ic_cancel)
             binding.tvEmailAlarm.text = "이메일을 입력해주세요"
-        } else if(pw.isEmpty()){
+        } else if(pw.isEmpty()){ // 비밀번호 입력이 비었다면
             Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
             binding.liPwCheck.visibility = View.VISIBLE
             binding.ivPwCheckAlarm.setImageResource(R.drawable.ic_cancel)
             binding.tvPwCheckAlarm.text = "비밀번호를 입력해주세요"
-        } else if(pwCheck.isEmpty()){
+        } else if(pwCheck.isEmpty()){ // 비밀번호 확인 입력이 비었다면
             Toast.makeText(this, "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
             binding.liPwCheck.visibility = View.VISIBLE
             binding.ivPwCheckAlarm.setImageResource(R.drawable.ic_cancel)
