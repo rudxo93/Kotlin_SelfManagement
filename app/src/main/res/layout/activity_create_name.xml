@@ -45,12 +45,12 @@
             android:id="@+id/li_create_name_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/ed_create_name"
             app:layout_constraintStart_toStartOf="@+id/ed_create_name">
 
             <ImageView
                 android:id="@+id/iv_create_name_alarm"
+                android:visibility="gone"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
@@ -58,6 +58,7 @@
 
             <TextView
                 android:id="@+id/tv_create_name_alarm"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginStart="5dp"
