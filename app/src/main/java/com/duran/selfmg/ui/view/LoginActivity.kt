@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, pw).addOnCompleteListener {
                 task ->
             if (task.isSuccessful) {
-                moveMain(task.result?.user)
+                moveNickname(task.result?.user)
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
             }
         }
@@ -105,7 +105,7 @@ class LoginActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 if(auth.currentUser!!.isEmailVerified){
                     // 구글 로그인 인증되었을때
-                    moveMain(auth.currentUser)
+                    moveNickname(auth.currentUser)
                     Toast.makeText(this, "구글 로그인 성공", Toast.LENGTH_SHORT).show()
                 } else {
                     // 구글 로그인 인증 실패
@@ -119,7 +119,7 @@ class LoginActivity : AppCompatActivity() {
 
     // =======================================로그인 성공=======================================
     /* 로그인 성공했다면 Main Activity로 이동 */
-    private fun moveMain(user: FirebaseUser?) {
+    private fun moveNickname(user: FirebaseUser?) {
         if(user != null) {
             val intent = Intent(this, CreateNameActivity::class.java)
             val uid = auth.currentUser?.uid
