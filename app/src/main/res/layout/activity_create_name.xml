@@ -25,9 +25,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="55dp"
             android:layout_marginTop="80dp"
+            android:maxLength="6"
+            android:lines="1"
             android:gravity="center_horizontal"
             android:hint="@string/create_name_hint"
-            android:maxLength="6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_create_name_title" />
 
@@ -40,10 +41,34 @@
             app:layout_constraintStart_toEndOf="@+id/ed_create_name"
             app:layout_constraintTop_toTopOf="@+id/ed_create_name" />
 
+        <LinearLayout
+            android:id="@+id/li_create_name_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/ed_create_name"
+            app:layout_constraintStart_toStartOf="@+id/ed_create_name">
+
+            <ImageView
+                android:id="@+id/iv_create_name_alarm"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_check_circle" />
+
+            <TextView
+                android:id="@+id/tv_create_name_alarm"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/create_name_check_alarm" />
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/btn_success_create_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:text="@string/create_name_btn_success"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

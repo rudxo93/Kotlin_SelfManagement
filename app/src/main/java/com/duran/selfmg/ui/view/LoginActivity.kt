@@ -121,7 +121,11 @@ class LoginActivity : AppCompatActivity() {
     /* 로그인 성공했다면 Main Activity로 이동 */
     private fun moveMain(user: FirebaseUser?) {
         if(user != null) {
-            startActivity(Intent(this, CreateNameActivity::class.java))
+            val intent = Intent(this, CreateNameActivity::class.java)
+            val uid = auth.currentUser?.uid
+            // 로그인 성공 후 닉네임 생성 페이지 이동 시 현재 유저의 uid정보를 dUid에 담아서 전달한다.
+            intent.putExtra("dUid", uid)
+            startActivity(intent)
             finish()
         }
     }

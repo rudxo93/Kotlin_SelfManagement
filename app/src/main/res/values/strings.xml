@@ -57,6 +57,7 @@
     <string name="create_name_hint">최대 6글자</string>
     <string name="create_name_btn_check">중복확인</string>
     <string name="create_name_btn_success">확인</string>
+    <string name="create_name_check_alarm">사용가능합니다.</string>
     <!-- Create Name Activity -->
 
 

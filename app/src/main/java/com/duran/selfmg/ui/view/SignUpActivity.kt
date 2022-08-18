@@ -286,6 +286,7 @@ class SignUpActivity : AppCompatActivity() {
         val id = item.itemId
         when(id) {
             android.R.id.home -> {
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
                 return true
             }
