@@ -28,12 +28,16 @@ class CreateNameActivity : AppCompatActivity() {
     // Firebase Auth
     lateinit var auth: FirebaseAuth
 
+    lateinit var currentUid: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_name)
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
+        // 현재 로그인된 사용자의 uid정보
+        currentUid = auth.currentUser!!.uid
 
         val userNickname = binding.edCreateName.text
 
@@ -132,16 +136,12 @@ class CreateNameActivity : AppCompatActivity() {
 
     // =======================================확인버튼 -> 닉네임 작성 성공=======================================
     private fun initBtnClickSuccess(){ // 상단의 중복확인이 통과되었으면 실행 -> 닉네임은 중복이 되면 안된다.
-        val userNickname = binding.edCreateName.text.toString()
 
         var createNickname = UserModel()
-        createNickname.userId = auth.currentUser?.email // 로그인 후 현재 유저의 이메일
-        createNickname.uid = auth.currentUser?.uid // uid값
         createNickname.nickName = binding.edCreateName.text.toString()
-        createNickname.timestamp = System.currentTimeMillis()
 
-        // user 컬렉션 안에 닉네임 이름으로된 문서로 user정보와 닉네임을 추가해서 저장
-        firestore.collection("user").document(userNickname).set(createNickname)
+        // user 컬렉션 안에 로그인된 uid 이름으로된 문서로 user정보와 닉네임을 추가해서 저장
+        firestore.collection("user").document(currentUid).set(createNickname)
         Toast.makeText(this, "닉네임 생성 완료", Toast.LENGTH_SHORT).show()
 
         // 메인 페이지 이동
