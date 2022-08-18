@@ -121,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
     /* 로그인 성공했다면 Main Activity로 이동 */
     private fun moveMain(user: FirebaseUser?) {
         if(user != null) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, CreateNameActivity::class.java))
             finish()
         }
     }

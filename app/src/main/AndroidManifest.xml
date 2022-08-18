@@ -26,8 +26,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- 2 -->
+        </activity> <!-- 2 -->
         <activity
             android:name=".ui.view.LoginActivity"
             android:exported="true" />
@@ -42,12 +41,17 @@
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
-        </receiver>-->
+        </receiver>
+        -->
         <!-- 2 - 1 -->
         <activity
             android:name=".ui.view.SignUpActivity"
             android:exported="true" />
         <!-- 3 -->
+        <activity
+            android:name=".ui.view.CreateNameActivity"
+            android:exported="false" />
+        <!-- 4 -->
         <activity
             android:name=".ui.view.MainActivity"
             android:exported="true" />

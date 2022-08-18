@@ -19,24 +19,25 @@
     <!-- Login Activity -->
 
     <!-- SignUp Phone Activity -->
-    <string name="signUp_phone_title">전화번호를 입력해 주세요</string>
+    <string name="signUp_phone_title">전화번호를 입력해 주세요.</string>
     <string name="signUp_input_phone_num">휴대전화번호</string>
     <string name="signUp_btn_send_sms">인증하기</string>
-    <string name="signUp_input_check_num">인증번호를 입력해주세요</string>
+    <string name="signUp_input_check_num">인증번호를 입력해주세요.</string>
     <string name="signUp_btn_success">확인</string>
     <string name="signUp_move_first">처음으로 돌아가기</string>
     <!-- SignUp Phone Activity -->
 
     <!-- SignUp Activity -->
+
     <!-- 이메일 -->
     <string name="signup_create_email">이메일</string>
-    <string name="signup_create_email_hint">이메일을 입력해주세요</string>
+    <string name="signup_create_email_hint">이메일을 입력해주세요.</string>
     <string name="signup_user_email_use_alarm">사용가능한 이메일입니다.</string>
     <!-- 이메일 -->
 
     <!-- 패스워드 -->
     <string name="signup_create_password">비밀번호</string>
-    <string name="signup_create_password_hint">비밀번호를 입력해주세요</string>
+    <string name="signup_create_password_hint">비밀번호를 입력해주세요.</string>
     <string name="signup_create_password_use_alarm">사용가능한 비밀번호입니다.</string>
     <string name="signup_create_password_check">비밀번호 확인</string>
     <string name="signup_create_password_check_hint">비밀번호 확인입니다.</string>
@@ -48,7 +49,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- 회원가입 완료 버튼 -->
+
     <!-- SignUp Activity -->
+
+    <!-- Create Name Activity -->
+    <string name="create_name_title">사용할 닉네임을 입력해주세요.</string>
+    <string name="create_name_hint">최대 6글자</string>
+    <string name="create_name_btn_check">중복확인</string>
+    <string name="create_name_btn_success">확인</string>
+    <!-- Create Name Activity -->
 
 
 </resources>
