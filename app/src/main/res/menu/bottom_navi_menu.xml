@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/current"
+        android:title="CurrentUser"
+        android:icon="@drawable/ic_person"/>
+
+    <item
+        android:id="@+id/myHealth"
+        android:title="MyHealth"
+        android:icon="@drawable/ic_health"/>
+
+    <item
+        android:id="@+id/myPlan"
+        android:title="MyPlan"
+        android:icon="@drawable/ic_plan"/>
+
+    <item
+        android:id="@+id/setting"
+        android:title="Setting"
+        android:icon="@drawable/ic_setting"/>
+
+</menu>
