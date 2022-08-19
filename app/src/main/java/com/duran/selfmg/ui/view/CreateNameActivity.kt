@@ -103,6 +103,7 @@ class CreateNameActivity : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which ->
 
                 })
+            .setCancelable(false)
         builder.show()
     }
     // =======================================닉네임 입력창이 비었다면 Dialog창=======================================
@@ -116,6 +117,7 @@ class CreateNameActivity : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which ->
 
                 })
+            .setCancelable(false)
         builder.show()
     }
     // =======================================닉네임 사용가능 Dialog창=======================================
@@ -130,6 +132,7 @@ class CreateNameActivity : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which ->
                     binding.edCreateName.text.clear()
                 })
+            .setCancelable(false)
         builder.show()
     }
     // =======================================닉네임 중복일시 Dialog창=======================================
