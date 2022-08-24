@@ -1,0 +1,51 @@
+// =======================================회원가입 완료 버튼 클릭=======================================
+    private fun initSignUp() {
+        val email = binding.edUsedEmail.text.toString()
+        val pw = binding.edCreatePassword.text.toString()
+        val pwCheck = binding.edCreatePasswordCheck.text
+
+        /*Log.e("ff", binding.edUsedEmail.text.toString())
+        Log.e("ff", auth.currentUser?.email.toString())*/
+
+        if(email.isEmpty()) { // 이메일 입력이 비었다면
+            Toast.makeText(this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
+            binding.liEmailCheckAlarm.visibility = View.VISIBLE
+            binding.ivEmailAlarm.setImageResource(R.drawable.ic_cancel)
+            binding.tvEmailAlarm.text = "이메일을 입력해주세요"
+        } else if(pw.isEmpty()){ // 비밀번호 입력이 비었다면
+            Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+            binding.liPwCheck.visibility = View.VISIBLE
+            binding.ivPwCheckAlarm.setImageResource(R.drawable.ic_cancel)
+            binding.tvPwCheckAlarm.text = "비밀번호를 입력해주세요"
+        } else if(pwCheck.isEmpty()){ // 비밀번호 확인 입력이 비었다면
+            Toast.makeText(this, "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+            binding.liPwCheck.visibility = View.VISIBLE
+            binding.ivPwCheckAlarm.setImageResource(R.drawable.ic_cancel)
+            binding.tvPwCheckAlarm.text = "비밀번호를 입력해주세요"
+        } else {
+            auth.createUserWithEmailAndPassword(email, pw).addOnCompleteListener {
+                    task ->
+                if(task.isSuccessful) {
+                    // 신규계정 생성
+                    Toast.makeText(this, "회원가입이 완료되었습니다. 로그인 해주세요.", Toast.LENGTH_SHORT).show()
+                    moveLogin(task.result?.user)
+                } else {
+                    // 이미 계정이 존재한다면?
+                    Toast.makeText(this, "이미 존재하는 계정입니다.", Toast.LENGTH_SHORT).show()
+                    binding.liEmailCheckAlarm.visibility = View.VISIBLE
+                    binding.ivEmailAlarm.setImageResource(R.drawable.ic_cancel)
+                    binding.tvEmailAlarm.text = "이미 존재하는 이메일입니다."
+                }
+            }
+        }
+    }
+    // =======================================회원가입 완료=======================================
+
+    /* 회원가입 성공 시 Login 페이지로 이동 */
+    private fun moveLogin(user: FirebaseUser?) {
+        if(user != null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+    /* 회원가입 성공 시 Login 페이지로 이동 */

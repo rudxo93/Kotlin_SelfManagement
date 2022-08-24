@@ -55,34 +55,43 @@ class LoginActivity : AppCompatActivity() {
             } else if (pw.isEmpty()) { // 비밀번호가 비었다면
                 initPasswordEmpty()
             } else { // 이메일과 비밀번호가 입력되었다면
-                initSignIn()
+                /*initSignIn()*/
             }
         }
 
-        // 구글 로그인
+        /*// 구글 로그인
         googleLoginBtn.setOnClickListener {
             googleLogin()
         }
         // 구글 로그인 클라이언트
-        initGoogleLoginClient()
+        initGoogleLoginClient()*/
 
         // 회원가입
         initSignUpBtnClicked()
     }
 
+    // =======================================회원가입=======================================
+    private fun initSignUpBtnClicked() { // 회원가입 버튼 클릭 -> 회원가입 페이지 이동
+        signUpBtn.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
     // =======================================일반 로그인=======================================
     private fun initSignIn() {
-        auth.signInWithEmailAndPassword(email.toString(), pw.toString()).addOnCompleteListener { task ->
+        /*auth.signInWithEmailAndPassword(email.toString(), pw.toString()).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 loginSuccess(task.result?.user)
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
             }
-        }
+        }*/
     }
     // =======================================일반 로그인=======================================
 
     // =======================================구글 로그인 관련=======================================
-    private fun initGoogleLoginClient() {
+    /*private fun initGoogleLoginClient() {
         // 구글 로그인 클라이언트 설정 및 생성
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id)) // 구글 API키 -> ID Token 가져온다.
@@ -120,12 +129,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+    }*/
     // =======================================구글 로그인 관련=======================================
 
     // =======================================로그인 성공=======================================
     /* 로그인 성공했다면 DB에 user컬렉션으로 데이터 등록 */
-    private fun loginSuccess(user: FirebaseUser?) {
+    /*private fun loginSuccess(user: FirebaseUser?) {
         val uid = auth.currentUser?.uid
         Log.d("tag", "==== 구분자 ====")
 
@@ -175,11 +184,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
-    }
+    }*/
 
     // =======================================로그인 성공=======================================
 
-    // =======================================일반 로그인 성공 시 유저 정보 저장=======================================
+    // =======================================유저 정보 저장=======================================
     /*  private fun initLoginUserInfo(uid: String) {
 
           firestore.collection("user").get().addOnSuccessListener {
@@ -216,15 +225,6 @@ class LoginActivity : AppCompatActivity() {
           }
 
       }*/
-
-    // =======================================회원가입=======================================
-    private fun initSignUpBtnClicked() { // 회원가입 버튼 클릭 -> 회원가입 페이지 이동
-        signUpBtn.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
 
     // ============================================================Dialog============================================================
     // =======================================로그인 이메일 입력창이 비었다면 Dialog창=======================================

@@ -33,6 +33,7 @@
     <string name="signup_create_email">이메일</string>
     <string name="signup_create_email_hint">이메일을 입력해주세요.</string>
     <string name="signup_user_email_use_alarm">사용가능한 이메일입니다.</string>
+    <string name="signup_user_email_check">중복확인</string>
     <!-- 이메일 -->
 
     <!-- 패스워드 -->
@@ -42,6 +43,7 @@
     <string name="signup_create_password_check">비밀번호 확인</string>
     <string name="signup_create_password_check_hint">비밀번호 확인입니다.</string>
     <string name="signup_create_password_check_alarm">비밀번호가 일치합니다.</string>
+    <string name="signup_user_password_check">일치확인</string>
     <!-- 패스워드 -->
 
     <!-- 회원가입 완료 버튼 -->
