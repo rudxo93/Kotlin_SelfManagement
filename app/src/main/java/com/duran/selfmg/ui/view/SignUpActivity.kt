@@ -198,8 +198,7 @@ class SignUpActivity : AppCompatActivity() {
             if(task.isSuccessful) {
                 // 신규계정 생성
                 Toast.makeText(this, "회원가입이 완료되었습니다. 로그인 해주세요.", Toast.LENGTH_SHORT).show()
-                initFbDBUserInfoInsert() // 파이어베이스 DB user컬렉션에 사용자 정보 등록
-                moveLogin(task.result?.user) // 로그인 페이지로 이동한다.
+                moveLogin(task.result?.user) // 닉네임만들기 페이지로 이동한다.
             } else {
                 // 이미 계정이 존재한다면?
                 Toast.makeText(this, "회원가입에 실패했습니다. 이메일과 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
@@ -207,24 +206,11 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    // Firebase DB에 데이터 등록하기
-    private fun initFbDBUserInfoInsert() {
-        val authUser = auth.currentUser?.email
-
-        var userInfo = UserModel()
-
-        userInfo.userId = authUser // 로그인 후 현재 유저의 이메일
-        userInfo.uid = auth.uid // uid값
-        userInfo.timestamp = System.currentTimeMillis()
-
-        firestore.collection("user").document(authUser!!).set(userInfo)
-    }
-
     // =======================================회원가입 완료=======================================
-    /* 회원가입 성공 시 Login페이지 이동 */
+    /* 회원가입 성공 시 닉네임만들기 페이지 이동 */
     private fun moveLogin(user: FirebaseUser?) {
         if(user != null) {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, CreateNameActivity::class.java)
             startActivity(intent)
             finish()
         }
