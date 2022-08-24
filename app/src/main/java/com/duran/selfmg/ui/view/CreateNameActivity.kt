@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
@@ -23,12 +24,16 @@ import com.google.firebase.firestore.FirebaseFirestore
 class CreateNameActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityCreateNameBinding
-    // Firebase DB
-    lateinit var firestore: FirebaseFirestore
-    // Firebase Auth
-    lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore // Firebase DB
+    private lateinit var auth: FirebaseAuth // Firebase Auth
 
-    lateinit var currentUid: String
+    private lateinit var currentUid: String
+
+    private val nickname by lazy { binding.edCreateName }
+    private val btnNicknameCheck by lazy { binding.btnCreateNameCheck }
+    private val btnNicknameSuccess by lazy { binding.btnSuccessCreateName }
+
+    private var isSuccess = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,132 +41,14 @@ class CreateNameActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
-        // 현재 로그인된 사용자의 uid정보
-        currentUid = auth.currentUser!!.uid
+        currentUid = auth.currentUser!!.uid // 현재 로그인된 사용자의 uid정보
 
-        val userNickname = binding.edCreateName.text
-
-        // 상단 툴바
-        initToolBarSetting()
-
-        // 닉네임 작성 후 중복확인 버튼 클릭 시
-        binding.btnCreateNameCheck.setOnClickListener {
-            initNickNameCheck()
-        }
-
-        // 닉네임 생성 확인버튼 클릭 시 -> Firebase Database에 닉네임을 문서이름으로 user정보와 닉네임 같이 등록
-        binding.btnSuccessCreateName.setOnClickListener {
-            when(userNickname.length){
-                0 -> {
-                    initNicknameEmpty()
-                }
-                else -> {
-                    initBtnClickSuccess()
-                }
-            }
-        }
+        initToolBarSetting() // 상단 툴바
+        initNicknameCheck() // 닉네임 중복 확인
+        initCreateNicknameFinishBtn() // 닉네임 만들기 최종 확인 버튼
     }
 
-    // =======================================닉네임 중복확인=======================================
-    // 전제조건 -> 닉네임을 작성하고 눌러야 한다.
-    private fun initNickNameCheck() { // firebase db에서 닉네임을 가져와서 비교한다.
-        val userNickname = binding.edCreateName.text.toString()
-
-        // 중복확인 클릭 시 현재 닉네임 입력창이 비었는지 아닌지에 대한 동작
-        when(userNickname.length) {
-            0 -> { // 닉네임 입력창이 비어있다.
-                initNicknameEmpty()
-            }
-            else -> { // 이외에 닉네임 입력창이 작성되어 있다면 -> 닉네임 체크
-                // 닉네임 조회 -> user컬렉션의 모든 닉네임 문서 조회
-                firestore.collection("user").get().addOnSuccessListener { // 닉네임이 입력되었다면 조회 가능
-                        result ->
-                    // 닉네임 조회결과를 result에 담고 document에 전달
-                    for(document in result) { // 조회 결과 ->
-                        // 만약 조회 결과와 현재 입력된 닉네임이 같다면
-                        if(document.id.equals(userNickname)){
-                            initNicknameFail()
-                        }
-                        // 조회된 결과와 현재 입력된 닉네임이 같지 않다면
-                        else {
-                            initNicknameSuccess()
-                        }
-                    }
-                }
-            }
-        }
-
-    }
-    // =======================================닉네임 중복확인=======================================
-
-    // =======================================닉네임 입력창이 비었다면 Dialog창=======================================
-    private fun initNicknameEmpty() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("중복 확인")
-            .setMessage("닉네임 입력 후 시도해주세요.")
-            .setPositiveButton("확인",
-                DialogInterface.OnClickListener { dialog, which ->
-
-                })
-            .setCancelable(false)
-        builder.show()
-    }
-    // =======================================닉네임 입력창이 비었다면 Dialog창=======================================
-
-    // =======================================닉네임 사용가능 Dialog창=======================================
-    private fun initNicknameSuccess() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("중복 확인")
-            .setMessage("사용가능한 닉네임입니다.")
-            .setPositiveButton("확인",
-                DialogInterface.OnClickListener { dialog, which ->
-
-                })
-            .setCancelable(false)
-        builder.show()
-    }
-    // =======================================닉네임 사용가능 Dialog창=======================================
-
-    // =======================================닉네임 중복일시 Dialog창=======================================
-    // 확인 하게되면 다시 닉네임 입력창을 비워준다.
-    private fun initNicknameFail() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("중복 확인")
-            .setMessage("사용중인 닉네임입니다. 다시 닉네임작성 후 확인해주세요.")
-            .setPositiveButton("확인",
-                DialogInterface.OnClickListener { dialog, which ->
-                    binding.edCreateName.text.clear()
-                })
-            .setCancelable(false)
-        builder.show()
-    }
-    // =======================================닉네임 중복일시 Dialog창=======================================
-
-    // =======================================확인버튼 -> 닉네임 작성 성공=======================================
-    private fun initBtnClickSuccess(){ // 상단의 중복확인이 통과되었으면 실행 -> 닉네임은 중복이 되면 안된다.
-
-        var createNickname = UserModel()
-        createNickname.nickName = binding.edCreateName.text.toString()
-
-        // user 컬렉션 안에 로그인된 uid 이름으로된 문서로 user정보와 닉네임을 추가해서 저장
-        firestore.collection("user").document(currentUid).set(createNickname)
-        Toast.makeText(this, "닉네임 생성 완료", Toast.LENGTH_SHORT).show()
-
-        // 메인 페이지 이동
-        moveMain()
-    }
-    // =======================================확인버튼 -> 닉네임 작성 성공=======================================
-
-    // =======================================메인페이지 이동=======================================
-    private fun moveMain() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-    // =======================================메인페이지 이동=======================================
-
-    // =======================================닉네임 툴바=======================================
-    /* toolbar */
+    // ======================================= 닉네임 생성 상단 툴바 =======================================
     private fun initToolBarSetting() {
         val toolbar = binding.toolbar
 
@@ -172,8 +59,7 @@ class CreateNameActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when(id) {
+        when (item.itemId) {
             android.R.id.home -> {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
@@ -183,5 +69,161 @@ class CreateNameActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    // ======================================= 닉네임 중복 확인 =======================================
+    private fun initNicknameCheck() {
+        val useNickname = nickname.text
+        /* 닉네임 중복 확인
+           1. 우선 닉네임 입력 칸이 빈칸인지 체크
+           2. user 컬렉션에서 같은 닉네임이 존재하는지 체크
+           3. 중복이 아니라면 DB에 생성해주고 메인엑티비티 이동
+           4. 중복이라면 중복이라고 알람*/
+        btnNicknameCheck.setOnClickListener {
+            if (useNickname.isNotEmpty()) {
+                initNicknameSelect()
+            } else {
+                initNicknameEmpty()
+            }
+        }
+    }
+
+    private fun initNicknameSelect() {
+        Log.d("tag-Select-Nickname", "닉네임 만들기 - 현재 사용중인 닉네임을 조회합니다.... 기다려주세요....")
+        val selectNickname = nickname.text.toString()
+
+        firestore.collection("user").whereEqualTo("nickName", selectNickname).get()
+            .addOnSuccessListener {
+                result ->
+                for (item in result.documentChanges) {
+                    initUseNickname() // 이미 사용중인 닉네임 알람
+                }
+                if(result.size() == 0) {
+                    initNicknameSuccess() // 사용가능 닉네임 알람
+                }
+
+        }
+    }
+
+    // ======================================= 닉네임 DB에 저장하고 회원가입 완료 =======================================
+    private fun initCreateNicknameFinishBtn() {
+        btnNicknameSuccess.setOnClickListener {
+            if(nickname.text.isEmpty()) { // 닉네임이 비어있음
+                initSignUpNicknameEmpty()
+            } else if(isSuccess == 0) { // 닉네임 중복확인 x
+                initSignUpNicknameFail()
+            } else { // 닉네임이 입력되어있고 중복확인 통과 -> isSuccess = 1
+                initFbInsertNickname()
+            }
+        }
+    }
+
+    // 닉네임을 DB에 등록
+    private fun initFbInsertNickname() {
+        val useNickname = nickname.text.toString()
+
+        val userModel = UserModel()
+        userModel.nickName = useNickname
+        userModel.userId = auth.currentUser?.email
+        userModel.uid = auth.uid
+        userModel.timestamp = System.currentTimeMillis()
+        // user 컬렉션에 닉네임으로된 문서에 닉네임 필드에 닉네임을 추가한다.
+        firestore.collection("user").document(useNickname).set(userModel)
+        Log.d("tag-Insert-Nickname", "닉네임 만들기 - 현재 입력한 닉네임으로 DB에 저장합니다.")
+        moveMain(useNickname)
+    }
+
+    private fun moveMain(nickname: String?) {
+        if(nickname != null) {
+            val intent = Intent(this, MainActivity()::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
     // ============================================================Dialog============================================================
+    /*<<<<<<<<<< 닉네임 생성 >>>>>>>>>>*/
+    // ======================================= 닉네임 입력창이 비어있다면 =======================================
+    private fun initNicknameEmpty() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("닉네임 중복 확인")
+            .setIcon(R.drawable.ic_cancel)
+            .setMessage("닉네임 입력 후 시도해주세요.")
+            .setPositiveButton("확인",
+                DialogInterface.OnClickListener { dialog, which ->
+                    nickname.requestFocus()
+                    isSuccess = 0
+                    Log.d("tag-Create-Nickname", "닉네임 만들기 - 현재 닉네임 입력칸이 비었습니다. 닉네임을 입력해주세요. ")
+                })
+            .setCancelable(false)
+        builder.show()
+    }
+
+    // ======================================= 사용중인 닉네임이라면 =======================================
+    private fun initUseNickname() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("닉네임 중복 확인")
+            .setIcon(R.drawable.ic_info)
+            .setMessage("현재 사용중인 닉네임입니다. 다른 닉네임 입력 후 시도해주세요.")
+            .setPositiveButton("확인",
+                DialogInterface.OnClickListener { dialog, which ->
+                    nickname.requestFocus()
+                    nickname.text.clear()
+                    isSuccess = 0
+                    Log.d("tag-Select-Nickname", "닉네임 만들기 - 현재 사용중인 닉네임입니다. 다른 닉네임을 사용해주세요. ")
+                })
+            .setCancelable(false)
+        builder.show()
+    }
+
+    // ======================================= 사용중인 닉네임이라면 =======================================
+    private fun initNicknameSuccess() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("닉네임 중복 확인")
+            .setIcon(R.drawable.ic_check_circle)
+            .setMessage("사용 가능한 닉네임입니다.")
+            .setPositiveButton("확인",
+                DialogInterface.OnClickListener { dialog, which ->
+                    // 키패드 내리기
+                    val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(nickname.windowToken, 0)
+                    nickname.isEnabled = false
+                    isSuccess = 1
+                    Log.d("tag-Select-Nickname", "닉네임 만들기 - 사용 가능한 닉네임입니다. 해당 닉네임으로 가입을 진행합니다.")
+                })
+            .setCancelable(false)
+        builder.show()
+    }
+
+    /*<<<<<<<<<< 닉네임 완료 >>>>>>>>>>*/
+    // ======================================= 사용중인 닉네임이라면 =======================================
+    private fun initSignUpNicknameEmpty() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("닉네임 생성 실패")
+            .setIcon(R.drawable.ic_check_circle)
+            .setMessage("닉네임이 비어있습니다. 닉네임을 입력해주세요.")
+            .setPositiveButton("확인",
+                DialogInterface.OnClickListener { dialog, which ->
+                    nickname.requestFocus()
+                    isSuccess = 0
+                    Log.d("tag-SignUp-Nickname", "닉네임 완료 - 닉네임을 입력하지 않고 확인버튼을 눌렀습니다. 닉네임을 먼저 입력해주세요.")
+                })
+            .setCancelable(false)
+        builder.show()
+    }
+
+    // ======================================= 사용중인 닉네임이라면 =======================================
+    private fun initSignUpNicknameFail() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("닉네임 생성 실패")
+            .setIcon(R.drawable.ic_check_circle)
+            .setMessage("닉네임 중복확인은 필수입니다. 닉네임 중복확인 후 다시 시도해주세요")
+            .setPositiveButton("확인",
+                DialogInterface.OnClickListener { dialog, which ->
+                    nickname.requestFocus()
+                    isSuccess = 0
+                    Log.d("tag-SignUp-Nickname", "닉네임 완료 - 닉네임 중복확인을 하지 않고 확인버튼을 눌렀습니다. 닉네임 중복확인은 필수입니다.")
+                })
+            .setCancelable(false)
+        builder.show()
+    }
+
 }

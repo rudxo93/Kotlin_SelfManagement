@@ -58,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
            5. DB에 유저가 닉네임이 있는 유저인지 판별
            6. 닉네임이 있다면 컨텐츠가 있는 페이지, 없다면 닉네임 생성 페이지 이동*/
         loginBtn.setOnClickListener {
+            Log.d("tag-Login", "일반 로그인 - 일반 로그인 버튼 클릭 -> 일반 로그인을 진행합니다.")
             if(email.text.isEmpty()) {
                 initEmailEmpty()
             } else if (pw.text.isEmpty()) {
@@ -73,6 +74,7 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email.text.toString(), pw.text.toString()).addOnCompleteListener {
                 task ->
             if (task.isSuccessful) {
+                Log.d("tag-Login", "일반 로그인 - 일반 로그인에 성공했습니다. 닉네임의 존재여부를 확인합니다.")
                 Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                 initNicknameSelect(task.result?.user)
             } else {
@@ -87,11 +89,11 @@ class LoginActivity : AppCompatActivity() {
         firestore.collection("user").whereEqualTo("userId", loginEmail).get().addOnSuccessListener {
             result ->
             for(item in result.documentChanges) {
-                Log.e("tag", "닉네임이 있는 사용자")
+                Log.d("tag-Login", "일반 로그인 - 닉네임이 있는 사용자입니다. 메인 엑티비티로 이동합니다.")
                 moveMain(user)
             }
             if(result.size() == 0) {
-                Log.e("tag", "닉네임이 없습니다.")
+                Log.d("tag-Login", "일반 로그인 - 닉네임이 없는 사용자입니다. 닉네임만들기 엑티비티로 이동합니다.")
                 moveCreateNickname(user)
             }
         }
@@ -114,6 +116,7 @@ class LoginActivity : AppCompatActivity() {
     // 구글 로그인 버튼 클릭
     private fun initGoogleLoginBtn() {
         googleLoginBtn.setOnClickListener {
+            Log.d("tag-GoogleLogin", "구글 로그인 - 구글 로그인 버튼 클릭 -> 구글로그인을 진행합니다.")
             googleLogin()
         }
     }
@@ -141,10 +144,12 @@ class LoginActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 if (auth.currentUser!!.isEmailVerified) {
                     // 구글 로그인 인증되었을때
+                    Log.d("tag-GoogleLogin", "구글 로그인 - 구글로그인이 성공했습니다. 닉네임의 존재여부를 확인합니다.")
                     Toast.makeText(this, "구글 로그인 성공", Toast.LENGTH_SHORT).show()
                     initGoogleNicknameSelect(auth.currentUser)
                 } else {
                     // 구글 로그인 인증 실패
+                    Log.d("tag-GoogleLogin", "구글 로그인 - 구글로그인이 실패했습니다. 구글 로그인인증에 문제가 있습니다.")
                     Toast.makeText(this, "구글 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -157,11 +162,11 @@ class LoginActivity : AppCompatActivity() {
         firestore.collection("user").whereEqualTo("userId", loginEmail).get().addOnSuccessListener {
                 result ->
             for(item in result.documentChanges) {
-                Log.e("tag", "닉네임이 있는 사용자")
+                Log.d("tag-GoogleLogin", "구글 로그인 - 구글로그인의 닉네임이 있습니다. 메인 엑티비티로 이동합니다.")
                 moveMain(user)
             }
             if(result.size() == 0) {
-                Log.e("tag", "닉네임이 없습니다.")
+                Log.d("tag-GoogleLogin", "구글 로그인 - 구글로그인의 닉네임이 없습니다. 닉네임만들기 엑티비티로 이동합니다.")
                 moveCreateNickname(user)
             }
         }
@@ -206,6 +211,7 @@ class LoginActivity : AppCompatActivity() {
             .setPositiveButton("확인",
                 DialogInterface.OnClickListener { _, _ ->
                     email.requestFocus()
+                    Log.d("tag-Login", "로그인 - 로그인 이메일 입력창이 비었습니다.")
                 })
             .setCancelable(false)
         builder.show()
@@ -219,6 +225,7 @@ class LoginActivity : AppCompatActivity() {
             .setPositiveButton("확인",
                 DialogInterface.OnClickListener { _, _ ->
                     pw.requestFocus()
+                    Log.d("tag-Login", "로그인 - 로그인 비밀번호 입력창이 비었습니다.")
                 })
             .setCancelable(false)
         builder.show()
@@ -231,7 +238,7 @@ class LoginActivity : AppCompatActivity() {
             .setMessage("존재하지 않는 계정이거나 이메일 또는 비밀번호가 틀렸습니다.")
             .setPositiveButton("확인",
                 DialogInterface.OnClickListener { _, _ ->
-
+                    Log.d("tag-Login", "로그인 - 로그인실패!! 계정이 없거나 이메일, 비밀번호 틀림")
                 })
             .setCancelable(false)
         builder.show()

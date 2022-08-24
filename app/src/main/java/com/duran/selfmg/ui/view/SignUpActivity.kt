@@ -3,6 +3,7 @@ package com.duran.selfmg.ui.view
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -185,22 +186,45 @@ class SignUpActivity : AppCompatActivity() {
         val emailClear = email.text.toString()
         val pwClear = pw.text.toString()
 
+        Log.d("tag-SignUp", "회원가입 - 회원가입을 진행합니다.")
+
         auth.createUserWithEmailAndPassword(emailClear, pwClear).addOnCompleteListener(this) {
                 task ->
             if(task.isSuccessful) {
                 // 신규계정 생성
-                Toast.makeText(this, "회원가입이 완료되었습니다. 로그인 해주세요.", Toast.LENGTH_SHORT).show()
-                moveLogin(task.result?.user) // 닉네임만들기 페이지로 이동한다.
+                Log.d("tag-SignUp", "회원가입 - 회원가입이 완료되었습니다. 닉네임 생성 페이지로 이동합니다. ")
+                Toast.makeText(this, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                moveCreateNickname(task.result?.user) // 닉네임만들기 페이지로 이동한다.
             } else {
                 // 이미 계정이 존재한다면?
+                Log.d("tag-SignUp", "회원가입 - 회원가입에 실패했습니다. 이메일 또는 비밀번호를 확인해주세요. ")
                 Toast.makeText(this, "회원가입에 실패했습니다. 이메일과 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+                emailClear() // 이메일 다시 적고 중복확인도 다시 받기
+                passwordClear() // 비밀번호 다시 적고 일치확인도 다시 받기
+                email.requestFocus()
             }
         }
     }
 
+    // 회원가입 에러 시 이메일 다시 시작
+    private fun emailClear() {
+        email.isEnabled = true // 다시 수정가능
+        isEmailSuccess = 0 // 이메일 구분값 0
+        email.text.clear() // 이메일 입력창에 지워주기
+    }
+
+    // 회원가입 에러 시 비밀번호 다시 시작
+    private fun passwordClear() {
+        pw.isEnabled = true
+        pwCk.isEnabled = true
+        isPwSuccess = 0
+        pw.text.clear()
+        pwCk.text.clear()
+    }
+
     // =======================================회원가입 완료=======================================
     /* 회원가입 성공 시 닉네임만들기 페이지 이동 */
-    private fun moveLogin(user: FirebaseUser?) {
+    private fun moveCreateNickname(user: FirebaseUser?) {
         if(user != null) {
             val intent = Intent(this, CreateNameActivity::class.java)
             startActivity(intent)
@@ -218,9 +242,10 @@ class SignUpActivity : AppCompatActivity() {
             .setIcon(R.drawable.ic_cancel)
             .setMessage("이메일 입력 후 시도해주세요.")
             .setPositiveButton("확인",
-                DialogInterface.OnClickListener { dialog, which ->
+                DialogInterface.OnClickListener { _, _ ->
                     email.requestFocus()
                     isEmailSuccess = 0
+                    Log.d("tag-SignUp-Email", "회원가입(이메일) - 이메일 입력창이 비어있습니다. 이메일을 입력 후 시도해주세요")
                 })
             .setCancelable(false)
         builder.show()
@@ -237,6 +262,7 @@ class SignUpActivity : AppCompatActivity() {
                     email.text.clear()
                     email.requestFocus()
                     isEmailSuccess = 0
+                    Log.d("tag-SignUp-Email", "회원가입(이메일) - 이메일 패턴 에러!! 이메일 패턴에 맞게 작성해주세요")
                 })
             .setCancelable(false)
         builder.show()
@@ -246,12 +272,13 @@ class SignUpActivity : AppCompatActivity() {
     private fun initUnavailableEmail() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("이메일 중복 확인")
-            .setIcon(R.drawable.ic_info)
+            .setIcon(R.drawable.ic_cancel)
             .setMessage("현재 사용중인 이메일입니다. 다시 이메일을 입력해주세요")
             .setPositiveButton("확인",
                 DialogInterface.OnClickListener { dialog, which ->
                     email.text.clear()
                     isEmailSuccess = 0
+                    Log.d("tag-SignUp-Email", "회원가입(이메일) - 이미 이메일이 존재합니다. 다른 이메일로 입력해주세요.")
                 })
             .setCancelable(false)
         builder.show()
@@ -267,6 +294,7 @@ class SignUpActivity : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which ->
                     pw.requestFocus()
                     isEmailSuccess = 1
+                    Log.d("tag-SignUp-Email", "회원가입(이메일) - 가입 가능한 이메일입니다.")
                 })
             .setCancelable(false)
         builder.show()
@@ -283,6 +311,7 @@ class SignUpActivity : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which ->
                     pw.requestFocus()
                     isPwSuccess = 0
+                    Log.d("tag-SignUp-Password", "회원가입(비밀번호) - 현재 비밀번호 입력창이 비었습니다.")
                 })
             .setCancelable(false)
         builder.show()
@@ -298,6 +327,7 @@ class SignUpActivity : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which ->
                     pwCk.requestFocus()
                     isPwSuccess = 0
+                    Log.d("tag-SignUp-Password", "회원가입(비밀번호) - 현재 비밀번호 확인 입력창이 비었습니다.")
                 })
             .setCancelable(false)
         builder.show()
@@ -314,6 +344,7 @@ class SignUpActivity : AppCompatActivity() {
                     pw.text.clear()
                     pw.requestFocus()
                     isPwSuccess = 0
+                    Log.d("tag-SignUp-Password", "회원가입(비밀번호) - 비밀번호 패턴 에러!! 영문, 특수문자 포함 8~20글자 입니다.")
                 })
             .setCancelable(false)
         builder.show()
@@ -330,6 +361,7 @@ class SignUpActivity : AppCompatActivity() {
                     pwCk.text.clear()
                     pwCk.requestFocus()
                     isPwSuccess = 0
+                    Log.d("tag-SignUp-Password", "회원가입(비밀번호) - 비밀번호 확인 패턴 에러!! 영문, 특수문자 포함 8~20글자 입니다.")
                 })
             .setCancelable(false)
         builder.show()
@@ -344,6 +376,7 @@ class SignUpActivity : AppCompatActivity() {
             .setPositiveButton("확인",
                 DialogInterface.OnClickListener { dialog, which ->
                     isPwSuccess = 1
+                    Log.d("tag-SignUp-Password", "회원가입(비밀번호) - 비밀번호와 비밀번호 확인 둘다 일치합니다. 회원가입 가능합니다.")
                 })
             .setCancelable(false)
         builder.show()
@@ -359,6 +392,7 @@ class SignUpActivity : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which ->
                     pwCk.requestFocus()
                     isPwSuccess = 0
+                    Log.d("tag-SignUp-Password", "회원가입(비밀번호) - 비밀번호와 비밀번호 확인이 불일치합니다. 비밀번호 다시 확인해볼 것!!")
                 })
             .setCancelable(false)
         builder.show()
@@ -375,6 +409,7 @@ class SignUpActivity : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which ->
                     email.requestFocus()
                     isEmailSuccess = 0
+                    Log.d("tag-SignUp-Error", "회원가입 - 이메일 중복확인을 하지않고 완료버튼을 눌렀습니다. 이메일 중복확인 부터 진행해주세요")
                 })
             .setCancelable(false)
         builder.show()
@@ -389,6 +424,7 @@ class SignUpActivity : AppCompatActivity() {
             .setPositiveButton("확인",
                 DialogInterface.OnClickListener { dialog, which ->
                     isPwSuccess = 0
+                    Log.d("tag-SignUp-Error", "회원가입 - 비밀번호 일치확인을 하지않고 완료버튼을 눌렀습니다. 이메일 중복확인 부터 진행해주세요")
                 })
             .setCancelable(false)
         builder.show()
