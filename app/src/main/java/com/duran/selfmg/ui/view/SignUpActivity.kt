@@ -2,21 +2,14 @@ package com.duran.selfmg.ui.view
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Rect
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.view.KeyEvent
 import android.view.MenuItem
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.duran.selfmg.R
-import com.duran.selfmg.data.model.UserModel
 import com.duran.selfmg.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -25,9 +18,9 @@ import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivitySignUpBinding
-    lateinit var auth: FirebaseAuth // 계정 인증
-    lateinit var firestore: FirebaseFirestore// DB
+    private lateinit var binding: ActivitySignUpBinding
+    private lateinit var auth: FirebaseAuth // 계정 인증
+    private lateinit var firestore: FirebaseFirestore// DB
 
     private val signUpFinishBtn by lazy { binding.btnSignupFinish }
     // 이메일
@@ -39,8 +32,8 @@ class SignUpActivity : AppCompatActivity() {
     private val pwCk by lazy { binding.edCreatePasswordCheck }
     private val btnPwCk by lazy { binding.btnPasswordCheck }
 
-    var isEmailSuccess = 0 // 이메일 중복 구분
-    var isPwSuccess = 0 // 비밀번호 일치 확인 구분
+    private var isEmailSuccess = 0 // 이메일 중복 구분
+    private var isPwSuccess = 0 // 비밀번호 일치 확인 구분
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,8 +59,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when (id) {
+        when (item.itemId) {
             android.R.id.home -> {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
@@ -144,7 +136,7 @@ class SignUpActivity : AppCompatActivity() {
     // 비밀번호 패턴 확인
     private fun initPwPatternCk() {
         // 비밀번호 정규식
-        val pwPattern = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,20}$" // 영문, 숫자, 특수문자 8 ~ 20자 패턴
+        val pwPattern = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@!%*#?&.])[A-Za-z0-9$@!%*#?&.]{8,20}$" // 영문, 숫자, 특수문자 8 ~ 20자 패턴
         val pattern = Pattern.compile(pwPattern)
 
         if(!pattern.matcher(pw.text).matches()) { // 비밀번호 패턴이 틀리다면
