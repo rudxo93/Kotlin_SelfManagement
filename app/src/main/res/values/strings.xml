@@ -69,4 +69,22 @@
     <string name="bottom_navi_setting">Setting</string>
     <!-- Bottom Navigation Menu -->
 
+
+    <!-- Current Fragment -->
+    <string name="current_fragment_title">현재상태</string>
+    <!-- Current Fragment -->
+
+    <!-- My Health Fragment -->
+    <string name="health_fragment_title">자기관리</string>
+    <!-- My Health Fragment -->
+
+    <!-- My Plan Fragment -->
+    <string name="plan_fragment_title">계획</string>
+    <string name="plan_fragment_item_checkList">체크리스트</string>
+    <!-- My Plan Fragment -->
+
+    <!-- Setting Fragment -->
+    <string name="setting_fragment_title">더보기</string>
+    <!-- Setting Fragment -->
+
 </resources>
