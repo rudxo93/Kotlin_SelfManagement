@@ -62,4 +62,11 @@
     <string name="create_name_check_alarm">사용가능합니다.</string>
     <!-- Create Name Activity -->
 
+    <!-- Bottom Navigation Menu -->
+    <string name="bottom_navi_current">CurrentUser</string>
+    <string name="bottom_navi_health">MyHealth</string>
+    <string name="bottom_navi_plan">MyPlan</string>
+    <string name="bottom_navi_setting">Setting</string>
+    <!-- Bottom Navigation Menu -->
+
 </resources>

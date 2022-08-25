@@ -70,6 +70,7 @@ class CreateNameActivity : AppCompatActivity() {
     }
 
     // ======================================= 닉네임 중복 확인 =======================================
+    // 닉네임 중복확인 버튼 클릭
     private fun initNicknameCheck() {
         val useNickname = nickname.text
         /* 닉네임 중복 확인
@@ -86,6 +87,7 @@ class CreateNameActivity : AppCompatActivity() {
         }
     }
 
+    // 닉네임 사용중인지 조회
     private fun initNicknameSelect() {
         Log.d("tag-Select-Nickname", "닉네임 만들기 - 현재 사용중인 닉네임을 조회합니다.... 기다려주세요....")
         val selectNickname = nickname.text.toString()
@@ -131,6 +133,7 @@ class CreateNameActivity : AppCompatActivity() {
         moveMain(useNickname)
     }
 
+    // 메인 엑티비티 이동
     private fun moveMain(nickname: String?) {
         if(nickname != null) {
             val intent = Intent(this, MainActivity()::class.java)
@@ -198,7 +201,7 @@ class CreateNameActivity : AppCompatActivity() {
     private fun initSignUpNicknameEmpty() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("닉네임 생성 실패")
-            .setIcon(R.drawable.ic_check_circle)
+            .setIcon(R.drawable.ic_cancel)
             .setMessage("닉네임이 비어있습니다. 닉네임을 입력해주세요.")
             .setPositiveButton("확인",
                 DialogInterface.OnClickListener { dialog, which ->
@@ -214,7 +217,7 @@ class CreateNameActivity : AppCompatActivity() {
     private fun initSignUpNicknameFail() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("닉네임 생성 실패")
-            .setIcon(R.drawable.ic_check_circle)
+            .setIcon(R.drawable.ic_info)
             .setMessage("닉네임 중복확인은 필수입니다. 닉네임 중복확인 후 다시 시도해주세요")
             .setPositiveButton("확인",
                 DialogInterface.OnClickListener { dialog, which ->

@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/current"
-        android:title="CurrentUser"
+        android:id="@+id/fragment_current"
+        android:title="@string/bottom_navi_health"
         android:icon="@drawable/ic_person"/>
 
     <item
-        android:id="@+id/myHealth"
-        android:title="MyHealth"
+        android:id="@+id/fragment_health"
+        android:title="@string/bottom_navi_health"
         android:icon="@drawable/ic_health"/>
 
     <item
-        android:id="@+id/myPlan"
-        android:title="MyPlan"
+        android:id="@+id/fragment_plan"
+        android:title="@string/bottom_navi_plan"
         android:icon="@drawable/ic_plan"/>
 
     <item
-        android:id="@+id/setting"
-        android:title="Setting"
+        android:id="@+id/fragment_setting"
+        android:title="@string/bottom_navi_setting"
         android:icon="@drawable/ic_setting"/>
 
 </menu>
