@@ -16,6 +16,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/toolbar_division"
             app:titleTextColor="@color/black">
 
@@ -37,7 +38,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/myplan_toolbar"
+            app:layout_constraintBottom_toTopOf="@+id/plan_tabs"
             android:background="@color/colorDivision" />
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/plan_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_division"
+            app:layout_constraintBottom_toTopOf="@+id/tabs_division"/>
+
+        <View
+            android:id="@+id/tabs_division"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plan_tabs"
+            app:layout_constraintBottom_toTopOf="@+id/plan_viewpager"
+            android:background="@color/colorDivision" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/plan_viewpager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs_division"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

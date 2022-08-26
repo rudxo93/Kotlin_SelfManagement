@@ -87,4 +87,15 @@
     <string name="setting_fragment_title">더보기</string>
     <!-- Setting Fragment -->
 
+    <!-- Item Plan Fragment toolbar menu -->
+    <string name="item_planFragment_menu">메모</string>
+    <string name="item_planFragment_checkList">체크리스트</string>
+    <!-- Item Plan Fragment toolbar menu -->
+
+    <!-- Item Plan Navigation View Menu-->
+    <string name="item_plan_navigationView_todoList">TodoList</string>
+    <string name="item_plan_navigationView_memo">메모</string>
+    <string name="item_plan_navigationView_schedule">일정</string>
+    <!-- Item Plan Navigation View Menu-->
+
 </resources>

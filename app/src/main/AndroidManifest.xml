@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SelfMg"
         tools:targetApi="31">
+        <activity
+            android:name=".memoActivity"
+            android:exported="false" />
         <!-- 1 -->
         <activity
             android:name=".ui.view.LodingActivity"
