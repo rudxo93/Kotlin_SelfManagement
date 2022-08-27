@@ -19,9 +19,9 @@ class PlanFragment : Fragment() {
 
     // TabLayout에  들어갈 title 리스트
     private val tabTitle = listOf(
-        R.string.item_plan_navigationView_todoList,
-        R.string.item_plan_navigationView_memo,
-        R.string.item_plan_navigationView_schedule
+        R.string.plan_fragment_tab_todoList,
+        R.string.plan_fragment_tab_memo,
+        R.string.plan_fragment_tab_schedule
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

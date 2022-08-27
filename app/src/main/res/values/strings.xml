@@ -78,24 +78,33 @@
     <string name="health_fragment_title">자기관리</string>
     <!-- My Health Fragment -->
 
-    <!-- My Plan Fragment -->
+    <!-- Plan Fragment -->
     <string name="plan_fragment_title">계획</string>
     <string name="plan_fragment_item_checkList">체크리스트</string>
-    <!-- My Plan Fragment -->
+    <!-- Plan Fragment -->
+
+    <!-- Plan Fragment TabLayout Title -->
+    <string name="plan_fragment_tab_todoList">TodoList</string>
+    <string name="plan_fragment_tab_memo">메모</string>
+    <string name="plan_fragment_tab_schedule">일정</string>
+    <!-- Plan Fragment TabLayout Title -->
+
+    <!-- Plan Fragment - TodoList -->
+    <string name="plan_todoList_title">나의 할일</string>
+    <string name="plan_todoList_add_todoList_title">할 일 추가하기</string>
+    <string name="plan_todoList_add_todoList_content">할 일을 입력해주세요</string>
+    <string name="plan_todlList_add_button">추가하기</string>
+    <string name="plan_todlList_cancel_button">취소하기</string>
+    <!-- Plan Fragment - TodoList -->
+
+    <!-- Plan Fragment - Write Todo List Activity -->
+    <string name="plan_write_todoList_toolbar_title">TodoList 작성하기</string>
+    <string name="plan_write_todoList_title_ed_hint">제목을 작성해주세요</string>
+    <string name="plan_write"></string>
+    <!-- Plan Fragment - Write Todo List Activity -->
 
     <!-- Setting Fragment -->
     <string name="setting_fragment_title">더보기</string>
     <!-- Setting Fragment -->
-
-    <!-- Item Plan Fragment toolbar menu -->
-    <string name="item_planFragment_menu">메모</string>
-    <string name="item_planFragment_checkList">체크리스트</string>
-    <!-- Item Plan Fragment toolbar menu -->
-
-    <!-- Item Plan Navigation View Menu-->
-    <string name="item_plan_navigationView_todoList">TodoList</string>
-    <string name="item_plan_navigationView_memo">메모</string>
-    <string name="item_plan_navigationView_schedule">일정</string>
-    <!-- Item Plan Navigation View Menu-->
 
 </resources>
