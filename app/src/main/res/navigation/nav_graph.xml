@@ -6,7 +6,7 @@
     app:startDestination="@id/fragment_current">
     <activity
         android:id="@+id/lodingActivity"
-        android:name="com.duran.selfmg.ui.view.LodingActivity"
+        android:name="com.duran.selfmg.ui.view.activity.LodingActivity"
         android:label="activity_loding"
         tools:layout="@layout/activity_loding" />
     <fragment
@@ -29,4 +29,19 @@
         android:name="com.duran.selfmg.ui.view.fragment.SettingFragment"
         android:label="@string/bottom_navi_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.duran.selfmg.ui.view.fragment.TodoListFragment"
+        android:label="TodoListFragment"
+        tools:layout="@layout/fragment_todo_list"/>
+    <fragment
+        android:id="@+id/memoFragment"
+        android:name="com.duran.selfmg.ui.view.fragment.MemoFragment"
+        android:label="fragment_memo"
+        tools:layout="@layout/fragment_memo" />
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.duran.selfmg.ui.view.fragment.ScheduleFragment"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" />
 </navigation>

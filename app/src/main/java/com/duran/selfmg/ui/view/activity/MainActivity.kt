@@ -1,4 +1,4 @@
-package com.duran.selfmg.ui.view
+package com.duran.selfmg.ui.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

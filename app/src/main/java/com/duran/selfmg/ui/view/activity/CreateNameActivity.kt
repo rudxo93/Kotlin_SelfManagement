@@ -1,23 +1,17 @@
-package com.duran.selfmg.ui.view
+package com.duran.selfmg.ui.view.activity
 
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import com.duran.selfmg.R
 import com.duran.selfmg.data.model.UserModel
 import com.duran.selfmg.databinding.ActivityCreateNameBinding
-import com.google.common.base.MoreObjects
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
