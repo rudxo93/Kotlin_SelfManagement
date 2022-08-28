@@ -1,14 +1,26 @@
 package com.duran.selfmg.ui.view.fragment
 
+import android.content.Context
+import android.content.Intent
+import android.inputmethodservice.InputMethodService
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.duran.selfmg.R
+import com.duran.selfmg.data.entity.TodoListEntity
 import com.duran.selfmg.databinding.FragmentTodoListBinding
+import com.duran.selfmg.ui.viewmodel.TodoListVIewModel
+import java.text.SimpleDateFormat
 
 class TodoListFragment : Fragment() {
 
@@ -17,6 +29,10 @@ class TodoListFragment : Fragment() {
     private val btnAddTodoList by lazy { binding.btnAddTravelPlan }
     private val addTodoListLayout by lazy { binding.linearAddTodoListView }
     private val btnTodoListCancel by lazy { binding.btnTodoListCancel }
+    private val btnAddTodo by lazy { binding.btnTodoListAdd }
+    private val todoContent by lazy { binding.edAddTodoListContent }
+
+    lateinit var todoViewModel: TodoListVIewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +44,11 @@ class TodoListFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_todo_list, container, false)
 
+        todoViewModel = ViewModelProvider(this).get(TodoListVIewModel::class.java)
+
         initBtnAddTodoList() // 할일 추가하기 버튼
         initBtnAddTodoListCancel() // 할일 추가하기 -> 취소하기 버튼
+        initBtnAddTodoInsert() // 할 일 추가하기에서 추가하기 버튼 클릭 -> DB에 저장하기
 
         return binding.root
     }
@@ -40,10 +59,6 @@ class TodoListFragment : Fragment() {
             btnAddTodoList.isVisible = false
             addTodoListLayout.isVisible = true
         }
-        /*btnAddTodoList.setOnClickListener {
-            val intent = Intent(context, WriteTodoListActivity::class.java)
-            startActivity(intent)
-        }*/
     }
 
     // ======================================= 할일 추가하기에서 취소하기 버튼 클릭 =======================================
@@ -51,6 +66,30 @@ class TodoListFragment : Fragment() {
         btnTodoListCancel.setOnClickListener {
             btnAddTodoList.isVisible = true
             addTodoListLayout.isVisible = false
+        }
+    }
+
+    // ======================================= 할일 추가하기 버튼 클릭 -> DB에 저장하기 =======================================
+    private fun initBtnAddTodoInsert() {
+        btnAddTodo.setOnClickListener {
+            val content = todoContent.text.toString()
+            val currentDate = SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())
+
+            if(todoContent.text.isNotEmpty()) {
+                val todoListDao = TodoListEntity(0, content, currentDate, false)
+                todoViewModel.todoInsert(todoListDao)
+                Toast.makeText(context, "할 일이 추가되었습니다.", Toast.LENGTH_SHORT).show()
+                todoContent.text.clear()
+                // 키패드 내리기
+                val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view?.windowToken, 0)
+                addTodoListLayout.isVisible = false // 할일 추가하기 레이아웃 숨기기
+                btnAddTodoList.isVisible = true // add버튼 보이게 하기
+            } else {
+                Toast.makeText(context, "할 일을 작성 후 추가해주세요.", Toast.LENGTH_SHORT).show()
+            }
+
+
         }
     }
 }
