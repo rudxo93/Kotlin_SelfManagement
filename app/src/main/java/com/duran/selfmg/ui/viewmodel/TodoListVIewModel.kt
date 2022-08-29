@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.duran.selfmg.data.db.TodoListDatabase
 import com.duran.selfmg.data.entity.TodoListEntity
 import com.duran.selfmg.data.repository.TodoListRepository
 import kotlinx.coroutines.Dispatchers
@@ -18,12 +17,17 @@ class TodoListVIewModel(application: Application) : AndroidViewModel(application
     val todoRepository = TodoListRepository(context)
 
     private var _todoList = MutableLiveData<List<TodoListEntity>>()
-    val todoList : LiveData<List<TodoListEntity>>
+    val todoList: LiveData<List<TodoListEntity>>
         get() = _todoList
 
+    // 할 일 추가하기
+    fun todoInsert(todoEntity: TodoListEntity) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.insertTodoList(todoEntity)
+    }
 
-    fun todoInsert(todoDao: TodoListEntity) = viewModelScope.launch(Dispatchers.IO) {
-        todoRepository.insertTodoList(todoDao)
+    // 할 일 전체리스트 가져오기
+    fun getAllTodoList() = viewModelScope.launch(Dispatchers.IO) {
+        _todoList.postValue(todoRepository.getAllTodoList())
     }
 
 }

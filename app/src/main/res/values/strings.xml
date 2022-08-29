@@ -97,11 +97,10 @@
     <string name="plan_todlList_cancel_button">취소하기</string>
     <!-- Plan Fragment - TodoList -->
 
-    <!-- Plan Fragment - Write Todo List Activity -->
-    <string name="plan_write_todoList_toolbar_title">TodoList 작성하기</string>
-    <string name="plan_write_todoList_title_ed_hint">제목을 작성해주세요</string>
-    <string name="plan_write"></string>
-    <!-- Plan Fragment - Write Todo List Activity -->
+    <!-- item todolist row -->
+    <string name="item_todolist_row_todocontent">todo</string>
+    <string name="item_todolist_row_todoTimestamp">Time Stamp</string>
+    <!-- item todolist row -->
 
     <!-- Setting Fragment -->
     <string name="setting_fragment_title">더보기</string>

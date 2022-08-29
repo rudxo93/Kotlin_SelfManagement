@@ -8,7 +8,7 @@ import com.duran.selfmg.data.dao.TodoListDao
 import com.duran.selfmg.data.entity.TodoListEntity
 
 @Database(entities = [TodoListEntity::class], version = 1)
-abstract class TodoListDatabase: RoomDatabase() {
+abstract class TodoListDatabase : RoomDatabase() {
 
     abstract fun todoListDao(): TodoListDao
 
