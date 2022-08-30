@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.duran.selfmg.data.dao.TodoListDao
-import com.duran.selfmg.data.entity.TodoListEntity
+import com.duran.selfmg.data.model.TodoListEntity
 
 @Database(entities = [TodoListEntity::class], version = 1)
 abstract class TodoListDatabase : RoomDatabase() {
@@ -16,14 +16,12 @@ abstract class TodoListDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: TodoListDatabase? = null
 
-        fun getDatabase(
-            context: Context
-        ): TodoListDatabase {
+        fun getDatabase(context: Context): TodoListDatabase {
             return INSTANCE ?: synchronized(this) {
                 var instance = Room.databaseBuilder(
                     context.applicationContext,
                     TodoListDatabase::class.java,
-                    "todoList_database"
+                    "todo_database"
                 )
                     .fallbackToDestructiveMigration()
                     .build()

@@ -10,11 +10,10 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.duran.selfmg.R
-import com.duran.selfmg.data.entity.TodoListEntity
+import com.duran.selfmg.data.model.TodoListEntity
 import com.duran.selfmg.databinding.FragmentTodoListBinding
 import com.duran.selfmg.ui.adapter.TodoListAdapter
 import com.duran.selfmg.ui.viewmodel.TodoListVIewModel
@@ -30,7 +29,7 @@ class TodoListFragment : Fragment() {
     private val btnAddTodo by lazy { binding.btnTodoListAdd }
     private val todoContent by lazy { binding.edAddTodoListContent }
 
-    lateinit var todoViewModel: TodoListVIewModel
+    private lateinit var todoViewModel: TodoListVIewModel
     lateinit var todoListAdapter: TodoListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,17 +42,20 @@ class TodoListFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_todo_list, container, false)
 
-        todoViewModel = ViewModelProvider(this).get(TodoListVIewModel::class.java)
+        return binding.root
+    }
 
-        todoViewModel.getAllTodoList()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        todoViewModel = ViewModelProvider(this)[TodoListVIewModel::class.java]
+
+        /*todoViewModel.getAllTodoList()*/
 
         initBtnAddTodoList() // 할일 추가하기 버튼
         initBtnAddTodoListCancel() // 할일 추가하기 -> 취소하기 버튼
         initBtnAddTodoInsert() // 할 일 추가하기에서 추가하기 버튼 클릭 -> DB에 저장하기
         initRecyclerViewSetting()
-
-
-        return binding.root
     }
 
     // ======================================= 할일 추가하기 버튼 클릭 =======================================
@@ -80,8 +82,7 @@ class TodoListFragment : Fragment() {
                 SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())
 
             if (todoContent.text.isNotEmpty()) {
-                val todoListDao = TodoListEntity(0, content, currentDate, false)
-                todoViewModel.todoInsert(todoListDao)
+                todoViewModel.todoInsert(TodoListEntity(content, currentDate, false))
                 Toast.makeText(context, "할 일이 추가되었습니다.", Toast.LENGTH_SHORT).show()
                 todoContent.text.clear()
                 // 키패드 내리기
@@ -100,12 +101,13 @@ class TodoListFragment : Fragment() {
 
     // ======================================= Todo리사이클러뷰 =======================================
     private fun initRecyclerViewSetting() {
-        todoViewModel.todoList.observe(viewLifecycleOwner, Observer {
-            todoListAdapter = TodoListAdapter(it)
-            binding.rvTodolist.adapter = todoListAdapter
-            binding.rvTodolist.layoutManager = LinearLayoutManager(context)
+        todoViewModel.todoList.observe(viewLifecycleOwner) {
+            todoListAdapter.update(it)
+        }
 
-        })
+        todoListAdapter = context?.let { TodoListAdapter(it) }!!
+        binding.rvTodolist.layoutManager = LinearLayoutManager(context)
+        binding.rvTodolist.adapter = todoListAdapter
     }
 
 }
