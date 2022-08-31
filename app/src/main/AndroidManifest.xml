@@ -17,9 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SelfMg"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.view.activity.WriteTodoListActivity"
-            android:exported="false" />
         <!-- 1 -->
         <activity
             android:name=".ui.view.activity.LodingActivity"
