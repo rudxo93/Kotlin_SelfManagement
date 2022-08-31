@@ -3,6 +3,7 @@ package com.duran.selfmg.ui.view.fragment
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -13,11 +14,16 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.duran.selfmg.R
 import com.duran.selfmg.data.model.TodoListEntity
 import com.duran.selfmg.databinding.FragmentTodoListBinding
+import com.duran.selfmg.ui.adapter.TodoListAdapter
 import com.duran.selfmg.ui.view.activity.LoginActivity
 import com.duran.selfmg.ui.viewmodel.TodoListVIewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
 class TodoListFragment : Fragment() {
@@ -27,7 +33,7 @@ class TodoListFragment : Fragment() {
     private val btnAddTodoList by lazy { binding.btnAddTravelPlan }
 
     private lateinit var todoViewModel: TodoListVIewModel
-    /*lateinit var todoListAdapter: TodoListAdapter*/
+    lateinit var todoListAdapter: TodoListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,10 +53,8 @@ class TodoListFragment : Fragment() {
 
         todoViewModel = ViewModelProvider(this)[TodoListVIewModel::class.java]
 
-        /*todoViewModel.getAllTodoList()*/
-
         initBtnAddTodoList() // 할일 추가하기 버튼
-        /*initRecyclerViewSetting()*/
+        initRecyclerViewSetting()
     }
 
     // ======================================= Add 버튼 클릭 =======================================
@@ -88,7 +92,7 @@ class TodoListFragment : Fragment() {
 
 
     // ======================================= Todo리사이클러뷰 =======================================
- /*   private fun initRecyclerViewSetting() {
+    private fun initRecyclerViewSetting() {
         todoViewModel.todoList.observe(viewLifecycleOwner) {
             todoListAdapter.update(it)
         }
@@ -114,7 +118,7 @@ class TodoListFragment : Fragment() {
                 }
             }
         })
-    }*/
+    }
 
 
 }
