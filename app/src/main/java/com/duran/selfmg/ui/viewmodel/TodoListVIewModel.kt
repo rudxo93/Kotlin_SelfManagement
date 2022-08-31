@@ -18,8 +18,12 @@ class TodoListVIewModel(application: Application) : AndroidViewModel(application
     val todoList: LiveData<MutableList<TodoListEntity>> = todoRepository.getAllTodoList()
 
     // 할 일 추가하기
-    fun todoInsert(todoEntity: TodoListEntity) = viewModelScope.launch(Dispatchers.IO) {
-        todoRepository.insertTodoList(todoEntity)
+    fun todoInsert(todo: TodoListEntity) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.insertTodoList(todo)
+    }
+
+    fun getTodo(id: Long) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.getTodo(id)
     }
 
 

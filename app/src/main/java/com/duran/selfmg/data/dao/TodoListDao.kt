@@ -14,6 +14,9 @@ interface TodoListDao {
     @Query("select * from todo_Table")
     fun getAllTodoList(): LiveData<MutableList<TodoListEntity>>
 
+    @Query("select * from todo_Table where id = (:id)")
+    fun getTodo(id: Long): TodoListEntity
+
     @Delete
     fun todoDelete(todo: TodoListEntity)
 

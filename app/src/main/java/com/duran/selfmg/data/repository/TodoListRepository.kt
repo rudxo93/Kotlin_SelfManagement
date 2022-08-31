@@ -13,4 +13,6 @@ class TodoListRepository(context: Context) {
 
     fun getAllTodoList(): LiveData<MutableList<TodoListEntity>> = db.todoListDao().getAllTodoList() // 할일 전체 리스트 조회
 
+    fun getTodo(id: Long): TodoListEntity = db.todoListDao().getTodo(id)
+
 }

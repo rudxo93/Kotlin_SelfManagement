@@ -7,9 +7,8 @@ import java.io.Serializable
 
 @Entity(tableName = "todo_Table")
 data class TodoListEntity(
+    @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) var id: Long = 0,
     @ColumnInfo(name = "todo_content") val todocontent: String,
     @ColumnInfo(name = "timestamp") val timestamp: String,
     @ColumnInfo(name = "isChecked") var isChecked: Boolean
-) {
-    @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) var id: Long = 0
-}
+)
