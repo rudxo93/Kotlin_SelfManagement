@@ -1,7 +1,7 @@
 package com.duran.selfmg.ui.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,14 +36,30 @@ class DialogAddTodoFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val resultType = arguments?.getString("type")
+        val resultItemId = arguments?.getString("itemId")
+
+        initTypeSetting(resultType) // type에 따른 버튼 셋팅
         initBtnSave() // 저장하기 버튼 클릭
         initBtnCancel() // 취소하기 버튼 클릭
+    }
+
+    // ======================================= type에 따른 버튼 셋팅 =======================================
+    private fun initTypeSetting(resultType: String?) {
+        if(resultType == "Add") {
+            btnSave.setText("저장하기")
+            tvTitle.setText("할 일 추가하기")
+        } else if(resultType == "Update") {
+            btnSave.setText("수정하기")
+            tvTitle.setText("할 일 수정하기")
+        }
     }
 
     // ======================================= 저장하기 버튼 클릭 =======================================
     private fun initBtnSave() {
         btnSave.setOnClickListener {
             Toast.makeText(context, "할 일을 저장했습니다.", Toast.LENGTH_SHORT).show()
+            dismiss()
         }
     }
 
@@ -51,6 +67,7 @@ class DialogAddTodoFragment : DialogFragment() {
     private fun initBtnCancel() {
         btnCancel.setOnClickListener {
             Toast.makeText(context, "할 일을 취소했습니다.", Toast.LENGTH_SHORT).show()
+            dismiss()
         }
     }
 
