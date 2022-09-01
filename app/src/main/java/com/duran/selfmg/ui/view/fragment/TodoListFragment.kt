@@ -89,7 +89,7 @@ class TodoListFragment : Fragment() {
         })
     }
 
-
+    // ======================================= 게시글 클릭 시 게시글 update =======================================
     private fun initUpdateTodo(itemId: Long) {
         val bundle = Bundle()
         bundle.putString("type", "Update")
