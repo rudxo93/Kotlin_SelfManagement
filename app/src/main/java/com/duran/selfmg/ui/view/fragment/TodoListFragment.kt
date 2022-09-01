@@ -1,11 +1,9 @@
 package com.duran.selfmg.ui.view.fragment
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -19,11 +17,8 @@ import com.duran.selfmg.R
 import com.duran.selfmg.data.model.TodoListEntity
 import com.duran.selfmg.databinding.FragmentTodoListBinding
 import com.duran.selfmg.ui.adapter.TodoListAdapter
-import com.duran.selfmg.ui.view.activity.LoginActivity
 import com.duran.selfmg.ui.viewmodel.TodoListVIewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 
 class TodoListFragment : Fragment() {
@@ -34,6 +29,8 @@ class TodoListFragment : Fragment() {
 
     private lateinit var todoViewModel: TodoListVIewModel
     lateinit var todoListAdapter: TodoListAdapter
+
+    private var todoList: TodoListEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,33 +57,11 @@ class TodoListFragment : Fragment() {
     // ======================================= Add 버튼 클릭 =======================================
     private fun initBtnAddTodoList() {
         btnAddTodoList.setOnClickListener{
-            val addTodoDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_add_todo, null)
-            val addTodoBuilder = AlertDialog.Builder(context)
-                .setView(addTodoDialogView)
-                .setTitle("할 일 추가하기")
+            /*val transaction = childFragmentManager.beginTransaction()*/
+            val dialog = DialogAddTodoFragment()
+            dialog.show(childFragmentManager, "TodoListDialog")
 
-            val addTodoDialog = addTodoBuilder.show()
 
-            val btnSave = addTodoDialogView.findViewById<Button>(R.id.btn_add_todo_save)
-            btnSave.setOnClickListener {
-                val content = addTodoDialogView.findViewById<EditText>(R.id.ed_add_todoList_content)
-                val currentDate = SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())
-
-                if (content.text.isNotEmpty()) { // 할 일이 작성되어 있음
-                    val todoListDao = TodoListEntity(0, content.text.toString(), currentDate, false)
-                    todoViewModel.todoInsert(todoListDao)
-                    Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_SHORT).show()
-                    addTodoDialog.dismiss()
-                } else {
-                    Toast.makeText(context, "할 일을 작성후 저장하기를 눌러주세요.", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            val btnCancel = addTodoDialogView.findViewById<Button>(R.id.btn_add_todo_cancel)
-            btnCancel.setOnClickListener {
-                Toast.makeText(context, "할 일 추가하기가 취소되었습니다.", Toast.LENGTH_SHORT).show()
-                addTodoDialog.dismiss()
-            }
         }
     }
 
@@ -101,23 +76,33 @@ class TodoListFragment : Fragment() {
         binding.rvTodolist.layoutManager = LinearLayoutManager(context)
         binding.rvTodolist.adapter = todoListAdapter
 
+        // todoContent 클릭
         todoListAdapter.setItemClickListener(object : TodoListAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int, itemId: Long) {
                 Toast.makeText(context, "$itemId", Toast.LENGTH_SHORT).show()
                 Log.e("tag", "$itemId")
-                val todo = todoViewModel.getTodo(itemId)
-                Log.e("tag", "${todo.isActive}")
+                CoroutineScope(Dispatchers.IO).launch {
+                    val todo = todoViewModel.getTodo(itemId)
+                    val args = Bundle()
+                    initUpdateTodoList()
+                }
             }
 
         })
 
+        // todoChekcBox클릭
         todoListAdapter.setItemCheckBoxClickListener(object : TodoListAdapter.ItemCheckBoxClickListener {
             override fun onClick(view: View, position: Int, itemId: Long) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val todo = todoViewModel.getTodo(itemId)
+                CoroutineScope(Dispatchers.IO ).launch {
+
                 }
             }
         })
+    }
+
+    // ======================================= Todo클릭 -> TodoUpdate =======================================
+    private fun initUpdateTodoList() {
+
     }
 
 
