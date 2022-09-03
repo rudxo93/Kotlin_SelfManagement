@@ -1,7 +1,7 @@
 package com.duran.selfmg.ui.view.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,15 +25,12 @@ class DialogAddTodoFragment : DialogFragment() {
     private val btnCancel by lazy { binding.btnAddTodoCancel }
 
     private lateinit var todoViewModel: TodoListVIewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var todo: TodoListEntity? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dialog_add_todo, container, false)
 
         todoViewModel = ViewModelProvider(this)[TodoListVIewModel::class.java]
@@ -45,7 +42,6 @@ class DialogAddTodoFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val resultType = arguments?.getString("type")
-        val resultItemId = arguments?.getString("itemId")
 
         initTypeSetting(resultType) // type에 따른 버튼 셋팅
         initBtnCancel() // 취소하기 버튼 클릭
@@ -54,17 +50,20 @@ class DialogAddTodoFragment : DialogFragment() {
     // ======================================= type에 따른 버튼 셋팅 =======================================
     private fun initTypeSetting(resultType: String?) {
         if(resultType == "Add") {
-            btnSave.setText("저장하기")
-            tvTitle.setText("할 일 추가하기")
+            btnSave.text = "저장하기"
+            tvTitle.text = "할 일 추가하기"
             initBtnSave()
         } else if(resultType == "Update") {
-            btnSave.setText("수정하기")
-            tvTitle.setText("할 일 수정하기")
+            todo = arguments?.getSerializable("item") as TodoListEntity // 해당 게시글
+            editContent.setHint(todo!!.todocontent)
+            btnSave.text = "수정하기"
+            tvTitle.text = "할 일 수정하기"
             initBtnUpdate()
         }
     }
 
     // ======================================= Add 저장하기 버튼 클릭 =======================================
+    @SuppressLint("SimpleDateFormat")
     private fun initBtnSave() {
         btnSave.setOnClickListener {
             val content = editContent.text
@@ -85,7 +84,7 @@ class DialogAddTodoFragment : DialogFragment() {
     // ======================================= Update 저장하기 버튼 클릭 =======================================
     private fun initBtnUpdate() {
         btnSave.setOnClickListener {
-            Toast.makeText(context, "할 일을 저장했습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, todo!!.toString(), Toast.LENGTH_SHORT).show()
             dismiss()
         }
     }
