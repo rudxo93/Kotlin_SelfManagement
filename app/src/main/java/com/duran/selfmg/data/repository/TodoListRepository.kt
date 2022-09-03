@@ -18,6 +18,8 @@ class TodoListRepository(context: Context) {
     // 할 일 하나만 가져오기
     fun getTodo(id: Long): TodoListEntity = db.todoListDao().getTodo(id)
 
+    fun updateTodo(todo: TodoListEntity) = db.todoListDao().todoUpdate(todo)
+
     // 할 일 삭제하기
     fun deleteTodo(todo: TodoListEntity) = db.todoListDao().todoDelete(todo)
 

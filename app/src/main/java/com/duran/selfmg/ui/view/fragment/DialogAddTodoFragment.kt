@@ -13,6 +13,9 @@ import com.duran.selfmg.R
 import com.duran.selfmg.data.model.TodoListEntity
 import com.duran.selfmg.databinding.FragmentDialogAddTodoBinding
 import com.duran.selfmg.ui.viewmodel.TodoListVIewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
 class DialogAddTodoFragment : DialogFragment() {
@@ -68,7 +71,7 @@ class DialogAddTodoFragment : DialogFragment() {
         btnSave.setOnClickListener {
             val content = editContent.text
             val currentDate = SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())
-            if(editContent.text.isNotEmpty()) { // 할 일이 작성되어 있다.
+            if(content.isNotEmpty()) { // 할 일이 작성되어 있다.
                 // insert
                 val todoListEntity = TodoListEntity(0, content.toString(), currentDate, false)
                 todoViewModel.todoInsert(todoListEntity)
@@ -82,10 +85,23 @@ class DialogAddTodoFragment : DialogFragment() {
     }
 
     // ======================================= Update 저장하기 버튼 클릭 =======================================
+    @SuppressLint("SimpleDateFormat")
     private fun initBtnUpdate() {
         btnSave.setOnClickListener {
-            Toast.makeText(context, todo!!.toString(), Toast.LENGTH_SHORT).show()
-            dismiss()
+            val updateContent = editContent.text
+            val updateDate = SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())
+
+            if(updateContent.isNotEmpty()) { // 수정할 할 일을 작성했다면
+                val updateTodo = TodoListEntity(todo!!.id, updateContent.toString(), updateDate, todo!!.isChecked)
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    todoViewModel.todoUpdate(updateTodo)
+                }
+                Toast.makeText(context, "할 일이 변경되었습니다.", Toast.LENGTH_SHORT).show()
+                dismiss()
+            } else {
+                Toast.makeText(context, "할 일을 작성후 수정하기를 눌러주세요.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

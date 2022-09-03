@@ -17,6 +17,9 @@ interface TodoListDao {
     @Query("select * from todo_Table where id = (:id)")
     fun getTodo(id: Long): TodoListEntity
 
+    @Update
+    fun todoUpdate(todo: TodoListEntity)
+
     @Delete
     fun todoDelete(todo: TodoListEntity)
 
