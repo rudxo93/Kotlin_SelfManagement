@@ -96,7 +96,6 @@ class DialogAddTodoFragment : DialogFragment() {
 
             if(updateContent.isNotEmpty()) { // 수정할 할 일을 작성했다면
                 val updateTodo = TodoListEntity(todo!!.id, updateContent.toString(), updateDate, todo!!.isChecked)
-
                 CoroutineScope(Dispatchers.IO).launch {
                     todoViewModel.todoUpdate(updateTodo)
                 }

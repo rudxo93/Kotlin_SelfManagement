@@ -25,12 +25,14 @@ class TodoListVIewModel(application: Application) : AndroidViewModel(application
         todoRepository.insertTodoList(todo)
     }
 
+    // 할 일 수정하기
     fun todoUpdate(todo: TodoListEntity) = viewModelScope.launch(Dispatchers.IO) {
         todoRepository.updateTodo(todo)
     }
 
-    fun todoDelete(todo: TodoListEntity) = viewModelScope.launch(Dispatchers.IO) {
-        todoRepository.deleteTodo(todo)
+    // 할 일 삭제하기(단일)
+    fun todoDelete(id: Long) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.deleteTodo(id)
     }
 
 

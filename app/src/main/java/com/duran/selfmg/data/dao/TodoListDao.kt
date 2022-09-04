@@ -20,7 +20,7 @@ interface TodoListDao {
     @Update
     fun todoUpdate(todo: TodoListEntity)
 
-    @Delete
-    fun todoDelete(todo: TodoListEntity)
+    @Query("delete from todo_Table where id = (:id)")
+    fun todoDelete(id: Long)
 
 }

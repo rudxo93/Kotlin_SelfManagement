@@ -1,9 +1,8 @@
 package com.duran.selfmg.ui.view.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -94,7 +93,7 @@ class TodoListFragment : Fragment() {
 
         })
 
-        // todoChekcBox클릭
+        // todoChekcBox클릭 이벤트
         todoListAdapter.setItemCheckBoxClickListener(object : TodoListAdapter.ItemCheckBoxClickListener {
             override fun onClick(view: View, position: Int, itemId: Long) {
                 CoroutineScope(Dispatchers.IO).launch {
@@ -104,8 +103,17 @@ class TodoListFragment : Fragment() {
                 }
             }
         })
-    }
 
+        // todo의 삭제 이미지 클릭 이벤트
+        todoListAdapter.setItemDeleteImageClickListener(object : TodoListAdapter.ItemDeleteImageClickListener {
+            override fun onClick(view: View, position: Int, itemId: Long) {
+                Toast.makeText(context, "삭제가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                CoroutineScope(Dispatchers.IO).launch {
+                    todoViewModel.todoDelete(itemId)
+                }
+            }
+        })
+    }
 
 }
 

@@ -108,6 +108,10 @@
     <string name="add_todo_btn_content_cancel">취소하기</string>
     <!-- Dialog Add Todo Fragment -->
 
+    <!-- item TodoList menu option -->
+    <string name="item_todo_menu_option1">선택항목 삭제</string>
+    <!-- item TodoList menu option -->
+
     <!-- Setting Fragment -->
     <string name="setting_fragment_title">더보기</string>
     <!-- Setting Fragment -->

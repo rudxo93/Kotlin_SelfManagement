@@ -19,13 +19,14 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
 
     private lateinit var itemClickListner: ItemClickListener
     private lateinit var itemCheckBoxClickListener: ItemCheckBoxClickListener
+    private lateinit var itemDeleteImageClickListener: ItemDeleteImageClickListener
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val todoContent = itemView.findViewById<TextView>(R.id.tv_todoItem_content)
         private val todoTimestamp = itemView.findViewById<TextView>(R.id.tv_todo_timestamp)
         val todoListBox = itemView.findViewById<LinearLayout>(R.id.linear_todo)!!
         val checkbox = itemView.findViewById<ImageView>(R.id.iv_todoCheck)!!
-        private val todoDeleteIcon = itemView.findViewById<ImageView>(R.id.iv_todo_delete)!!
+        val todoDeleteIcon = itemView.findViewById<ImageView>(R.id.iv_todo_delete)!!
 
         fun onBind(data: TodoListEntity) {
             todoContent.text = data.todocontent
@@ -56,12 +57,8 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
                todoTimestamp.isFocusable = true
            }
 
-
         }
     }
-
-    /*todoListBox.isClickable = true
-               todoListBox.isFocusable = true*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoListAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_todolist_row, parent, false)
@@ -72,7 +69,7 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
     override fun onBindViewHolder(holder: TodoListAdapter.ViewHolder, position: Int) {
         holder.onBind(list[position])
 
-        // 게시글 클릭 이벤트
+        // todo컨텐츠 클릭 이벤트
         holder.todoListBox.setOnClickListener {
             itemClickListner.onClick(it, position, list[position].id)
         }
@@ -80,6 +77,11 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
         // 체크박스 클릭 이벤트
         holder.checkbox.setOnClickListener {
             itemCheckBoxClickListener.onClick(it, position, list[position].id)
+        }
+
+        // todo단일 삭제 버튼 클릭 이벤트
+        holder.todoDeleteIcon.setOnClickListener {
+            itemDeleteImageClickListener.onClick(it, position, list[position].id)
         }
     }
 
@@ -93,6 +95,7 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
         notifyDataSetChanged()
     }
 
+    // ======================================= 컨텐츠 클릭 이벤트 =======================================
     interface ItemClickListener {
         fun onClick(view: View, position: Int, itemId: Long)
     }
@@ -101,11 +104,21 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
         this.itemClickListner = itemClickListener
     }
 
+    // ======================================= 체크박스 이미지 클릭 이벤트 =======================================
     interface ItemCheckBoxClickListener {
         fun onClick(view: View, position: Int, itemId: Long)
     }
 
     fun setItemCheckBoxClickListener(itemCheckBoxClickListener: ItemCheckBoxClickListener) {
         this.itemCheckBoxClickListener = itemCheckBoxClickListener
+    }
+
+    // ======================================= 할 일 삭제하기 이미지 클릭 이벤트 =======================================
+    interface ItemDeleteImageClickListener {
+        fun onClick(view: View, position: Int, itemId: Long)
+    }
+
+    fun setItemDeleteImageClickListener(itemDeleteImageClickListener: ItemDeleteImageClickListener) {
+        this.itemDeleteImageClickListener = itemDeleteImageClickListener
     }
 }
