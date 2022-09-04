@@ -1,11 +1,13 @@
 package com.duran.selfmg.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.duran.selfmg.R
@@ -16,29 +18,50 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
     private var list = mutableListOf<TodoListEntity>()
 
     private lateinit var itemClickListner: ItemClickListener
+    private lateinit var itemCheckBoxClickListener: ItemCheckBoxClickListener
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val todoContent : TextView = itemView.findViewById(R.id.tv_todoItem_content)
-        val todoTimestamp : TextView = itemView.findViewById(R.id.tv_todo_timestamp)
-        val checkbox : CheckBox = itemView.findViewById(R.id.cb_todoCheck)
+        private val todoContent = itemView.findViewById<TextView>(R.id.tv_todoItem_content)
+        private val todoTimestamp = itemView.findViewById<TextView>(R.id.tv_todo_timestamp)
+        val todoListBox = itemView.findViewById<LinearLayout>(R.id.linear_todo)!!
+        val checkbox = itemView.findViewById<ImageView>(R.id.iv_todoCheck)!!
+        private val todoDeleteIcon = itemView.findViewById<ImageView>(R.id.iv_todo_delete)!!
 
         fun onBind(data: TodoListEntity) {
             todoContent.text = data.todocontent
             todoTimestamp.text = data.timestamp
-            checkbox.isChecked = data.isChecked
 
-            if(data.isChecked) {
-                todoContent.paintFlags = todoContent.paintFlags or STRIKE_THRU_TEXT_FLAG
-            } else {
-                todoContent.paintFlags = todoContent.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()
-            }
+            // checked 토글 동작
+           if(!data.isChecked) {
+               checkbox.setImageResource(R.drawable.ic_round_circle) // 체크박스 이미지 변경
+               todoDeleteIcon.visibility = View.GONE // delete이미지 숨기기
+               // content와 time 텍스트 색 변경
+               todoContent.setTextColor(Color.BLACK)
+               todoTimestamp.setTextColor(Color.BLACK)
+               // content와 time 클릭 가능
+               todoContent.isClickable = false
+               todoContent.isFocusable = false
+               todoTimestamp.isClickable = false
+               todoTimestamp.isFocusable = false
+           } else {
+               checkbox.setImageResource(R.drawable.ic_check_circle) // 체크박스 이미지 변경
+               todoDeleteIcon.visibility = View.VISIBLE // delete이미지 보이게하기
+               // content와 time 텍스트 색 변경
+               todoContent.setTextColor(Color.GRAY)
+               todoTimestamp.setTextColor(Color.GRAY)
+               // content와 time 클릭 방지
+               todoContent.isClickable = true
+               todoContent.isFocusable = true
+               todoTimestamp.isClickable = true
+               todoTimestamp.isFocusable = true
+           }
 
-            itemView.setOnClickListener {
-                itemClickListner.onClick(it, layoutPosition, list[layoutPosition].id)
-            }
 
         }
     }
+
+    /*todoListBox.isClickable = true
+               todoListBox.isFocusable = true*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoListAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_todolist_row, parent, false)
@@ -48,8 +71,15 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
 
     override fun onBindViewHolder(holder: TodoListAdapter.ViewHolder, position: Int) {
         holder.onBind(list[position])
-        holder.itemView.setOnClickListener {
+
+        // 게시글 클릭 이벤트
+        holder.todoListBox.setOnClickListener {
             itemClickListner.onClick(it, position, list[position].id)
+        }
+
+        // 체크박스 클릭 이벤트
+        holder.checkbox.setOnClickListener {
+            itemCheckBoxClickListener.onClick(it, position, list[position].id)
         }
     }
 
@@ -57,19 +87,10 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
         return list.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun update(newList: MutableList<TodoListEntity>) {
         this.list = newList
         notifyDataSetChanged()
-    }
-
-    private lateinit var itemCheckBoxClickListener: ItemCheckBoxClickListener
-
-    interface ItemCheckBoxClickListener {
-        fun onClick(view: View, position: Int, itemId: Long)
-    }
-
-    fun setItemCheckBoxClickListener(itemCheckBoxClickListener: ItemCheckBoxClickListener) {
-        this.itemCheckBoxClickListener = itemCheckBoxClickListener
     }
 
     interface ItemClickListener {
@@ -78,5 +99,13 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
 
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListner = itemClickListener
+    }
+
+    interface ItemCheckBoxClickListener {
+        fun onClick(view: View, position: Int, itemId: Long)
+    }
+
+    fun setItemCheckBoxClickListener(itemCheckBoxClickListener: ItemCheckBoxClickListener) {
+        this.itemCheckBoxClickListener = itemCheckBoxClickListener
     }
 }

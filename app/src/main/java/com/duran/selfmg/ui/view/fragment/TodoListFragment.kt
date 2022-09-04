@@ -1,30 +1,20 @@
 package com.duran.selfmg.ui.view.fragment
 
-import android.app.Activity.RESULT_OK
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.duran.selfmg.R
-import com.duran.selfmg.data.model.TodoListEntity
 import com.duran.selfmg.databinding.FragmentTodoListBinding
 import com.duran.selfmg.ui.adapter.TodoListAdapter
 import com.duran.selfmg.ui.viewmodel.TodoListVIewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class TodoListFragment : Fragment() {
@@ -32,6 +22,8 @@ class TodoListFragment : Fragment() {
     private lateinit var binding: FragmentTodoListBinding
 
     private val btnAddTodoList by lazy { binding.btnAddTravelPlan }
+    private val todoListRecyclerView by lazy { binding.rvTodolist }
+
 
     private lateinit var todoViewModel: TodoListVIewModel
     lateinit var todoListAdapter: TodoListAdapter
@@ -60,7 +52,7 @@ class TodoListFragment : Fragment() {
 
     // ======================================= Add 버튼 클릭 =======================================
     private fun initBtnAddTodoList() {
-        btnAddTodoList.setOnClickListener{
+        btnAddTodoList.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("type", "Add") // add 버튼 클릭 -> Dialog로 type을 add로 넘긴다.
 
@@ -80,8 +72,8 @@ class TodoListFragment : Fragment() {
         }
 
         todoListAdapter = context?.let { TodoListAdapter(it) }!!
-        binding.rvTodolist.layoutManager = LinearLayoutManager(context)
-        binding.rvTodolist.adapter = todoListAdapter
+        todoListRecyclerView.layoutManager = LinearLayoutManager(context)
+        todoListRecyclerView.adapter = todoListAdapter
 
         // todoContent 클릭
         todoListAdapter.setItemClickListener(object : TodoListAdapter.ItemClickListener {
@@ -105,23 +97,15 @@ class TodoListFragment : Fragment() {
         // todoChekcBox클릭
         todoListAdapter.setItemCheckBoxClickListener(object : TodoListAdapter.ItemCheckBoxClickListener {
             override fun onClick(view: View, position: Int, itemId: Long) {
-
+                CoroutineScope(Dispatchers.IO).launch {
+                    val todoIsChecked = todoViewModel.getTodo(itemId)
+                    todoIsChecked.isChecked = !todoIsChecked.isChecked // checked 토글
+                    todoViewModel.todoUpdate(todoIsChecked)
+                }
             }
         })
     }
 
-    // ======================================= 게시글 클릭 시 게시글 update =======================================
-   /* private fun initUpdateTodo(todo: Job) {
-        val bundle = Bundle()
-        bundle.putString("type", "Update")
-        bundle.putString("itemId", "$itemId")
-
-        val dialog = DialogAddTodoFragment()
-        dialog.arguments = bundle
-        parentFragmentManager.beginTransaction()
-        dialog.show(childFragmentManager, "TodoListDialog")
-
-    }*/
-
 
 }
+

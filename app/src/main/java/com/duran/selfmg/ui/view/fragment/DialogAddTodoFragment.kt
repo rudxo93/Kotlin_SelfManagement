@@ -52,16 +52,19 @@ class DialogAddTodoFragment : DialogFragment() {
 
     // ======================================= type에 따른 버튼 셋팅 =======================================
     private fun initTypeSetting(resultType: String?) {
-        if(resultType == "Add") {
-            btnSave.text = "저장하기"
-            tvTitle.text = "할 일 추가하기"
-            initBtnSave()
-        } else if(resultType == "Update") {
-            todo = arguments?.getSerializable("item") as TodoListEntity // 해당 게시글
-            editContent.setHint(todo!!.todocontent)
-            btnSave.text = "수정하기"
-            tvTitle.text = "할 일 수정하기"
-            initBtnUpdate()
+        when(resultType) {
+            "Add" -> {
+                btnSave.text = "저장하기"
+                tvTitle.text = "할 일 추가하기"
+                initBtnSave()
+            }
+            "Update" -> {
+                todo = arguments?.getSerializable("item") as TodoListEntity // 해당 게시글
+                editContent.setHint(todo!!.todocontent)
+                btnSave.text = "수정하기"
+                tvTitle.text = "할 일 수정하기"
+                initBtnUpdate()
+            }
         }
     }
 
@@ -108,7 +111,7 @@ class DialogAddTodoFragment : DialogFragment() {
     // ======================================= 취소하기 버튼 클릭 =======================================
     private fun initBtnCancel() {
         btnCancel.setOnClickListener {
-            Toast.makeText(context, "할 일을 취소했습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "작성하기를 취소했습니다.", Toast.LENGTH_SHORT).show()
             dismiss()
         }
     }
