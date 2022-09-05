@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -25,7 +26,7 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
         private val todoContent = itemView.findViewById<TextView>(R.id.tv_todoItem_content)
         private val todoTimestamp = itemView.findViewById<TextView>(R.id.tv_todo_timestamp)
         val todoListBox = itemView.findViewById<LinearLayout>(R.id.linear_todo)!!
-        val checkbox = itemView.findViewById<ImageView>(R.id.iv_todoCheck)!!
+        val checkbox = itemView.findViewById<CheckBox>(R.id.iv_todoCheck)!!
         val todoDeleteIcon = itemView.findViewById<ImageView>(R.id.iv_todo_delete)!!
 
         fun onBind(data: TodoListEntity) {
@@ -34,7 +35,8 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
 
             // checked 토글 동작
             if (!data.isChecked) {
-                checkbox.setImageResource(R.drawable.ic_round_circle) // 체크박스 이미지 변경
+                /*checkbox.setImageResource(R.drawable.ic_round_circle) // 체크박스 이미지 변경*/
+                checkbox.isChecked = false
                 todoDeleteIcon.visibility = View.GONE // delete이미지 숨기기
                 // content와 time 텍스트 색 변경
                 todoContent.setTextColor(Color.BLACK)
@@ -46,7 +48,8 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
                 todoTimestamp.isFocusable = false
 
             } else {
-                checkbox.setImageResource(R.drawable.ic_check_circle) // 체크박스 이미지 변경
+                /*checkbox.setImageResource(R.drawable.ic_check_circle) // 체크박스 이미지 변경*/
+                checkbox.isChecked = true
                 todoDeleteIcon.visibility = View.VISIBLE // delete이미지 보이게하기
                 // content와 time 텍스트 색 변경
                 todoContent.setTextColor(Color.GRAY)

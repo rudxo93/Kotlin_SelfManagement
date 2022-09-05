@@ -13,6 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:text="@string/plan_todoList_title"
             android:textSize="18sp"
@@ -24,7 +25,7 @@
             android:id="@+id/tv_todoList_selectAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:text="@string/plan_todoList_select_selectAll"
             app:layout_constraintBottom_toTopOf="@+id/division_bar"
             app:layout_constraintEnd_toEndOf="parent" />
