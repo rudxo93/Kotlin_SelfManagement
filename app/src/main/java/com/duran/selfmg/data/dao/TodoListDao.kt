@@ -23,4 +23,7 @@ interface TodoListDao {
     @Query("delete from todo_Table where id = (:id)")
     fun todoDelete(id: Long)
 
+    @Delete
+    fun selectTodoDeleteAll(todo: TodoListEntity)
+
 }

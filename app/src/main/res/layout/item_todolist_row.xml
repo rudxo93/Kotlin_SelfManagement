@@ -7,10 +7,10 @@
 
     <ImageView
         android:id="@+id/iv_todoCheck"
-        android:src="@drawable/ic_round_circle"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_margin="5dp"
+        android:src="@drawable/ic_round_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,9 +30,9 @@
             android:id="@+id/tv_todoItem_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/item_todolist_row_todocontent"
             android:clickable="false"
             android:focusable="false"
+            android:text="@string/item_todolist_row_todocontent"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -48,13 +48,13 @@
     </LinearLayout>
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/iv_todo_delete"
-        android:src="@drawable/ic_trash"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_trash"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

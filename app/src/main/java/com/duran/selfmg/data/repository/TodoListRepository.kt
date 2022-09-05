@@ -24,4 +24,7 @@ class TodoListRepository(context: Context) {
     // 할 일 삭제하기(단일)
     fun deleteTodo(id: Long) = db.todoListDao().todoDelete(id)
 
+    // 선택한 할 일 삭제하기
+    fun selectTodoDeleteAll(todo: TodoListEntity) = db.todoListDao().selectTodoDeleteAll(todo)
+
 }

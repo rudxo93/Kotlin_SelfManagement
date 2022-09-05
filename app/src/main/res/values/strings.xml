@@ -91,6 +91,7 @@
 
     <!-- Plan Fragment - TodoList -->
     <string name="plan_todoList_title">나의 할일</string>
+    <string name="plan_todoList_select_selectAll">선택항목 삭제</string>
     <string name="plan_todoList_add_todoList_title">할 일 추가하기</string>
     <string name="plan_todoList_add_todoList_content">할 일을 입력해주세요</string>
     <string name="plan_todlList_add_button">추가하기</string>

@@ -35,6 +35,9 @@ class TodoListVIewModel(application: Application) : AndroidViewModel(application
         todoRepository.deleteTodo(id)
     }
 
-
+    // 선택된 할 일 전체 삭제하기
+    fun selectTodoDeleteAll(todo: TodoListEntity) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.selectTodoDeleteAll(todo)
+    }
 
 }

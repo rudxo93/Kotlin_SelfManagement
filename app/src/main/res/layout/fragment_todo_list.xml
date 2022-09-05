@@ -20,6 +20,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_todoList_selectAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/plan_todoList_select_selectAll"
+            app:layout_constraintBottom_toTopOf="@+id/division_bar"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <View
             android:id="@+id/division_bar"
             android:layout_width="match_parent"

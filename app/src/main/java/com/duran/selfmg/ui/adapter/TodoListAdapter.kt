@@ -33,35 +33,39 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
             todoTimestamp.text = data.timestamp
 
             // checked 토글 동작
-           if(!data.isChecked) {
-               checkbox.setImageResource(R.drawable.ic_round_circle) // 체크박스 이미지 변경
-               todoDeleteIcon.visibility = View.GONE // delete이미지 숨기기
-               // content와 time 텍스트 색 변경
-               todoContent.setTextColor(Color.BLACK)
-               todoTimestamp.setTextColor(Color.BLACK)
-               // content와 time 클릭 가능
-               todoContent.isClickable = false
-               todoContent.isFocusable = false
-               todoTimestamp.isClickable = false
-               todoTimestamp.isFocusable = false
-           } else {
-               checkbox.setImageResource(R.drawable.ic_check_circle) // 체크박스 이미지 변경
-               todoDeleteIcon.visibility = View.VISIBLE // delete이미지 보이게하기
-               // content와 time 텍스트 색 변경
-               todoContent.setTextColor(Color.GRAY)
-               todoTimestamp.setTextColor(Color.GRAY)
-               // content와 time 클릭 방지
-               todoContent.isClickable = true
-               todoContent.isFocusable = true
-               todoTimestamp.isClickable = true
-               todoTimestamp.isFocusable = true
-           }
+            if (!data.isChecked) {
+                checkbox.setImageResource(R.drawable.ic_round_circle) // 체크박스 이미지 변경
+                todoDeleteIcon.visibility = View.GONE // delete이미지 숨기기
+                // content와 time 텍스트 색 변경
+                todoContent.setTextColor(Color.BLACK)
+                todoTimestamp.setTextColor(Color.BLACK)
+                // content와 time 클릭 가능
+                todoContent.isClickable = false
+                todoContent.isFocusable = false
+                todoTimestamp.isClickable = false
+                todoTimestamp.isFocusable = false
+
+            } else {
+                checkbox.setImageResource(R.drawable.ic_check_circle) // 체크박스 이미지 변경
+                todoDeleteIcon.visibility = View.VISIBLE // delete이미지 보이게하기
+                // content와 time 텍스트 색 변경
+                todoContent.setTextColor(Color.GRAY)
+                todoTimestamp.setTextColor(Color.GRAY)
+                // content와 time 클릭 방지
+                todoContent.isClickable = true
+                todoContent.isFocusable = true
+                todoTimestamp.isClickable = true
+                todoTimestamp.isFocusable = true
+
+            }
+
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoListAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_todolist_row, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_todolist_row, parent, false)
 
         return ViewHolder(view)
     }
@@ -120,5 +124,10 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
 
     fun setItemDeleteImageClickListener(itemDeleteImageClickListener: ItemDeleteImageClickListener) {
         this.itemDeleteImageClickListener = itemDeleteImageClickListener
+    }
+
+    //
+    interface ItemIsCheckedDataSend {
+
     }
 }
