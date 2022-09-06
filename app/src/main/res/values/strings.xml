@@ -119,13 +119,15 @@
     <string name="item_memolist_row_memo_timestamp">2022년 9월 5일</string>
     <!-- item memolist row -->
 
-    <!-- Dialog Write Memo Fragment -->
-    <string name="write_memo_top_title">메모 작성하기</string>
-    <string name="write_memo_title">메모 제목</string>
-    <string name="write_memo_content_hint">메모 입력하기</string>
-    <string name="btn_write_memo_save">저장하기</string>
-    <string name="btn_write_memo_cancel">취소하기</string>
-    <!-- Dialog Write Memo Fragment -->
+    <!-- Write Memo Bottom Sheet -->
+    <string name="btn_bottom_sheet_write_memo_arrow">↑</string>
+    <string name="btn_bottom_sheet_write_memo">메모 작성하기</string>
+    <string name="write_memo_title">제목</string>
+    <string name="write_memo_content_hint">메모를 입력해주세요</string>
+    <string name="btn_write_memo_save">저장</string>
+    <string name="write_memo_btn_division">|</string>
+    <string name="btn_write_memo_cancel">취소</string>
+    <!-- Write Memo Bottom Sheet -->
 
     <!-- Setting Fragment -->
     <string name="setting_fragment_title">더보기</string>
