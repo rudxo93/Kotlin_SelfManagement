@@ -9,6 +9,7 @@
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/ic_baseline_checklist_24.xml" value="0.263" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/ic_cancel.xml" value="0.2045" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/ic_check_circle.xml" value="0.2075" />
+        <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/ic_check_circle_full.xml" value="0.2315" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/ic_health.xml" value="0.2045" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/ic_person.xml" value="0.2045" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/ic_plan.xml" value="0.2045" />
@@ -18,6 +19,7 @@
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/radius_white_background.xml" value="0.2685" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/radius_write_meno_background.xml" value="0.3485" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/selector_check_box.xml" value="0.3485" />
+        <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/drawable/selector_memo_check_box.xml" value="0.22" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/layout/activity_add_todo.xml" value="0.3619791666666667" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/layout/activity_alert_dialog.xml" value="0.26458333333333334" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/layout/activity_create_name.xml" value="0.284375" />
@@ -48,7 +50,7 @@
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/layout/fragment_sign_up_ph.xml" value="0.3296875" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/layout/fragment_todo_list.xml" value="0.3515625" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/layout/fragment_write_todo_list.xml" value="0.3515625" />
-        <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/layout/item_memolist_row.xml" value="0.3609375" />
+        <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/layout/item_memolist_row.xml" value="1.1" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/layout/item_todolist_row.xml" value="0.33" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/menu/bottom_navi_menu.xml" value="0.3651041666666667" />
         <entry key="..\:/android_workspace/Kotlin_SelfManagement/app/src/main/res/menu/item_current_toolbar_menu.xml" value="0.3619791666666667" />
