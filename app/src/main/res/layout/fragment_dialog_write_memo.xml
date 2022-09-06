@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,33 +13,61 @@
             android:id="@+id/tv_write_memo_top_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/write_memo_top_title"
+            android:textColor="@color/black"
             android:textSize="20sp"
-            android:text="@string/write_memo_title"/>
+            app:layout_constraintBottom_toTopOf="@+id/view_division1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
-            android:id="@+id/view_division"
+            android:id="@+id/view_division1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_write_memo_top_title"
+            android:background="@color/colorDivision"
             app:layout_constraintBottom_toTopOf="@+id/tv_write_memo_title"
-            android:background="@color/colorDivision" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_write_memo_top_title" />
 
         <TextView
             android:id="@+id/tv_write_memo_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:singleLine="true"
+            android:text="@string/write_memo_title"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/view_division2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_division1" />
+
+        <View
+            android:id="@+id/view_division2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorDivision"
+            app:layout_constraintBottom_toTopOf="@+id/tv_write_memo_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_write_memo_title" />
+
+        <TextView
+            android:id="@+id/tv_write_memo_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/write_memo_content_hint"
             android:lines="6"
             android:maxLines="15"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_division"/>
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_division2" />
 
         <Button
             android:id="@+id/btn_memo_save"
@@ -48,9 +75,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@string/btn_write_memo_save"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_write_memo_title"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_write_memo_content" />
 
         <Button
             android:id="@+id/btn_memo_cancel"
@@ -58,9 +85,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@string/btn_write_memo_cancel"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_write_memo_title"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_write_memo_content" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

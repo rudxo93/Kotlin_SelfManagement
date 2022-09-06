@@ -120,7 +120,8 @@
     <!-- item memolist row -->
 
     <!-- Dialog Write Memo Fragment -->
-    <string name="write_memo_title">메모 작성하기</string>
+    <string name="write_memo_top_title">메모 작성하기</string>
+    <string name="write_memo_title">메모 제목</string>
     <string name="write_memo_content_hint">메모 입력하기</string>
     <string name="btn_write_memo_save">저장하기</string>
     <string name="btn_write_memo_cancel">취소하기</string>
