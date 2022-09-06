@@ -51,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
 
     // =======================================회원가입 툴바=======================================
     private fun initToolBarSetting() {
-        val toolbar = binding.toolbar
+        val toolbar = binding.toolbarSingup
 
         // 툴바 생성
         setSupportActionBar(toolbar)

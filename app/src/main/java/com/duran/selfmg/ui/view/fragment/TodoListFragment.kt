@@ -21,7 +21,7 @@ class TodoListFragment : Fragment() {
 
     private lateinit var binding: FragmentTodoListBinding
 
-    private val btnAddTodoList by lazy { binding.btnAddTravelPlan }
+    private val btnAddTodoList by lazy { binding.btnAddTodoList }
     private val todoListRecyclerView by lazy { binding.rvTodolist }
     private val todoListSelectAll by lazy { binding.tvTodoListSelectAll }
 

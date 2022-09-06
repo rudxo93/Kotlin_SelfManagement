@@ -1,16 +1,20 @@
 package com.duran.selfmg.ui.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.duran.selfmg.R
+import com.duran.selfmg.databinding.FragmentMemoBinding
 
 class MemoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var binding : FragmentMemoBinding
+
+    private val btnAddMemo by lazy { binding.btnAddMemoList }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +24,21 @@ class MemoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_memo, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_memo, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initBtnAddMemo()
+
+    }
+
+    // ======================================= Add 버튼 클릭 =======================================
+    private fun initBtnAddMemo() {
+
     }
 
 }

@@ -44,7 +44,7 @@ class CreateNameActivity : AppCompatActivity() {
 
     // ======================================= 닉네임 생성 상단 툴바 =======================================
     private fun initToolBarSetting() {
-        val toolbar = binding.toolbar
+        val toolbar = binding.toolbarCreateName
 
         // 툴바 생성
         setSupportActionBar(toolbar)
