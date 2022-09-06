@@ -2,12 +2,12 @@ package com.duran.selfmg.data.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.duran.selfmg.data.db.TodoListDatabase
+import com.duran.selfmg.data.db.SelfMgDatabase
 import com.duran.selfmg.data.model.TodoListEntity
 
 class TodoListRepository(context: Context) {
 
-    private val db = TodoListDatabase.getDatabase(context)
+    private val db = SelfMgDatabase.getDatabase(context)
 
     // 할일 추가하기
     fun insertTodoList(todo: TodoListEntity) = db.todoListDao().todoInsert(todo)

@@ -8,20 +8,20 @@ import com.duran.selfmg.data.dao.TodoListDao
 import com.duran.selfmg.data.model.TodoListEntity
 
 @Database(entities = [TodoListEntity::class], version = 1)
-abstract class TodoListDatabase : RoomDatabase() {
+abstract class SelfMgDatabase : RoomDatabase() {
 
     abstract fun todoListDao(): TodoListDao
 
     companion object {
         @Volatile
-        private var INSTANCE: TodoListDatabase? = null
+        private var INSTANCE: SelfMgDatabase? = null
 
-        fun getDatabase(context: Context): TodoListDatabase {
+        fun getDatabase(context: Context): SelfMgDatabase {
             return INSTANCE ?: synchronized(this) {
                 var instance = Room.databaseBuilder(
                     context.applicationContext,
-                    TodoListDatabase::class.java,
-                    "todo_database"
+                    SelfMgDatabase::class.java,
+                    "selfMg_database"
                 )
                     .fallbackToDestructiveMigration()
                     .build()
