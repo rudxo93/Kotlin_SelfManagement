@@ -55,7 +55,17 @@
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_memoList_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_memoList_title"
+        app:layout_constraintBottom_toTopOf="@+id/empty_view"/>
+
+    <View
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <CheckBox
         android:id="@+id/iv_memo_check"

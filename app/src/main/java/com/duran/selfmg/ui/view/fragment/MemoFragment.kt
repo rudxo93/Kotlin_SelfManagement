@@ -55,7 +55,7 @@ class MemoFragment : Fragment() {
 
     }
 
-    //
+    // ======================================= Memo RecyclerView Setting =======================================
     private fun initRecyclerViewSetting() {
         memoViewModel.memoList.observe(viewLifecycleOwner) {
             memoListAdapter.update(it)
