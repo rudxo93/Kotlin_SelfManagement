@@ -12,9 +12,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.duran.selfmg.R
 import com.duran.selfmg.data.model.MemoListEntity
 import com.duran.selfmg.databinding.FragmentMemoBinding
+import com.duran.selfmg.ui.adapter.MemoListAdapter
 import com.duran.selfmg.ui.viewmodel.MemoListViewModel
 import com.duran.selfmg.ui.viewmodel.TodoListVIewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -25,8 +27,10 @@ class MemoFragment : Fragment() {
     private lateinit var binding: FragmentMemoBinding
 
     private lateinit var memoViewModel: MemoListViewModel
+    lateinit var memoListAdapter: MemoListAdapter
 
     private val bottomSheet by lazy { binding.memoBottomSheet }
+    private val memoListRecyclerView by lazy { binding.rvMemolist }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +50,20 @@ class MemoFragment : Fragment() {
 
         memoViewModel = ViewModelProvider(this)[MemoListViewModel::class.java]
 
+        initRecyclerViewSetting()
         initBottomBehaviorEvent()
 
+    }
+
+    //
+    private fun initRecyclerViewSetting() {
+        memoViewModel.memoList.observe(viewLifecycleOwner) {
+            memoListAdapter.update(it)
+        }
+
+        memoListAdapter = context?.let { MemoListAdapter(it) }!!
+        memoListRecyclerView.layoutManager = GridLayoutManager(context, 2)
+        memoListRecyclerView.adapter = memoListAdapter
     }
 
     // ======================================= Bottom Sheet Behavior =======================================
@@ -94,10 +110,10 @@ class MemoFragment : Fragment() {
                 }
 
         // ======================================= 메모 저장 클릭 =======================================
-        binding.memoBottomSheet.tvBtnWriteMemoSave.setOnClickListener {
+        bottomSheet.tvBtnWriteMemoSave.setOnClickListener {
             val memoTitle = bottomSheet.edWriteMemoTitle.text
             val memoContent = bottomSheet.edWriteMemoContent.text
-            val saveDate = SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())
+            val saveDate = SimpleDateFormat("yyyy년 M월 d일").format(System.currentTimeMillis())
             // 타이틀이 비었다면 임의의 타이틀로 저장
             val emptyTitledDate = SimpleDateFormat("MMdd").format(System.currentTimeMillis())
             val emptyTitle = "텍스트 노트 $emptyTitledDate"

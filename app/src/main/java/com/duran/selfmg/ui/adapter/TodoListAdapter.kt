@@ -129,8 +129,4 @@ class TodoListAdapter(val context: Context) : RecyclerView.Adapter<TodoListAdapt
         this.itemDeleteImageClickListener = itemDeleteImageClickListener
     }
 
-    //
-    interface ItemIsCheckedDataSend {
-
-    }
 }
