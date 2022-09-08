@@ -97,12 +97,7 @@ class DialogAddTodoFragment : DialogFragment() {
             val updateDate = SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())
 
             if (updateContent.isNotEmpty()) { // 수정할 할 일을 작성했다면
-                val updateTodo = TodoListEntity(
-                    todo!!.id,
-                    updateContent.toString(),
-                    updateDate,
-                    todo!!.isChecked
-                )
+                val updateTodo = TodoListEntity(todo!!.id, updateContent.toString(), updateDate, todo!!.isChecked)
                 CoroutineScope(Dispatchers.IO).launch {
                     todoViewModel.todoUpdate(updateTodo)
                 }

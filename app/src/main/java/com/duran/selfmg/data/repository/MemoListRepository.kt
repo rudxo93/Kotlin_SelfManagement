@@ -18,4 +18,7 @@ class MemoListRepository(context: Context) {
     // 해당 메모 조회
     fun getMemo(id: Long) = db.memoListDao().getMemo(id)
 
+    // 메모 업데이트
+    fun updateMemo(memo: MemoListEntity) = db.memoListDao().memoUpdate(memo)
+
 }

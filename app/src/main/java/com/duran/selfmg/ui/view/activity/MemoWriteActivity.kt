@@ -81,8 +81,23 @@ class MemoWriteActivity : AppCompatActivity() {
         }
     }
 
+    // ======================================= Update Btn 클릭 =======================================
     private fun initBtnUpdate() {
-
+        btnSave.setOnClickListener {
+            val updateTitle = writeMemoTitle.text
+            val updateContent = writeMemoContent.text
+            val updateDate = SimpleDateFormat("yyyy년 M월 d일").format(System.currentTimeMillis())
+            if(updateContent.isNotEmpty()) { // 메모를 수정했다면
+                val updateMemo = MemoListEntity(memo!!.id, updateTitle.toString(), updateContent.toString(), updateDate, memo!!.isChecked)
+                CoroutineScope(Dispatchers.IO).launch {
+                    memoViewModel.memoUpdate(updateMemo)
+                }
+                Toast.makeText(this, "메모가 수정되었습니다.", Toast.LENGTH_SHORT).show()
+                finish()
+            } else if(updateContent.isEmpty()) {
+                Toast.makeText(this, "메모가 비어있습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     // ======================================= Cancel 버튼 클릭 =======================================

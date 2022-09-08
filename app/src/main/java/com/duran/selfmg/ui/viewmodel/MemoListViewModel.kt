@@ -17,11 +17,16 @@ class MemoListViewModel(application: Application) : AndroidViewModel(application
 
     val memoList: LiveData<MutableList<MemoListEntity>> = memoRepository.getAllMemo()
 
+    // 메모 정보 가져오기
+    fun getMemo(id: Long) = memoRepository.getMemo(id)
+
     // 메모 추가하기
     fun memoInsert(memo: MemoListEntity) = viewModelScope.launch(Dispatchers.IO) {
         memoRepository.insertMemo(memo)
     }
 
-    // 메모 정보 가져오기
-    fun getMemo(id: Long) = memoRepository.getMemo(id)
+    // 메모 업데이트
+    fun memoUpdate(memo: MemoListEntity) = viewModelScope.launch(Dispatchers.IO) {
+        memoRepository.updateMemo(memo)
+    }
 }
