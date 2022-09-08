@@ -61,7 +61,7 @@ class DialogAddTodoFragment : DialogFragment() {
             }
             "Update" -> {
                 todo = arguments?.getSerializable("item") as TodoListEntity // 해당 게시글
-                editContent.setHint(todo!!.todocontent)
+                editContent.setText(todo!!.todocontent)
                 btnSave.text = "수정하기"
                 tvTitle.text = "할 일 수정하기"
                 initBtnUpdate()
@@ -85,7 +85,6 @@ class DialogAddTodoFragment : DialogFragment() {
             } else {
                 Toast.makeText(context, "할 일을 작성후 저장하기를 눌러주세요.", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
@@ -103,8 +102,8 @@ class DialogAddTodoFragment : DialogFragment() {
                 }
                 Toast.makeText(context, "할 일이 변경되었습니다.", Toast.LENGTH_SHORT).show()
                 dismiss()
-            } else {
-                Toast.makeText(context, "할 일을 작성후 수정하기를 눌러주세요.", Toast.LENGTH_SHORT).show()
+            } else if(updateContent.isEmpty()) {
+                Toast.makeText(context, "할 일이 비었습니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }

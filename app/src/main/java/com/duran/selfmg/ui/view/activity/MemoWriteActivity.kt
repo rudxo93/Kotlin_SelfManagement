@@ -1,9 +1,9 @@
 package com.duran.selfmg.ui.view.activity
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.duran.selfmg.R
@@ -20,6 +20,7 @@ class MemoWriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMemoWriteBinding
     private lateinit var memoViewModel: MemoListViewModel
 
+    private val memoTopTitle by lazy { binding.tvWriteMemoTopTitle }
     private val writeMemoTitle by lazy { binding.edWriteMemoTitle }
     private val writeMemoContent by lazy { binding.edWriteMemoContent }
     private val btnSave by lazy { binding.btnWriteMemoSave }
@@ -41,11 +42,13 @@ class MemoWriteActivity : AppCompatActivity() {
 
     // ======================================= type에 따른 버튼 Text Change =======================================
     private fun initBtnChangeText(result: String?) {
-        if(result == "Add") {
+        if (result == "Add") {
             btnSave.text = "저장"
+            memoTopTitle.text = "메모 작성하기"
             initBtnSave()
         } else {
             memo = intent.getSerializableExtra("item") as MemoListEntity?
+            memoTopTitle.text = "메모 수정하기"
             writeMemoTitle.setText(memo!!.memoTitle)
             writeMemoContent.setText(memo!!.memoContent)
             btnSave.text = "변경"
@@ -63,8 +66,8 @@ class MemoWriteActivity : AppCompatActivity() {
             // 타이틀이 비었다면 임의의 타이틀로 저장
             val emptyTitledDate = SimpleDateFormat("MMdd").format(System.currentTimeMillis())
             val emptyTitle = "텍스트 노트 $emptyTitledDate"
-            if(memoContent.isNotEmpty()){ // 컨텐츠가 비어있다면 -> 완료 x
-                if(memoTitle.isEmpty()) { // 타이틀이 비었다면 -> 임의의 제목 부여( 텍스트 노트 저장날짜 )
+            if (memoContent.isNotEmpty()) { // 컨텐츠가 비어있다면 -> 완료 x
+                if (memoTitle.isEmpty()) { // 타이틀이 비었다면 -> 임의의 제목 부여( 텍스트 노트 저장날짜 )
                     val memoListEntity = MemoListEntity(0, emptyTitle, memoContent.toString(), saveDate, false)
                     memoViewModel.memoInsert(memoListEntity)
                     Toast.makeText(this, "메모가 저장되었습니다.", Toast.LENGTH_SHORT).show()
@@ -82,19 +85,20 @@ class MemoWriteActivity : AppCompatActivity() {
     }
 
     // ======================================= Update Btn 클릭 =======================================
+    @SuppressLint("SimpleDateFormat")
     private fun initBtnUpdate() {
         btnSave.setOnClickListener {
             val updateTitle = writeMemoTitle.text
             val updateContent = writeMemoContent.text
             val updateDate = SimpleDateFormat("yyyy년 M월 d일").format(System.currentTimeMillis())
-            if(updateContent.isNotEmpty()) { // 메모를 수정했다면
+            if (updateContent.isNotEmpty()) { // 메모를 수정했다면
                 val updateMemo = MemoListEntity(memo!!.id, updateTitle.toString(), updateContent.toString(), updateDate, memo!!.isChecked)
                 CoroutineScope(Dispatchers.IO).launch {
                     memoViewModel.memoUpdate(updateMemo)
                 }
                 Toast.makeText(this, "메모가 수정되었습니다.", Toast.LENGTH_SHORT).show()
                 finish()
-            } else if(updateContent.isEmpty()) {
+            } else if (updateContent.isEmpty()) {
                 Toast.makeText(this, "메모가 비어있습니다.", Toast.LENGTH_SHORT).show()
             }
         }
