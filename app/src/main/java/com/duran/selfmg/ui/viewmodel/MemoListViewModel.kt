@@ -22,9 +22,6 @@ class MemoListViewModel(application: Application) : AndroidViewModel(application
         memoRepository.insertMemo(memo)
     }
 
-    /*// 메모 정보 가져오기
-    fun getMemo(id: Long) = viewModelScope.launch(Dispatchers.IO) {
-        memoRepository.getMemo(id)
-    }
-*/
+    // 메모 정보 가져오기
+    fun getMemo(id: Long) = memoRepository.getMemo(id)
 }

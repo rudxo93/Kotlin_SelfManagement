@@ -25,7 +25,6 @@ class TodoListFragment : Fragment() {
     private val todoListRecyclerView by lazy { binding.rvTodolist }
     private val todoListSelectAll by lazy { binding.tvTodoListSelectAll }
 
-
     private lateinit var todoViewModel: TodoListVIewModel
     lateinit var todoListAdapter: TodoListAdapter
 

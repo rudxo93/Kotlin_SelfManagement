@@ -16,6 +16,6 @@ interface MemoListDao {
     @Query("select * from memo_Table")
     fun getAllMemo(): LiveData<MutableList<MemoListEntity>>
 
-    /*@Query("select * from memo_Table where id = (:id)")
-    fun getMemo(id: Long)*/
+    @Query("select * from memo_Table where id = (:id)")
+    fun getMemo(id: Long): MemoListEntity
 }

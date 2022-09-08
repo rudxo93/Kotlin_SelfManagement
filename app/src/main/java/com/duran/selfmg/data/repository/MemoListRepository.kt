@@ -15,7 +15,7 @@ class MemoListRepository(context: Context) {
     // 전체 메모 조회
     fun getAllMemo(): LiveData<MutableList<MemoListEntity>> = db.memoListDao().getAllMemo()
 
-    /*// 해당 메모 조회
-    fun getMemo(id: Long) = db.memoListDao().getMemo(id)*/
+    // 해당 메모 조회
+    fun getMemo(id: Long) = db.memoListDao().getMemo(id)
 
 }

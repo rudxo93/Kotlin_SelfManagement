@@ -3,7 +3,9 @@ package com.duran.selfmg.ui.view.fragment
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +19,12 @@ import com.duran.selfmg.R
 import com.duran.selfmg.data.model.MemoListEntity
 import com.duran.selfmg.databinding.FragmentMemoBinding
 import com.duran.selfmg.ui.adapter.MemoListAdapter
+import com.duran.selfmg.ui.view.activity.MemoWriteActivity
 import com.duran.selfmg.ui.viewmodel.MemoListViewModel
-import com.duran.selfmg.ui.viewmodel.TodoListVIewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
 class MemoFragment : Fragment() {
@@ -29,8 +34,9 @@ class MemoFragment : Fragment() {
     private lateinit var memoViewModel: MemoListViewModel
     lateinit var memoListAdapter: MemoListAdapter
 
-    private val bottomSheet by lazy { binding.memoBottomSheet }
+    /*private val bottomSheet by lazy { binding.memoBottomSheet }*/
     private val memoListRecyclerView by lazy { binding.rvMemolist }
+    private val btnAddMemo by lazy { binding.btnAddMemoList }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +56,9 @@ class MemoFragment : Fragment() {
 
         memoViewModel = ViewModelProvider(this)[MemoListViewModel::class.java]
 
-        initRecyclerViewSetting()
-        initBottomBehaviorEvent()
+        initRecyclerViewSetting() // RecyclerView
+        initBtnAddMemo()
+        /*initBottomBehaviorEvent() // Bottom Sheet*/
 
     }
 
@@ -64,9 +71,30 @@ class MemoFragment : Fragment() {
         memoListAdapter = context?.let { MemoListAdapter(it) }!!
         memoListRecyclerView.layoutManager = GridLayoutManager(context, 2)
         memoListRecyclerView.adapter = memoListAdapter
+
+        memoListAdapter.setItemClickListener(object : MemoListAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int, itemId: Long) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val memo = memoViewModel.getMemo(itemId)
+                    val intent = Intent(activity, MemoWriteActivity::class.java)
+                    intent.putExtra("type", "Update")
+                    intent.putExtra("item", memo)
+                    startActivity(intent)
+                }
+            }
+        })
     }
 
-    // ======================================= Bottom Sheet Behavior =======================================
+    // ======================================= Add Memo Button Click =======================================
+    private fun initBtnAddMemo() {
+        btnAddMemo.setOnClickListener {
+            val intent = Intent(activity, MemoWriteActivity::class.java)
+            intent.putExtra("type", "Add")
+            startActivity(intent)
+        }
+    }
+
+   /* // ======================================= Bottom Sheet Behavior =======================================
     @SuppressLint("SimpleDateFormat")
     private fun initBottomBehaviorEvent() {
         val bottomBehavior = BottomSheetBehavior.from(bottomSheet.root)
@@ -78,6 +106,7 @@ class MemoFragment : Fragment() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
                     when (newState) {
                         BottomSheetBehavior.STATE_COLLAPSED -> { // 접힘 -> 키패드 숨기기
+                            // keyboard down
                             initKeyboardEvent()
                         }
                         BottomSheetBehavior.STATE_EXPANDED -> {} // 펼쳐짐
@@ -97,60 +126,7 @@ class MemoFragment : Fragment() {
             })
         }
 
-        // ======================================= 메모 작성하기 클릭 =======================================
-        bottomSheet.btnBottomWriteMemo.setOnClickListener {
-            bottomBehavior.state =
-                if (bottomBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) { // bottomBehavior상태가 접힌 상태라면
-                    BottomSheetBehavior.STATE_EXPANDED // 펼쳐준다.
-                } else
-                    BottomSheetBehavior.STATE_COLLAPSED // 아니라면 -> 펼쳐져있다면 접어준다.
-                    // 메모 제목과 내용 지워주기
-                    binding.memoBottomSheet.edWriteMemoContent.text.clear()
-                    binding.memoBottomSheet.edWriteMemoTitle.text.clear()
-                }
 
-        // ======================================= 메모 저장 클릭 =======================================
-        bottomSheet.tvBtnWriteMemoSave.setOnClickListener {
-            val memoTitle = bottomSheet.edWriteMemoTitle.text
-            val memoContent = bottomSheet.edWriteMemoContent.text
-            val saveDate = SimpleDateFormat("yyyy년 M월 d일").format(System.currentTimeMillis())
-            // 타이틀이 비었다면 임의의 타이틀로 저장
-            val emptyTitledDate = SimpleDateFormat("MMdd").format(System.currentTimeMillis())
-            val emptyTitle = "텍스트 노트 $emptyTitledDate"
-            // 메모 conetent는 필수
-            if(bottomSheet.edWriteMemoContent.text.isNotEmpty()){
-                // 타이틀이 비었다면
-                if(bottomSheet.edWriteMemoTitle.text.isEmpty()) {
-                    val memoListEntity = MemoListEntity(0, emptyTitle, memoContent.toString(), saveDate, false)
-                    memoViewModel.memoInsert(memoListEntity)
-                    bottomBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                    Toast.makeText(context, "메모가 저장되었습니다.", Toast.LENGTH_SHORT).show()
-                } else {
-                    val memoListEntity = MemoListEntity(0, memoTitle.toString(), memoContent.toString(), saveDate, false)
-                    memoViewModel.memoInsert(memoListEntity)
-                    bottomBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                    Toast.makeText(context, "메모가 저장되었습니다.", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(context, "메모가 비어있습니다.", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        // ======================================= 메모 취소 클릭 =======================================
-        bottomSheet.tvBtnWriteMemoCancel.setOnClickListener {
-            bottomBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            Toast.makeText(context, "취소", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    // ======================================= KeyBoard Down Event =======================================
-    private fun initKeyboardEvent() {
-        view?.let { activity?.hideKeyboard(it) }
-    }
-
-    private fun Context.hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-    }
+    }*/
 
 }
