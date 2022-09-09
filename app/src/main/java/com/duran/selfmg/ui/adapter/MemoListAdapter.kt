@@ -20,6 +20,7 @@ class MemoListAdapter(val context: Context) : RecyclerView.Adapter<MemoListAdapt
 
     private lateinit var itemClickListner: ItemClickListener
     private lateinit var itemCheckBoxClickListener: ItemCheckBoxClickListener
+    private lateinit var itemDeleteImageClickListener: ItemDeleteImageClickListener
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val memoTitle = itemView.findViewById<TextView>(R.id.tv_memoList_title)
@@ -68,6 +69,11 @@ class MemoListAdapter(val context: Context) : RecyclerView.Adapter<MemoListAdapt
         holder.checkBox.setOnClickListener {
             itemCheckBoxClickListener.onClick(it, position, list[position].id)
         }
+
+        // delete click
+        holder.memoDeleteIcon.setOnClickListener {
+            itemDeleteImageClickListener.onClick(it, position, list[position].id)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -90,11 +96,20 @@ class MemoListAdapter(val context: Context) : RecyclerView.Adapter<MemoListAdapt
     }
 
     // ======================================= Check Box Image Click Listener =======================================
-    interface  ItemCheckBoxClickListener {
+    interface ItemCheckBoxClickListener {
         fun onClick(view: View, position: Int, itemId: Long)
     }
 
     fun setItemCheckBoxClickListener(itemCheckBoxClickListener: ItemCheckBoxClickListener) {
         this.itemCheckBoxClickListener = itemCheckBoxClickListener
+    }
+
+    // ======================================= Delete Click Listener =======================================
+    interface ItemDeleteImageClickListener {
+        fun onClick(view: View, position: Int, itemId: Long)
+    }
+
+    fun setItemDeleteImageClickListener(itemDeleteImageClickListener: ItemDeleteImageClickListener) {
+        this.itemDeleteImageClickListener = itemDeleteImageClickListener
     }
 }

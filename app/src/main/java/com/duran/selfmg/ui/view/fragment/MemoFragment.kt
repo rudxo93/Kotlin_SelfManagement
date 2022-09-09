@@ -93,6 +93,15 @@ class MemoFragment : Fragment() {
                 }
             }
         })
+
+        memoListAdapter.setItemDeleteImageClickListener(object : MemoListAdapter.ItemDeleteImageClickListener {
+            override fun onClick(view: View, position: Int, itemId: Long) {
+                Toast.makeText(context, "삭제가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                CoroutineScope(Dispatchers.IO).launch {
+                    memoViewModel.memoDelete(itemId)
+                }
+            }
+        })
     }
 
     // ======================================= Add Memo Button Click =======================================

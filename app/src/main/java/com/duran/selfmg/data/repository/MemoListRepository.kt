@@ -21,4 +21,7 @@ class MemoListRepository(context: Context) {
     // 메모 업데이트
     fun updateMemo(memo: MemoListEntity) = db.memoListDao().memoUpdate(memo)
 
+    // 메모 삭제하기(단일)
+    fun deleteMemo(id: Long) = db.memoListDao().memoDelete(id)
+
 }

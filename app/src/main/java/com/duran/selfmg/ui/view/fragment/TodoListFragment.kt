@@ -92,8 +92,7 @@ class TodoListFragment : Fragment() {
         })
 
         // todo의 삭제 이미지 클릭 이벤트
-        todoListAdapter.setItemDeleteImageClickListener(object :
-            TodoListAdapter.ItemDeleteImageClickListener {
+        todoListAdapter.setItemDeleteImageClickListener(object : TodoListAdapter.ItemDeleteImageClickListener {
             override fun onClick(view: View, position: Int, itemId: Long) {
                 Toast.makeText(context, "삭제가 완료되었습니다.", Toast.LENGTH_SHORT).show()
                 CoroutineScope(Dispatchers.IO).launch {

@@ -29,4 +29,9 @@ class MemoListViewModel(application: Application) : AndroidViewModel(application
     fun memoUpdate(memo: MemoListEntity) = viewModelScope.launch(Dispatchers.IO) {
         memoRepository.updateMemo(memo)
     }
+
+    // 선택한 메모 삭제하기
+    fun memoDelete(id: Long) = viewModelScope.launch(Dispatchers.IO) {
+        memoRepository.deleteMemo(id)
+    }
 }

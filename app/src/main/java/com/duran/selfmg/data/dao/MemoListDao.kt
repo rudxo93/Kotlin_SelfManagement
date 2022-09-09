@@ -18,4 +18,8 @@ interface MemoListDao {
 
     @Update
     fun memoUpdate(memo: MemoListEntity)
+
+    @Query("delete from memo_Table where id = (:id)")
+    fun memoDelete(id: Long)
+
 }
