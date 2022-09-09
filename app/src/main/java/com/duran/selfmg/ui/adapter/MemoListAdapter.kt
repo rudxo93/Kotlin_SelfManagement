@@ -26,8 +26,8 @@ class MemoListAdapter(val context: Context) : RecyclerView.Adapter<MemoListAdapt
         private val memoContent = itemView.findViewById<TextView>(R.id.tv_memoList_content)
         private val timestamp = itemView.findViewById<TextView>(R.id.tv_memoList_timestamp)
 
-        val memoListBox = itemView.findViewById<LinearLayout>(R.id.linear_meno_content)
-        val checkBox = itemView.findViewById<CheckBox>(R.id.iv_memo_check)
+        val memoListBox = itemView.findViewById<LinearLayout>(R.id.linear_meno_content)!!
+        val checkBox = itemView.findViewById<CheckBox>(R.id.iv_memo_check)!!
         val memoDeleteIcon = itemView.findViewById<ImageView>(R.id.iv_memo_delete)
 
         fun onBind(data: MemoListEntity) {
@@ -39,9 +39,13 @@ class MemoListAdapter(val context: Context) : RecyclerView.Adapter<MemoListAdapt
                 // 체크박스 이미지 변경
                 checkBox.isChecked = false
                 memoDeleteIcon.visibility = View.GONE
+                memoContent.isClickable = false
+                memoContent.isFocusable = false
             } else { // true
                 checkBox.isChecked = true
                 memoDeleteIcon.visibility = View.VISIBLE
+                memoContent.isClickable = true
+                memoContent.isFocusable = true
             }
 
         }
