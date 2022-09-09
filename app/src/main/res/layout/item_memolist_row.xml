@@ -4,14 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <CheckBox
+        android:id="@+id/iv_memo_check"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:button="@drawable/selector_check_box"
+        android:checked="false"
+        app:layout_constraintEnd_toStartOf="@+id/linear_meno_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_memo_delete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_trash"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/linear_meno_content"
+        app:layout_constraintEnd_toStartOf="@+id/linear_meno_content"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <LinearLayout
         android:id="@+id/linear_meno_content"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/radius_memo_list_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_memo_check"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -53,28 +75,18 @@
         android:maxLines="1"
         android:text="@string/item_memolist_row_memo_timestamp"
         android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/empty_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_memoList_title"
-        app:layout_constraintBottom_toTopOf="@+id/empty_view"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_memoList_title" />
 
     <View
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="15dp"
         android:background="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <CheckBox
-        android:id="@+id/iv_memo_check"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_margin="13dp"
-        android:checked="false"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

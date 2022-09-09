@@ -83,6 +83,16 @@ class MemoFragment : Fragment() {
                 }
             }
         })
+
+        memoListAdapter.setItemCheckBoxClickListener(object : MemoListAdapter.ItemCheckBoxClickListener {
+            override fun onClick(view: View, position: Int, itemId: Long) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val memoIsChecked = memoViewModel.getMemo(itemId)
+                    memoIsChecked.isChecked = !memoIsChecked.isChecked // 토글
+                    memoViewModel.memoUpdate(memoIsChecked)
+                }
+            }
+        })
     }
 
     // ======================================= Add Memo Button Click =======================================

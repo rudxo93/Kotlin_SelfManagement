@@ -81,8 +81,7 @@ class TodoListFragment : Fragment() {
         })
 
         // todoChekcBox클릭 이벤트
-        todoListAdapter.setItemCheckBoxClickListener(object :
-            TodoListAdapter.ItemCheckBoxClickListener {
+        todoListAdapter.setItemCheckBoxClickListener(object : TodoListAdapter.ItemCheckBoxClickListener {
             override fun onClick(view: View, position: Int, itemId: Long) {
                 CoroutineScope(Dispatchers.IO).launch {
                     val todoIsChecked = todoViewModel.getTodo(itemId)
