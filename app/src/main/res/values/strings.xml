@@ -127,11 +127,9 @@
     <string name="write_memo_content_hint">메모를 입력해주세요</string>
     <!-- Write Memo Activity -->
 
-    <!-- Write Memo Bottom Sheet -->
-    <string name="btn_bottom_sheet_write_memo_arrow">↑</string>
-    <string name="btn_bottom_sheet_write_memo">메모 작성하기</string>
-    <string name="write_memo_btn_division">|</string>
-    <!-- Write Memo Bottom Sheet -->
+    <!-- Schedule Fragment -->
+    <string name="toolbar_schedule_title">나의 스케줄</string>
+    <!-- Schedule Fragment -->
 
     <!-- Setting Fragment -->
     <string name="setting_fragment_title">더보기</string>
