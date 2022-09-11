@@ -18,9 +18,11 @@
         android:theme="@style/Theme.SelfMg"
         tools:targetApi="31">
         <activity
-            android:name=".ui.view.activity.MemoWriteActivity"
+            android:name=".ui.view.activity.BmiCalculationActivity"
             android:exported="false" />
-        <!-- 1 -->
+        <activity
+            android:name=".ui.view.activity.MemoWriteActivity"
+            android:exported="false" /> <!-- 1 -->
         <activity
             android:name=".ui.view.activity.LodingActivity"
             android:exported="true">

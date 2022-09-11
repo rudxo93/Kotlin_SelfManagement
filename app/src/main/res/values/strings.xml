@@ -76,7 +76,13 @@
 
     <!-- My Health Fragment -->
     <string name="health_fragment_title">자기관리</string>
+    <string name="health_fragment_btn_bmi">BMI</string>
     <!-- My Health Fragment -->
+
+    <!-- Bmi Calculation Activity -->
+    <string name="bmi_calculation_activity_toolbar">나의 BMI구하기</string>
+    <string name="bmi_calculation_activity_info">BMI를 이용한 비만도 계산은 자신의 몸무게를 키의 제곱으로 나누는 것으로 공식은 kg/㎡. \n ex) 키 170㎝에 몸무게 73kg이면, 계산식 : 73 / (1.7×1.7) = 25.26 → 과체중</string>
+    <!-- Bmi Calculation Activity -->
 
     <!-- Plan Fragment -->
     <string name="plan_fragment_title">계획</string>
