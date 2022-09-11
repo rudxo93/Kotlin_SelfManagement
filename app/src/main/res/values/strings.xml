@@ -61,7 +61,7 @@
     <string name="create_name_btn_success">확인</string>
     <string name="create_name_check_alarm">사용가능합니다.</string>
     <!-- Create Name Activity -->
-
+    키
     <!-- Bottom Navigation Menu -->
     <string name="bottom_navi_current">CurrentUser</string>
     <string name="bottom_navi_health">MyHealth</string>
@@ -82,6 +82,12 @@
     <!-- Bmi Calculation Activity -->
     <string name="bmi_calculation_activity_toolbar">나의 BMI구하기</string>
     <string name="bmi_calculation_activity_info">BMI를 이용한 비만도 계산은 자신의 몸무게를 키의 제곱으로 나누는 것으로 공식은 kg/㎡. \n ex) 키 170㎝에 몸무게 73kg이면, 계산식 : 73 / (1.7×1.7) = 25.26 → 과체중</string>
+    <string name="bmi_calculation_height">신장</string>
+    <string name="bmi_calculation_height_hint">키를 입력해주세요.</string>
+    <string name="bmi_calculation_height_cm">cm</string>
+    <string name="bmi_calculation_weight">체중</string>
+    <string name="bmi_calculation_weight_hint">체중을 입력해주세요.</string>
+    <string name="bmi_calculation_weight_cm">kg</string>
     <!-- Bmi Calculation Activity -->
 
     <!-- Plan Fragment -->

@@ -45,9 +45,89 @@
             android:padding="5dp"
             android:text="@string/bmi_calculation_activity_info"
             android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_bmi_info"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/btn_bmi_info" />
+
+        <LinearLayout
+            android:id="@+id/linear_bmi_height"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="150dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_bmi_calculation">
+
+            <TextView
+                android:id="@+id/tv_bmi_height"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/bmi_calculation_height"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ed_bmi_input_height"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:gravity="center"
+                android:hint="@string/bmi_calculation_height_hint"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/tv_bmi_height_cm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/bmi_calculation_height_cm"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_bmi_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_bmi_height">
+
+            <TextView
+                android:id="@+id/tv_bmi_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/bmi_calculation_weight"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ed_bmi_input_weight"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:gravity="center"
+                android:hint="@string/bmi_calculation_weight_hint"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/tv_bmi_weight_cm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/bmi_calculation_weight_cm"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
