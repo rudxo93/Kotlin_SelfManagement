@@ -15,6 +15,8 @@ import com.duran.selfmg.R
 import com.duran.selfmg.databinding.ActivityBmiCalculationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class BmiCalculationActivity : AppCompatActivity() {
 
@@ -91,8 +93,7 @@ class BmiCalculationActivity : AppCompatActivity() {
             } else if (inputWeightText.isEmpty()) {
                 Toast.makeText(this, "체중 입력창이 비었습니다.", Toast.LENGTH_SHORT).show()
             } else {
-                Log.e("tag", inputHeightText.toString())
-                Log.e("tag", inputWeightText.toString())
+                initBmiCalculationResult()
             }
         }
     }
@@ -105,4 +106,19 @@ class BmiCalculationActivity : AppCompatActivity() {
             Toast.makeText(this, "신장과 체중입력을 초기화했습니다.", Toast.LENGTH_SHORT).show()
         }
     }
+
+    // ======================================= BMI수치 구하기 =======================================
+    private fun initBmiCalculationResult() {
+        val height = inputHeightText.toString().toFloat()
+        val weight = inputWeightText.toString().toFloat()
+
+        val bmi = weight / ((height / 100) * (height / 100)) // BMI수치 구하기
+
+        val df = DecimalFormat("#.##") // 소숫점 둘째자리까지
+        df.roundingMode = RoundingMode.DOWN
+
+        val bmiDf = df.format(bmi)
+        Log.e("tag", bmiDf.toString())
+    }
+
 }
