@@ -88,6 +88,16 @@
     <string name="bmi_calculation_weight">체중</string>
     <string name="bmi_calculation_weight_hint">체중을 입력해주세요.</string>
     <string name="bmi_calculation_weight_cm">kg</string>
+    <string name="bmi_calculation_range_1">0 저체중</string>
+    <string name="bmi_calculation_range_2">18.5 정상</string>
+    <string name="bmi_calculation_range_3">23 과체중</string>
+    <string name="bmi_calculation_range_4">25 경도비만</string>
+    <string name="bmi_calculation_range_5">30 중등도비만</string>
+    <string name="bmi_calculation_range_6">BMI</string>
+    <string name="bmi_calculation_range_division_1">/</string>
+    <string name="bmi_calculation_range_division_2">|</string>
+    <string name="bmi_calculation_btn_start_result">측정하기</string>
+    <string name="bmi_calculation_btn_bmi_clear">초기화</string>
     <!-- Bmi Calculation Activity -->
 
     <!-- Plan Fragment -->
