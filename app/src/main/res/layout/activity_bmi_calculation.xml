@@ -261,14 +261,51 @@
 
         <LinearLayout
             android:id="@+id/linear_bmi_result"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/radius_memo_list_background"
+            android:gravity="center"
             android:orientation="vertical"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_start_bmi_result">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bmi_calculation_result_textview_myBmi"
+                    android:textColor="@color/black"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_bmi_result_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/bmi_calculation_result_textview_myBmi_empty"
+                    android:textColor="@color/black"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_bmi_result_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/bmi_calculation_result_textview_myBmi_empty"
+                android:textColor="#2D81FF"
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

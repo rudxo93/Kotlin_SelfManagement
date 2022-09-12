@@ -98,6 +98,8 @@
     <string name="bmi_calculation_range_division_2">|</string>
     <string name="bmi_calculation_btn_start_result">측정하기</string>
     <string name="bmi_calculation_btn_bmi_clear">초기화</string>
+    <string name="bmi_calculation_result_textview_myBmi">MY BMI :</string>
+    <string name="bmi_calculation_result_textview_myBmi_empty">   </string>
     <!-- Bmi Calculation Activity -->
 
     <!-- Plan Fragment -->
