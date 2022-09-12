@@ -1,26 +1,22 @@
 package com.duran.selfmg.ui.view.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.duran.selfmg.R
 import com.duran.selfmg.databinding.ActivityBmiCalculationBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import java.math.RoundingMode
-import java.text.DecimalFormat
+import kotlin.math.round
 
 class BmiCalculationActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityBmiCalculationBinding
+    private lateinit var binding: ActivityBmiCalculationBinding
+    private lateinit var auth: FirebaseAuth // 계정인증
+
+    private var isInfoOpen = false // Bmi 정보버튼은 닫혀있다.
 
     private val btnBmiInfo by lazy { binding.btnBmiInfo } // bmi에 대해서 정보보기
     private val textViewBmiInfo by lazy { binding.tvBmiInfoText } // bmi 정보 textView
@@ -28,10 +24,6 @@ class BmiCalculationActivity : AppCompatActivity() {
     private val inputWeightText by lazy { binding.edBmiInputWeight.text } // 체중 입력
     private val btnStartResult by lazy { binding.btnStartBmiResult } // 측정하기 버튼
     private val btnBmiClear by lazy { binding.btnStartBmiClear } // Bmi 초기화 버튼
-
-    private var isInfoOpen = false // Bmi 정보버튼은 닫혀있다.
-
-    private lateinit var auth: FirebaseAuth // 계정인증
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,12 +80,16 @@ class BmiCalculationActivity : AppCompatActivity() {
     // ======================================= BMI 측정하기 버튼 클릭 =======================================
     private fun initClickBtnBmiResult() {
         btnStartResult.setOnClickListener {
-            if(inputHeightText.isEmpty()) {
-                Toast.makeText(this, "신장 입력창이 비었습니다.", Toast.LENGTH_SHORT).show()
-            } else if (inputWeightText.isEmpty()) {
-                Toast.makeText(this, "체중 입력창이 비었습니다.", Toast.LENGTH_SHORT).show()
-            } else {
-                initBmiCalculationResult()
+            when {
+                inputHeightText.isEmpty() -> {
+                    Toast.makeText(this, "신장 입력창이 비었습니다.", Toast.LENGTH_SHORT).show()
+                }
+                inputWeightText.isEmpty() -> {
+                    Toast.makeText(this, "체중 입력창이 비었습니다.", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    initBmiResult()
+                }
             }
         }
     }
@@ -107,18 +103,33 @@ class BmiCalculationActivity : AppCompatActivity() {
         }
     }
 
-    // ======================================= BMI수치 구하기 =======================================
-    private fun initBmiCalculationResult() {
-        val height = inputHeightText.toString().toFloat()
-        val weight = inputWeightText.toString().toFloat()
+    // ======================================= BMI수치 판정 결과 =======================================
+    private fun initBmiResult() {
+        val height = inputHeightText.toString().toDouble()
+        val weight = inputWeightText.toString().toDouble()
+        val bmi = bmiCalculation(height, weight)// 계산된 BMI지수
+        if (bmi < 18.5) {
+            Toast.makeText(this, "저체중입니다.$bmi", Toast.LENGTH_SHORT).show()
+        } else if (bmi >= 18.5 && bmi < 23) {
+            Toast.makeText(this, "정상입니다.$bmi", Toast.LENGTH_SHORT).show()
+        } else if (bmi >= 23 && bmi < 25) {
+            Toast.makeText(this, "과체중입니다.$bmi", Toast.LENGTH_SHORT).show()
+        } else if (bmi >= 25 && bmi < 30) {
+            Toast.makeText(this, "경도비만입니다.$bmi", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "중등도비만입니다.$bmi", Toast.LENGTH_SHORT).show()
+        }
 
-        val bmi = weight / ((height / 100) * (height / 100)) // BMI수치 구하기
-
-        val df = DecimalFormat("#.##") // 소숫점 둘째자리까지
-        df.roundingMode = RoundingMode.DOWN
-
-        val bmiDf = df.format(bmi)
-        Log.e("tag", bmiDf.toString())
     }
+
+    // ======================================= BMI수치 구하기 =======================================
+    fun bmiCalculation(height: Double, weight: Double): Double {
+        val BMI = weight / ((height / 100) * (height / 100)) // BMI수치 구하기
+
+        val BMIResult = round(BMI * 100) / 100
+
+        return BMIResult
+    }
+
 
 }

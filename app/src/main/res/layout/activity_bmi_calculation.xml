@@ -77,7 +77,7 @@
                 android:layout_marginStart="15dp"
                 android:gravity="center"
                 android:hint="@string/bmi_calculation_height_hint"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -118,7 +118,7 @@
                 android:layout_marginStart="15dp"
                 android:gravity="center"
                 android:hint="@string/bmi_calculation_weight_hint"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -258,6 +258,19 @@
             android:text="@string/bmi_calculation_btn_bmi_clear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linear_bmi_range" />
+
+        <LinearLayout
+            android:id="@+id/linear_bmi_result"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn_start_bmi_result">
+
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
