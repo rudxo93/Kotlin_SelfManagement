@@ -40,7 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/health_toolbar" />
 
         <TextView
-            android:id="@+id/tv_bmi_result"
+            android:id="@+id/tv_bmi_result_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -58,7 +58,7 @@
             android:text="@string/health_fragment_btn_bmi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bmi_result" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_bmi_result_num" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

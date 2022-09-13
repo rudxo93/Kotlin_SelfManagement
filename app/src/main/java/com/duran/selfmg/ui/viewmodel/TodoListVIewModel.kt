@@ -1,5 +1,6 @@
 package com.duran.selfmg.ui.viewmodel
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -11,6 +12,7 @@ import kotlinx.coroutines.launch
 
 class TodoListVIewModel(application: Application) : AndroidViewModel(application) {
 
+    @SuppressLint("StaticFieldLeak")
     val context = getApplication<Application>().applicationContext
 
     private val todoRepository = TodoListRepository(context)
