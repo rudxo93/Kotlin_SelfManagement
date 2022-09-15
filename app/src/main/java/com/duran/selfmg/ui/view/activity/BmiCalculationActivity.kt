@@ -1,10 +1,9 @@
 package com.duran.selfmg.ui.view.activity
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -15,9 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.duran.selfmg.R
 import com.duran.selfmg.data.model.HealthBmiEntity
 import com.duran.selfmg.databinding.ActivityBmiCalculationBinding
-import com.duran.selfmg.ui.view.fragment.HealthFragment
 import com.duran.selfmg.ui.viewmodel.HealthBmiViewModel
-import com.duran.selfmg.ui.viewmodel.MemoListViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +29,8 @@ class BmiCalculationActivity : AppCompatActivity() {
 
     private var isInfoOpen = false // Bmi 정보버튼은 닫혀있다.
     private var bmiFlag = 0
+    private var bmiTypeFlag = 0
+    private var healthBmi: HealthBmiEntity? = null
 
     private val btnBmiInfo by lazy { binding.btnBmiInfo } // bmi에 대해서 정보보기
     private val textViewBmiInfo by lazy { binding.tvBmiInfoText } // bmi 정보 textView
@@ -51,11 +50,13 @@ class BmiCalculationActivity : AppCompatActivity() {
         healthBmiViewModel = ViewModelProvider(this)[HealthBmiViewModel::class.java]
         auth = FirebaseAuth.getInstance()
 
+        val bmiType = intent.getStringExtra("type") // healthFragment에서 넘어온 type의 값을 저장
+
+        initTextUpdateType(bmiType) // healthFragment에서 넘어온 타입에 따라 버튼 변경
         initToolBarSetting() // 상단 toolbar
         initBtnBmiInfoClick() // 상단 BMI 정보보기 버튼 클릭
         initClickBtnBmiResult() // 측정하기 버튼
         initClickBtnClear() // 초기화 버튼
-        initBtnBmiResultSave()
 
 
     }
@@ -185,29 +186,42 @@ class BmiCalculationActivity : AppCompatActivity() {
         return BMIResult
     }
 
+    // ======================================= Update라면 마지막 결과 저장하기 버튼을 결과 변경하기 버튼으로 변경 =======================================
+    private fun initTextUpdateType(bmiType: String?) {
+        if(bmiType == "AddBmi") {
+            btnBmiResultSave.text = "결과 저장하기"
+            bmiTypeFlag = 1 // -> insert
+            initBtnBmiResultSave(bmiTypeFlag) // BMI수치 결과 저장하기 버튼 클릭
+        } else if (bmiType == "UpdateBmi") {
+            btnBmiResultSave.text = "결과 변경하기"
+            bmiTypeFlag = 2 // -> update
+            initBtnBmiResultSave(bmiTypeFlag) // BMI수치 결과 저장하기 버튼 클릭
+        }
+    }
+
     // ======================================= BMI수치 결과 저장하기 버튼 클릭 =======================================
-    private fun initBtnBmiResultSave() {
+    private fun initBtnBmiResultSave(bmiTypeFlag: Int) {
         btnBmiResultSave.setOnClickListener {
-            Toast.makeText(this, "BMI정보를 저장합니다.", Toast.LENGTH_SHORT).show()
             when {
                 inputHeightText.isEmpty() -> {
                     Toast.makeText(this, "신장 입력창이 비었습니다.", Toast.LENGTH_SHORT).show()
+                    Log.e("tag", healthBmi.toString())
                 }
                 inputWeightText.isEmpty() -> {
                     Toast.makeText(this, "체중 입력창이 비었습니다.", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    initSaveFlagCheck()
+                    initSaveFlagCheck(bmiTypeFlag)
                 }
             }
         }
     }
 
     // ======================================= BMI수치 결과 Flag값에 따라서 분류 =======================================
-    private fun initSaveFlagCheck() {
+    private fun initSaveFlagCheck(bmiTypeFlag: Int) {
         when(bmiFlag) {
             1 -> { // 측정하기 버튼 클릭으로 측정한 데이터가 존재
-                initSaveBmiResult()
+                initSaveBmiResult(bmiTypeFlag)
             }
             else -> { // Flag가 0이라면 초기화를 눌러서 측정한 값이 사라짐 또는 측정 x
                 Toast.makeText(this, "BMI를 먼저 측정 후 저장하기를 눌러주세요", Toast.LENGTH_SHORT).show()
@@ -216,19 +230,28 @@ class BmiCalculationActivity : AppCompatActivity() {
     }
 
     // ======================================= BMI수치 결과 Flag값에 따라서 분류 =======================================
-    private fun initSaveBmiResult() {
+    private fun initSaveBmiResult(bmiTypeFlag: Int) {
         val bmiNum = resultBmiNum.text
         val bmiRange = resultBmiRange.text
         var authUser = auth.currentUser?.email // 현재 접속중인 유저 이메일 정보
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val healthBmiEntity = HealthBmiEntity(0, authUser.toString(), bmiNum.toString(), bmiRange.toString())
-            healthBmiViewModel.insertBmi(healthBmiEntity)
-        }
         Toast.makeText(this, "측정하신 BMI정보가 저장되었습니다.", Toast.LENGTH_SHORT).show()
-
+        when(bmiTypeFlag) {
+            1 -> { // -> 신규 bmi 데이터 저장 -> insert
+                CoroutineScope(Dispatchers.IO).launch {
+                    val healthBmiEntity = HealthBmiEntity(0, authUser.toString(), bmiNum.toString(), bmiRange.toString())
+                    healthBmiViewModel.insertBmi(healthBmiEntity)
+                }
+            }
+            2 -> { // -> 기존의 bmi 데이터 변경 -> update
+                healthBmi = intent?.getSerializableExtra("item") as HealthBmiEntity
+                CoroutineScope(Dispatchers.IO).launch {
+                    val updateHealthBmi = HealthBmiEntity(healthBmi!!.id, authUser.toString(), bmiNum.toString(), bmiRange.toString())
+                    healthBmiViewModel.updateBmi(updateHealthBmi)
+                }
+            }
+        }
         finish()
     }
-
 
 }

@@ -32,4 +32,8 @@ class HealthBmiViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun getBmi(userEmail: String) = healthBmiRepository.getBmi(userEmail)
 
+    fun updateBmi(bmi: HealthBmiEntity) = viewModelScope.launch(Dispatchers.IO) {
+        healthBmiRepository.updateBmi(bmi)
+    }
+
 }

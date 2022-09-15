@@ -20,6 +20,11 @@
         android:label="@string/bottom_navi_health"
         tools:layout="@layout/fragment_health" />
     <fragment
+        android:id="@+id/fragment_health_empty"
+        android:name="com.duran.selfmg.ui.view.fragment.HealthEmptyFragment"
+        android:label="fragment_health_empty"
+        tools:layout="@layout/fragment_health_empty" />
+    <fragment
         android:id="@+id/fragment_plan"
         android:name="com.duran.selfmg.ui.view.fragment.PlanFragment"
         android:label="@string/bottom_navi_plan"
