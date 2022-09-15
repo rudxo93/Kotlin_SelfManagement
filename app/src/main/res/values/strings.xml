@@ -77,7 +77,14 @@
     <!-- My Health Fragment -->
     <string name="health_fragment_title">자기관리</string>
     <string name="health_fragment_btn_bmi">BMI 측정하기</string>
+    <string name="health_fragment_btn_bmi_num_title">My BMI :</string>
+    <string name="health_fragment_btn_bmi_num_value">0</string>
+    <string name="health_fragment_btn_bmi_range_value">null</string>
     <!-- My Health Fragment -->
+
+    <!-- Health Bottom Sheet -->
+    <string name="health_bottom_sheet">상단의 조회하기를 클릭해주세요</string>
+    <!-- Health Bottom Sheet -->
 
     <!-- Bmi Calculation Activity -->
     <string name="bmi_calculation_activity_toolbar">나의 BMI구하기</string>

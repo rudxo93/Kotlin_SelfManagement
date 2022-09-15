@@ -11,4 +11,5 @@ class HealthBmiRepository(context: Context) {
     // BMI정보 추가하기
     fun insertBmi(bmi: HealthBmiEntity) = db.healthBmiDao().InsertBmi(bmi)
 
+    fun getBmi(userEmail: String) = db.healthBmiDao().getBmi(userEmail)
 }

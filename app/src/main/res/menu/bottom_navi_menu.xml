@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/fragment_current"
-        android:title="@string/bottom_navi_health"
+        android:title="@string/bottom_navi_current"
         android:icon="@drawable/ic_person"/>
 
     <item

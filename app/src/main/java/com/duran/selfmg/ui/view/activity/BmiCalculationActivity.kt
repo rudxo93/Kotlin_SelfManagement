@@ -19,6 +19,9 @@ import com.duran.selfmg.ui.view.fragment.HealthFragment
 import com.duran.selfmg.ui.viewmodel.HealthBmiViewModel
 import com.duran.selfmg.ui.viewmodel.MemoListViewModel
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.math.round
 
 class BmiCalculationActivity : AppCompatActivity() {
@@ -218,9 +221,12 @@ class BmiCalculationActivity : AppCompatActivity() {
         val bmiRange = resultBmiRange.text
         var authUser = auth.currentUser?.email // 현재 접속중인 유저 이메일 정보
 
-        val healthBmiEntity = HealthBmiEntity(0, authUser.toString(), bmiNum.toString(), bmiRange.toString())
-        healthBmiViewModel.insertBmi(healthBmiEntity)
+        CoroutineScope(Dispatchers.IO).launch {
+            val healthBmiEntity = HealthBmiEntity(0, authUser.toString(), bmiNum.toString(), bmiRange.toString())
+            healthBmiViewModel.insertBmi(healthBmiEntity)
+        }
         Toast.makeText(this, "측정하신 BMI정보가 저장되었습니다.", Toast.LENGTH_SHORT).show()
+
         finish()
     }
 

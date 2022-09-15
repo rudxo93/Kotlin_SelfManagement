@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="healthFragment"
+            type="com.duran.selfmg.ui.view.fragment.HealthFragment" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,16 +46,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/health_toolbar" />
 
-        <TextView
-            android:id="@+id/tv_bmi_result_num"
+        <LinearLayout
+            android:id="@+id/linear_user_bmi_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="0"
-            android:textSize="20sp"
+            android:orientation="horizontal"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_division" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_division">
+
+            <TextView
+                android:id="@+id/tv_bmi_result_num_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/health_fragment_btn_bmi_num_title"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_bmi_result_num_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/bmi_calculation_result_textview_myBmi_empty"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_bmi_result_range_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/bmi_calculation_result_textview_myBmi_empty"
+                android:textSize="15sp" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_bmi"
@@ -58,7 +90,17 @@
             android:text="@string/health_fragment_btn_bmi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bmi_result_num" />
+            app:layout_constraintTop_toBottomOf="@+id/linear_user_bmi_result" />
+
+        <Button
+            android:id="@+id/btn_bmi_12312312"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="일단 검색"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_bmi" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
