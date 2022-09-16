@@ -112,6 +112,7 @@
                         android:text="@string/schedule_time_am_6" />
 
                     <TextView
+                        android:id="@+id/monday06"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -119,6 +120,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday06"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -126,6 +128,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday06"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -133,6 +136,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday06"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -140,11 +144,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday06"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 7시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -156,6 +162,7 @@
                         android:text="@string/schedule_time_am_7" />
 
                     <TextView
+                        android:id="@+id/monday07"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -163,6 +170,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday07"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -170,6 +178,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday07"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -177,6 +186,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday07"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -184,11 +194,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday07"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 8시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -200,6 +212,7 @@
                         android:text="@string/schedule_time_am_8" />
 
                     <TextView
+                        android:id="@+id/monday08"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -207,6 +220,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday08"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -214,6 +228,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday08"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -221,6 +236,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday08"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -228,11 +244,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday08"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 9시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -244,6 +262,7 @@
                         android:text="@string/schedule_time_am_9" />
 
                     <TextView
+                        android:id="@+id/monday09"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -251,6 +270,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday09"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -258,6 +278,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday09"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -265,6 +286,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday09"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -272,11 +294,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday09"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 10시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -288,6 +312,7 @@
                         android:text="@string/schedule_time_am_10" />
 
                     <TextView
+                        android:id="@+id/monday10"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -295,6 +320,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday10"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -302,6 +328,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday10"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -309,6 +336,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday10"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -316,11 +344,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday10"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 11시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -332,6 +362,7 @@
                         android:text="@string/schedule_time_am_11" />
 
                     <TextView
+                        android:id="@+id/monday11"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -339,6 +370,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday11"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -346,6 +378,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday11"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -353,6 +386,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday11"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -360,11 +394,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday11"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 12시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -376,6 +412,7 @@
                         android:text="@string/schedule_time_am_12" />
 
                     <TextView
+                        android:id="@+id/monday12"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -383,6 +420,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday12"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -390,6 +428,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday12"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -397,6 +436,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday12"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -404,11 +444,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday12"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 1시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -420,6 +462,7 @@
                         android:text="@string/schedule_time_pm_1" />
 
                     <TextView
+                        android:id="@+id/monday13"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -427,6 +470,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday13"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -434,6 +478,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday13"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -441,6 +486,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday13"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -448,11 +494,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday13"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 2시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -464,6 +512,7 @@
                         android:text="@string/schedule_time_pm_2" />
 
                     <TextView
+                        android:id="@+id/monday14"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -471,6 +520,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesda14"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -478,6 +528,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday14"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -485,6 +536,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday14"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -492,11 +544,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday14"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 3시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -508,6 +562,7 @@
                         android:text="@string/schedule_time_pm_3" />
 
                     <TextView
+                        android:id="@+id/monday15"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -515,6 +570,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday15"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -522,6 +578,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday15"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -529,6 +586,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday15"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -536,11 +594,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday15"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 4시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -552,6 +612,7 @@
                         android:text="@string/schedule_time_pm_4" />
 
                     <TextView
+                        android:id="@+id/monday16"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -559,6 +620,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday16"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -566,6 +628,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday16"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -573,6 +636,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday16"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -580,11 +644,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday16"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 5시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -596,6 +662,7 @@
                         android:text="@string/schedule_time_pm_5" />
 
                     <TextView
+                        android:id="@+id/monday17"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -603,6 +670,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday17"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -610,6 +678,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday17"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -617,6 +686,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday17"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -624,11 +694,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday17"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 6시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -640,6 +712,7 @@
                         android:text="@string/schedule_time_pm_6" />
 
                     <TextView
+                        android:id="@+id/monday18"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -647,6 +720,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday18"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -654,6 +728,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday18"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -661,6 +736,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday18"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -668,11 +744,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday18"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 7시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -684,6 +762,7 @@
                         android:text="@string/schedule_time_pm_7" />
 
                     <TextView
+                        android:id="@+id/monday19"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -691,6 +770,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday19"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -698,6 +778,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday19"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -705,6 +786,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday19"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -712,11 +794,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday19"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 8시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -728,6 +812,7 @@
                         android:text="@string/schedule_time_pm_8" />
 
                     <TextView
+                        android:id="@+id/monday20"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -735,6 +820,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday20"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -742,6 +828,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday20"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -749,6 +836,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday20"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -756,11 +844,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday20"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 9시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -772,6 +862,7 @@
                         android:text="@string/schedule_time_pm_9" />
 
                     <TextView
+                        android:id="@+id/monday21"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -779,6 +870,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday21"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -786,6 +878,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday21"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -793,6 +886,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday21"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -800,11 +894,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday21"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 10시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -816,6 +912,7 @@
                         android:text="@string/schedule_time_pm_10" />
 
                     <TextView
+                        android:id="@+id/monday22"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -823,6 +920,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday22"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -830,6 +928,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday22"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -837,6 +936,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday22"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -844,11 +944,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday22"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 11시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -860,6 +962,7 @@
                         android:text="@string/schedule_time_pm_11" />
 
                     <TextView
+                        android:id="@+id/monday23"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -867,6 +970,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday23"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -874,6 +978,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday23"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -881,6 +986,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday23"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -888,11 +994,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday23"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오후 12시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -904,6 +1012,7 @@
                         android:text="@string/schedule_time_pm_12" />
 
                     <TextView
+                        android:id="@+id/monday24"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -911,6 +1020,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday24"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -918,6 +1028,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday24"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -925,6 +1036,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday24"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -932,11 +1044,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday24"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 1시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -948,6 +1062,7 @@
                         android:text="@string/schedule_time_am_1" />
 
                     <TextView
+                        android:id="@+id/monday01"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -955,6 +1070,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday01"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -962,6 +1078,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday01"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -969,6 +1086,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday01"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -976,11 +1094,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday01"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 2시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -992,6 +1112,7 @@
                         android:text="@string/schedule_time_am_2" />
 
                     <TextView
+                        android:id="@+id/monday02"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -999,6 +1120,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday02"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1006,6 +1128,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday02"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1013,6 +1136,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday02"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1020,11 +1144,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday02"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 3시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -1036,6 +1162,7 @@
                         android:text="@string/schedule_time_am_3" />
 
                     <TextView
+                        android:id="@+id/monday03"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1043,6 +1170,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday03"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1050,6 +1178,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday03"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1057,6 +1186,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday03"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1064,11 +1194,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday03"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 4시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -1080,6 +1212,7 @@
                         android:text="@string/schedule_time_am_4" />
 
                     <TextView
+                        android:id="@+id/monday04"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1087,6 +1220,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday04"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1094,6 +1228,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday04"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1101,6 +1236,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday04"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1108,11 +1244,13 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday04"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
                         android:gravity="center"
                         android:text="" />
+
                     <!-- ==================== 오전 5시 ==================== -->
                     <TextView
                         android:layout_height="50dp"
@@ -1124,6 +1262,7 @@
                         android:text="@string/schedule_time_am_5" />
 
                     <TextView
+                        android:id="@+id/monday05"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1131,6 +1270,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/tuesday05"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1138,6 +1278,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/wednesday05"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1145,6 +1286,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/thursday05"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
@@ -1152,6 +1294,7 @@
                         android:text="" />
 
                     <TextView
+                        android:id="@+id/friday05"
                         android:layout_columnWeight="2"
                         android:layout_gravity="fill"
                         android:background="@drawable/cell"
