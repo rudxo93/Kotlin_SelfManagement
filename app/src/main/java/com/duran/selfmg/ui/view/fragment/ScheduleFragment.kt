@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import com.duran.selfmg.R
 import com.duran.selfmg.databinding.FragmentScheduleBinding
+import com.duran.selfmg.ui.view.activity.AddScheduleActivity
 import com.duran.selfmg.ui.view.activity.LoginActivity
 
 class ScheduleFragment : Fragment() {
@@ -36,6 +37,16 @@ class ScheduleFragment : Fragment() {
         val toolbar = binding.toolbarSchedule
         toolbar.inflateMenu(R.menu.item_toolbar_schedule)
 
+        toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.menu_item_schedule_add -> {
+                    val intent = Intent(context, AddScheduleActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
