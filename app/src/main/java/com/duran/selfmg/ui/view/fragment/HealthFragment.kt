@@ -15,6 +15,7 @@ import com.duran.selfmg.R
 import com.duran.selfmg.data.model.HealthBmiEntity
 import com.duran.selfmg.databinding.FragmentHealthBinding
 import com.duran.selfmg.ui.view.activity.BmiCalculationActivity
+import com.duran.selfmg.ui.view.activity.MyWaterDrinkActivity
 import com.duran.selfmg.ui.viewmodel.HealthBmiViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
@@ -58,31 +59,12 @@ class HealthFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val currentUser = auth.currentUser?.email
-
-        /*val currentUser = auth.currentUser?.email
-        CoroutineScope(Dispatchers.IO).launch {
-            userBmi = healthBmiViewModel.getBmi(currentUser.toString())
-            Log.e("tag", userBmi!!.bmiNum)
-            Log.e("tag", userBmi!!.userEmail)
-            Log.e("tag", userBmi!!.bmiRange)
-            Log.e("tag", userBmi!!.toString())
-        }
-        userBmi?.let { Log.e("tag", it.bmiNum) }
-
-        userBmiNum = userBmi?.bmiNum
-        userBmiRange = userBmi?.bmiRange
-
-        btnBmiasdf.setOnClickListener {
-            tvBmiResultNumValue.setText(userBmi?.bmiNum)
-            tvBmiResultRangeValue.setText(userBmi?.bmiRange)
-        }*/
 
         setFABClickEvent()
 
     }
 
-    // 플로팅 버튼 클릭 시 이벤트
+    // ======================================= 플로팅 버튼 클릭 시 이벤트 =======================================
     private fun setFABClickEvent() {
         // 플로팅 버튼 클릭시 애니메이션 동작 기능
         binding.fabMain.setOnClickListener {
@@ -115,10 +97,12 @@ class HealthFragment : Fragment() {
         // 플로팅 버튼 클릭 이벤트 - 물섭취량 기록하기
         binding.fabWater.setOnClickListener {
             Toast.makeText(this.context, "나의 물섭취량", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, MyWaterDrinkActivity::class.java)
+            startActivity(intent)
         }
     }
 
-    // 플로팅 버튼 -> 토글버튼으로
+    // ======================================= 플로팅 버튼 -> 토글버튼으로 =======================================
     private fun toggleFab() {
         // 플로팅 액션 버튼 닫기 - 열려있는 플로팅 버튼 집어넣는 애니메이션
         if (isFabOpen) {

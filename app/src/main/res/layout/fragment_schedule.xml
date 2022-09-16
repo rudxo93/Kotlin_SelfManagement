@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.view.fragment.ScheduleFragment">
@@ -21,8 +21,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:textColor="@color/black"
                 android:text="@string/toolbar_schedule_title"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -36,113 +36,1130 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_schedule" />
 
-        <TableLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_schedule"
+            android:layout_height="0dp"
+            android:layout_weight="6"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="57dp">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/division_bar">
 
-            <TableRow android:padding="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="10sp"
-                    android:text="월" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="화" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="수" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="목" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="금" />
-            </TableRow>
-            <TableRow android:padding="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:text="6AM" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-            </TableRow>
-            <TableRow android:padding="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:text="7AM" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="" />
-            </TableRow>
+            <LinearLayout
+                android:id="@+id/linearLayout_timetable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        </TableLayout>
+                <GridLayout
+                    android:id="@+id/gridlayout_timetable"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:columnCount="6"
+                    android:orientation="horizontal"
+                    android:rowCount="1">
+                    <!-- ==================== 상단 요일 월/화/수/목/금 ==================== -->
+                    <TextView
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_day_monday" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_day_tuesday" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_day_wednesday" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_day_thursday" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_day_friday" />
+                    <!-- ==================== 오전 6시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_6" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 7시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_7" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 8시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_8" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 9시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_9" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 10시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_10" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 11시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_11" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 12시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_12" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 1시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_1" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 2시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_2" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 3시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_3" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 4시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_4" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 5시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_5" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 6시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_6" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 7시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_7" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 8시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_8" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 9시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_9" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 10시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_10" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 11시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_11" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오후 12시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_pm_12" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 1시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_1" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 2시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_2" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 3시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_3" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 4시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_4" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                    <!-- ==================== 오전 5시 ==================== -->
+                    <TextView
+                        android:layout_height="50dp"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="@string/schedule_time_am_5" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/cell"
+                        android:gravity="center"
+                        android:text="" />
+                </GridLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
