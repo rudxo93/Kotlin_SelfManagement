@@ -192,6 +192,10 @@
     <string name="schedule_time_am_5">05:00</string>
     <!-- Schedule Fragment -->
 
+    <!-- Add Schedule Activity -->
+    <string name="add_schedule_toolbar_title">스케줄 추가하기</string>
+    <!-- Add Schedule Activity -->
+
     <!-- Setting Fragment -->
     <string name="setting_fragment_title">더보기</string>
     <!-- Setting Fragment -->

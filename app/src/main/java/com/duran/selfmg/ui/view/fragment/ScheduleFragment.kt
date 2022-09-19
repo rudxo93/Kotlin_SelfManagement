@@ -10,10 +10,15 @@ import com.duran.selfmg.R
 import com.duran.selfmg.databinding.FragmentScheduleBinding
 import com.duran.selfmg.ui.view.activity.AddScheduleActivity
 import com.duran.selfmg.ui.view.activity.LoginActivity
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.CalendarMode
+import java.util.*
 
 class ScheduleFragment : Fragment() {
 
-    lateinit var binding: FragmentScheduleBinding
+    private lateinit var binding: FragmentScheduleBinding
+
+    private val calendar by lazy { binding.calendarView }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,33 +31,18 @@ class ScheduleFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
-        initToolBarSetting()
+        initCalendarSetting()
 
         return binding.root
     }
 
-
-    // ======================================= 일정 시간표 툴바 =======================================
-    private fun initToolBarSetting() {
-        val toolbar = binding.toolbarSchedule
-        toolbar.inflateMenu(R.menu.item_toolbar_schedule)
-
-        toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
-                R.id.menu_item_schedule_add -> {
-                    val intent = Intent(context, AddScheduleActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                else -> false
-            }
-        }
+    private fun initCalendarSetting() {
+        calendar.state().edit()
+            .setFirstDayOfWeek(Calendar.SUNDAY)
+            .setMinimumDate(CalendarDay.from(2017, 0, 1))
+            .setMaximumDate(CalendarDay.from(2030, 11, 31))
+            .setCalendarDisplayMode(CalendarMode.MONTHS)
+            .commit()
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.item_toolbar_schedule, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
 
 }
