@@ -7,7 +7,7 @@
     tools:context=".ui.view.activity.AddScheduleActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_bmi_calculation"
+        android:id="@+id/toolbar_add_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/purple_500"
@@ -27,6 +27,16 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
+    <EditText
+        android:id="@+id/ed_add_schedule_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="7dp"
+        android:hint="@string/add_schedule_title_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_add_schedule" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,36 +8,89 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_schedule"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:titleTextColor="@color/white">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="@string/toolbar_schedule_title"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <View
-            android:id="@+id/division_bar"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorDivision"
-            android:layout_below="@+id/toolbar_schedule"/>
-
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/division_bar"
             app:mcv_selectionColor="#A9A97AFF"
             app:mcv_showOtherDates="defaults" />
+
+        <TextView
+            android:id="@+id/tv_add_schedule_select_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calendarView"
+            android:text="@string/add_schedule_date"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_schedule_content"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/tv_add_schedule_select_date"
+            android:singleLine="true"
+            android:text="@string/add_schedule_content"
+            android:textSize="17sp"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/et_add_schedule_content"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/tv_add_schedule_select_date"
+            android:background="@null"
+            android:singleLine="true"
+            android:text="@string/add_schedule_content"
+            android:textSize="17sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/button_linear_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_schedule_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_schedule_upeate"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="@string/btn_schedule_update" />
+
+            <Button
+                android:id="@+id/btn_schedule_delete"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="@string/btn_schedule_delete" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/button_linear_insert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_schedule_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_schedule_insert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/btn_schedule_insert" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 </layout>

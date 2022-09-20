@@ -161,39 +161,17 @@
 
     <!-- Schedule Fragment -->
     <string name="toolbar_schedule_title">나의 스케줄</string>
-    <string name="schedule_day_monday">월</string>
-    <string name="schedule_day_tuesday">화</string>
-    <string name="schedule_day_wednesday">수</string>
-    <string name="schedule_day_thursday">목</string>
-    <string name="schedule_day_friday">금</string>
-    <string name="schedule_time_am_6">06:00</string>
-    <string name="schedule_time_am_7">07:00</string>
-    <string name="schedule_time_am_8">08:00</string>
-    <string name="schedule_time_am_9">09:00</string>
-    <string name="schedule_time_am_10">10:00</string>
-    <string name="schedule_time_am_11">11:00</string>
-    <string name="schedule_time_am_12">12:00</string>
-    <string name="schedule_time_pm_1">13:00</string>
-    <string name="schedule_time_pm_2">14:00</string>
-    <string name="schedule_time_pm_3">15:00</string>
-    <string name="schedule_time_pm_4">16:00</string>
-    <string name="schedule_time_pm_5">17:00</string>
-    <string name="schedule_time_pm_6">18:00</string>
-    <string name="schedule_time_pm_7">19:00</string>
-    <string name="schedule_time_pm_8">20:00</string>
-    <string name="schedule_time_pm_9">21:00</string>
-    <string name="schedule_time_pm_10">22:00</string>
-    <string name="schedule_time_pm_11">23:00</string>
-    <string name="schedule_time_pm_12">24:00</string>
-    <string name="schedule_time_am_1">01:00</string>
-    <string name="schedule_time_am_2">02:00</string>
-    <string name="schedule_time_am_3">03:00</string>
-    <string name="schedule_time_am_4">04:00</string>
-    <string name="schedule_time_am_5">05:00</string>
+    <string name="add_schedule_date">2022 / 09 / 20</string>
+    <string name="add_schedule_content">스케줄 내용입니다.</string>
     <!-- Schedule Fragment -->
 
     <!-- Add Schedule Activity -->
     <string name="add_schedule_toolbar_title">스케줄 추가하기</string>
+    <string name="add_schedule_title_hint">제목</string>
+    <string name="add_schedule_select_date">날짜 선택하기</string>
+    <string name="btn_schedule_insert">저장하기</string>
+    <string name="btn_schedule_update">수정하기</string>
+    <string name="btn_schedule_delete">삭제하기</string>
     <!-- Add Schedule Activity -->
 
     <!-- Setting Fragment -->

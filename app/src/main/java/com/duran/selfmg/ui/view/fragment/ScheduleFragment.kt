@@ -1,18 +1,19 @@
 package com.duran.selfmg.ui.view.fragment
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.duran.selfmg.R
 import com.duran.selfmg.databinding.FragmentScheduleBinding
+import com.duran.selfmg.ui.view.activity.AddScheduleActivity
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.CalendarMode
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
@@ -36,10 +37,34 @@ class ScheduleFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
 
+        /*initToolBarSetting()*/
         initCalendarSetting()
+        initCalendarClicked()
 
         return binding.root
     }
+
+    // ======================================= 일정 시간표 툴바 =======================================
+    /*private fun initToolBarSetting() {
+        val toolbar = binding.toolbarSchedule
+        toolbar.inflateMenu(R.menu.item_toolbar_schedule)
+
+        toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.menu_item_schedule_add -> {
+                    val intent = Intent(context, AddScheduleActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.item_toolbar_schedule, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }*/
 
     private fun initCalendarSetting() {
         calendar.state().edit()
@@ -50,6 +75,12 @@ class ScheduleFragment : Fragment() {
             .commit()
 
         calendar.addDecorators(SaturdayDecorator(),SundayDecorator(), OneDayDecorator())
+    }
+
+    private fun initCalendarClicked() {
+        calendar.setOnDateChangedListener { widget, date, selected ->
+            Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
