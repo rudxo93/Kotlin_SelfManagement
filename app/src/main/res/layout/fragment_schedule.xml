@@ -42,7 +42,7 @@
             android:layout_below="@+id/tv_add_schedule_select_date"
             android:background="@null"
             android:singleLine="true"
-            android:text="@string/add_schedule_content"
+            android:hint="@string/add_schedule_content"
             android:textSize="17sp"
             android:visibility="gone" />
 
@@ -78,7 +78,7 @@
             android:id="@+id/button_linear_insert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_schedule_content"
+            android:layout_below="@+id/et_add_schedule_content"
             android:orientation="horizontal"
             android:visibility="gone">
 

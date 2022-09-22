@@ -1,5 +1,7 @@
 package com.duran.selfmg.ui.view.fragment
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -7,6 +9,7 @@ import android.os.Bundle
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -24,7 +27,15 @@ class ScheduleFragment : Fragment() {
 
     private lateinit var binding: FragmentScheduleBinding
 
-    private val calendar by lazy { binding.calendarView }
+    private val calendar by lazy { binding.calendarView } // 캘린더 뷰
+    private val selectDate by lazy { binding.tvAddScheduleSelectDate } // 선택한 날짜 보여주기
+    private val scheduleContent by lazy { binding.tvScheduleContent } // 선택한 날짜에 저장된 content
+    private val addScheduleContent by lazy { binding.etAddScheduleContent } // 선택한 날짜에 content 작성
+    private val updateBtnLayout by lazy { binding.buttonLinearUpdate } // update시 보여줄 버튼 layout
+    private val btnUpdateSchedule by lazy { binding.btnScheduleUpeate } // 수정하기 버튼
+    private val btnDeleteSchedule by lazy { binding.btnScheduleDelete } // 삭제하기 버튼
+    private val insertBtnLayout by lazy { binding.buttonLinearInsert } // insert시 보여줄 버튼 layout
+    private val btnInsertSchedule by lazy { binding.btnScheduleInsert } // 작성하기 버튼
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,12 +85,17 @@ class ScheduleFragment : Fragment() {
             .setCalendarDisplayMode(CalendarMode.MONTHS)
             .commit()
 
-        calendar.addDecorators(SaturdayDecorator(),SundayDecorator(), OneDayDecorator())
+        calendar.addDecorators(SaturdayDecorator(),SundayDecorator(),
+            context?.let { OneDayDecorator(it) }) // 달력 요일별 색 변경
     }
 
     private fun initCalendarClicked() {
         calendar.setOnDateChangedListener { widget, date, selected ->
-            Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show()
+            selectDate.visibility = View.VISIBLE
+            selectDate.text =String.format("%d / %d / %d", date.year, date.month + 1, date.day)
+            addScheduleContent.visibility = View.VISIBLE
+            insertBtnLayout.visibility = View.VISIBLE
+            btnInsertSchedule.visibility = View.VISIBLE
         }
     }
 
@@ -87,10 +103,7 @@ class ScheduleFragment : Fragment() {
 
 // ======================================= CalendarView의 토요일 날짜 색 =======================================
 class SaturdayDecorator : DayViewDecorator {
-
-    private companion object {
-        val calendar: Calendar = Calendar.getInstance()
-    }
+    private val calendar: Calendar = Calendar.getInstance()
 
     override fun shouldDecorate(day: CalendarDay?): Boolean {
         day?.copyTo(calendar)
@@ -99,16 +112,13 @@ class SaturdayDecorator : DayViewDecorator {
     }
 
     override fun decorate(view: DayViewFacade?) {
-        view!!.addSpan(ForegroundColorSpan(Color.BLUE))
+        view?.addSpan(ForegroundColorSpan(Color.BLUE))
     }
 }
 
 // ======================================= CalendarView의 일요일 날짜 색 =======================================
 class SundayDecorator : DayViewDecorator {
-
-    private companion object {
-        val calendar: Calendar = Calendar.getInstance()
-    }
+    private val calendar: Calendar = Calendar.getInstance()
 
     override fun shouldDecorate(day: CalendarDay?): Boolean {
         day?.copyTo(calendar)
@@ -117,30 +127,23 @@ class SundayDecorator : DayViewDecorator {
     }
 
     override fun decorate(view: DayViewFacade?) {
-        view!!.addSpan(ForegroundColorSpan(Color.RED))
+        view?.addSpan(ForegroundColorSpan(Color.RED))
     }
 
 }
 
 // ======================================= CalendarView의 당일 날짜 색 =======================================
-class OneDayDecorator : DayViewDecorator {
-    private var date: CalendarDay
-
-    init {
-        date = CalendarDay.today()
-    }
+class OneDayDecorator(context: Context) : DayViewDecorator {
+    private var date = CalendarDay.today()
+    @SuppressLint("UseCompatLoadingForDrawables")
+    val drawable = context.resources.getDrawable(R.drawable.radius_today_style)
 
     override fun shouldDecorate(day: CalendarDay?): Boolean {
         return day?.equals(date)!!
     }
 
     override fun decorate(view: DayViewFacade?) {
-        view?.addSpan(StyleSpan(Typeface.BOLD))
-        view?.addSpan(RelativeSizeSpan(1.4f))
-        view?.addSpan(ForegroundColorSpan(Color.GREEN))
+        view?.setBackgroundDrawable(drawable)
     }
 
-    fun setDate(date: Date) {
-        this.date = CalendarDay.from(date)
-    }
 }
