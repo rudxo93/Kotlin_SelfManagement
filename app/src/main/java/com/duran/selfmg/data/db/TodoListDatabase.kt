@@ -6,17 +6,20 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.duran.selfmg.data.dao.HealthBmiDao
 import com.duran.selfmg.data.dao.MemoListDao
+import com.duran.selfmg.data.dao.ScheduleDao
 import com.duran.selfmg.data.dao.TodoListDao
 import com.duran.selfmg.data.model.HealthBmiEntity
 import com.duran.selfmg.data.model.MemoListEntity
+import com.duran.selfmg.data.model.ScheduleEntity
 import com.duran.selfmg.data.model.TodoListEntity
 
-@Database(entities = [TodoListEntity::class, MemoListEntity::class, HealthBmiEntity::class], version = 3)
+@Database(entities = [TodoListEntity::class, MemoListEntity::class, HealthBmiEntity::class, ScheduleEntity::class], version = 1)
 abstract class SelfMgDatabase : RoomDatabase() {
 
     abstract fun todoListDao(): TodoListDao
     abstract fun memoListDao(): MemoListDao
     abstract fun healthBmiDao(): HealthBmiDao
+    abstract fun scheduleDao(): ScheduleDao
 
     companion object {
         @Volatile
