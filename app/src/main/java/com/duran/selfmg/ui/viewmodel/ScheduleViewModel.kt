@@ -17,11 +17,17 @@ class ScheduleViewModel(application: Application) : AndroidViewModel(application
 
     private val scheduleRepository = ScheduleRepository(context)
 
-    val schedule: LiveData<MutableList<ScheduleEntity>> = scheduleRepository.getAllSchedule()
-
     fun getSchedule(schedule_date: String) = scheduleRepository.getSchedule(schedule_date)
 
     fun scheduleInsert(schedule: ScheduleEntity) = viewModelScope.launch(Dispatchers.IO) {
         scheduleRepository.scheduleInsert(schedule)
+    }
+
+    fun scheduleUpdate(schedule: ScheduleEntity) = viewModelScope.launch(Dispatchers.IO) {
+        scheduleRepository.scheduleUpdate(schedule)
+    }
+
+    fun scheduleDelete(schedule_date: String) = viewModelScope.launch(Dispatchers.IO) {
+        scheduleRepository.scheduleDelete(schedule_date)
     }
 }

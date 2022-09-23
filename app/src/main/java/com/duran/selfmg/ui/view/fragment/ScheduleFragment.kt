@@ -4,12 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Looper
 import android.text.style.ForegroundColorSpan
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -90,17 +89,42 @@ class ScheduleFragment : Fragment() {
             // 날짜 클릭 시 현재 년/월/일 표시해주기
             selectDate.visibility = View.VISIBLE
             selectDate.text =String.format("%d / %d / %d", year, month, day)
+            addScheduleContent.text.clear() // 다른날짜 클릭할 때 마다 지워주기 -> 수정중이거나 작성중일떄 남아있기 때문에
 
             // 날짜 클릭 시 db에 content가 존재하는지 조회
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    schedule = scheduleViewModel.getSchedule(scheduleDate) // db에 존재한다면 잘 나오지만 db에 없는 날짜를 클릭 시 에러 발생
+                    schedule = scheduleViewModel.getSchedule(scheduleDate) // 해당 날짜에 content가 있다면 content보여주고 update와 delete
                     initGetSchedule(schedule!!)
-                } catch (e: NullPointerException) {
+                    initBtnUpdateSchedule(schedule!!)
+                    initBtnDeleteSchedule(schedule!!.scheduleDate)
+
+                } catch (e: NullPointerException) { // 해당 날짜에 content가 없다면 view세팅과 content 저장
                     initInsertSchedule()
+                    initBtnInsertSchedule()
                 }
 
             }
+        }
+    }
+
+    // ======================================= 수정하기 버튼 클릭 시 이벤트 =======================================
+    private fun initBtnUpdateSchedule(schedule: ScheduleEntity) {
+        btnUpdateSchedule.setOnClickListener {
+            /*val updateSchedule = ScheduleEntity(schedule.id, scheduleDate, addScheduleContent.text.toString())
+            scheduleViewModel.scheduleUpdate(updateSchedule)*/
+            initUpdateSchedule(schedule)
+            initBtnUpdateSaveSchedule(schedule)
+        }
+    }
+
+    // ======================================= 삭제하기 버튼 클릭 시 이벤트 =======================================
+    private fun initBtnDeleteSchedule(scheduleDate: String) {
+        btnDeleteSchedule.setOnClickListener {
+            scheduleViewModel.scheduleDelete(scheduleDate)
+            Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+            initInsertSchedule()
+            initBtnInsertSchedule()
         }
     }
 
@@ -116,33 +140,28 @@ class ScheduleFragment : Fragment() {
                 updateBtnLayout.visibility = View.GONE
                 btnUpdateSchedule.visibility = View.GONE
                 btnDeleteSchedule.visibility = View.GONE
-
-                initBtnInsertSchedule()
             }
         }
     }
 
-    // ======================================= content에 text가 있는지 판별 후 insert 진행 -> insert후 바로 db조회 후 view 바꿔주기 =======================================
-    private fun initBtnInsertSchedule() {
-        btnInsertSchedule.setOnClickListener {
-            if(addScheduleContent.text.isNotEmpty()) {
-                val scheduleEntity = ScheduleEntity(0, scheduleDate, addScheduleContent.text.toString())
-                scheduleViewModel.scheduleInsert(scheduleEntity)
-
-                addScheduleContent.text.clear()
-
-                CoroutineScope(Dispatchers.IO).launch {
-                    schedule = scheduleViewModel.getSchedule(scheduleDate) // db에 존재한다면 잘 나오지만 db에 없는 날짜를 클릭 시 에러 발생
-                    initGetSchedule(schedule!!)
-
-                }
-            } else {
-                Toast.makeText(context, "스케줄이 비어있습니다.", Toast.LENGTH_SHORT).show()
+    // ======================================= 클릭한 날짜에 content를 update 한다면 -> update 할 수 있는 view 세팅 =======================================
+    private fun initUpdateSchedule(schedule: ScheduleEntity) {
+        thread(start = true) {
+            Thread.sleep(50)
+            activity?.runOnUiThread {
+                addScheduleContent.visibility = View.VISIBLE
+                insertBtnLayout.visibility = View.VISIBLE
+                btnInsertSchedule.visibility = View.VISIBLE
+                scheduleContent.visibility = View.GONE
+                updateBtnLayout.visibility = View.GONE
+                btnUpdateSchedule.visibility = View.GONE
+                btnDeleteSchedule.visibility = View.GONE
+                addScheduleContent.setText(schedule.scheduleContent)
             }
         }
     }
 
-    // ======================================= 클릭한 날짜에 content가 있다면면 -> db에 조회한 content view 세팅 =======================================
+    // ======================================= 클릭한 날짜에 content가 있다면 -> db에 조회한 content view 세팅 =======================================
     private fun initGetSchedule(schedule: ScheduleEntity) {
         thread(start = true) {
             Thread.sleep(50)
@@ -154,8 +173,43 @@ class ScheduleFragment : Fragment() {
                 addScheduleContent.visibility = View.GONE
                 insertBtnLayout.visibility = View.GONE
                 btnInsertSchedule.visibility = View.GONE
-
                 scheduleContent.text = schedule.scheduleContent
+            }
+        }
+    }
+
+    // ======================================= content에 text가 있는지 판별 후 insert 진행 -> insert후 바로 db조회 후 view 바꿔주기 =======================================
+    private fun initBtnInsertSchedule() {
+        btnInsertSchedule.setOnClickListener {
+            if(addScheduleContent.text.isNotEmpty()) {
+                val scheduleEntity = ScheduleEntity(0, scheduleDate, addScheduleContent.text.toString())
+                scheduleViewModel.scheduleInsert(scheduleEntity)
+                addScheduleContent.text.clear()
+                CoroutineScope(Dispatchers.IO).launch {
+                    schedule = scheduleViewModel.getSchedule(scheduleDate) // db에 존재한다면 잘 나오지만 db에 없는 날짜를 클릭 시 에러 발생
+                    initGetSchedule(schedule!!)
+                }
+                Toast.makeText(context, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "스케줄이 비어있습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // ======================================= content에 text가 있는지 판별 후 update 진행 -> update후 바로 db조회 후 view 바꿔주기 =======================================
+    private fun initBtnUpdateSaveSchedule(schedule: ScheduleEntity) {
+        btnInsertSchedule.setOnClickListener {
+            if(addScheduleContent.text.isNotEmpty()) {
+                val updateSchedule = ScheduleEntity(schedule.id, scheduleDate, addScheduleContent.text.toString())
+                scheduleViewModel.scheduleUpdate(updateSchedule)
+                addScheduleContent.text.clear()
+                CoroutineScope(Dispatchers.IO).launch {
+                    val updateSchedule = scheduleViewModel.getSchedule(scheduleDate) // db에 존재한다면 잘 나오지만 db에 없는 날짜를 클릭 시 에러 발생
+                    initGetSchedule(updateSchedule)
+                }
+                Toast.makeText(context, "변경되었습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "스케줄이 비어있습니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }

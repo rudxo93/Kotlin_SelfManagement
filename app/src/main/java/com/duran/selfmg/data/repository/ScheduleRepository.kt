@@ -11,8 +11,10 @@ class ScheduleRepository(context: Context) {
 
     fun scheduleInsert(schedule: ScheduleEntity) = db.scheduleDao().scheduleInsert(schedule)
 
-    fun getAllSchedule(): LiveData<MutableList<ScheduleEntity>> = db.scheduleDao().getAllSchedule()
-
     fun getSchedule(schedule_date: String) = db.scheduleDao().getSchedule(schedule_date)
+
+    fun scheduleUpdate(schedule: ScheduleEntity) = db.scheduleDao().scheduleUpdate(schedule)
+
+    fun scheduleDelete(schedule_date: String) = db.scheduleDao().scheduleDelete(schedule_date)
 
 }
