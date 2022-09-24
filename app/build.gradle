@@ -81,5 +81,6 @@ dependencies {
     // ViewPager2 사용
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
+    // material-calendarview
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
 }
