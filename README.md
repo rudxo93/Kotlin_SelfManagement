@@ -40,6 +40,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
 
 # Intro 
 <img src=./img/introImg.jpg width="300">
+
 ***
 
  - Lottie 라이브러리를 이용한 움직이는 로딩화면을 구현했습니다. 
@@ -52,6 +53,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/loginPasswordEmpty.jpg width="200">
     <img src=./img/noUserInfo.jpg width="200">
 </div>
+
 ***
 
  - 이메일을 입력하지 않고 로그인 버튼을 클릭하게되면 메세지를 띄워줍니다.
@@ -67,6 +69,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/signInSuccess.jpg width="200">
     <img src=./img/signInMoveMain.jpg width="200">
 </div>
+
 ***
 
  - 로그인 시 닉네임이 존재하는 이메일이라면 성공적으로 로그인이 진행되고 Main으로 이동합니다.
@@ -77,6 +80,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/signInSuccessMoveNickname.jpg width="200">
     <img src=./img/signInNicknameView.jpg width="200">
 </div>
+
 ***
 
  - 로그인 시 닉네임이 존재하지 않다면 닉네임 생성 View로 이동합니다. 
@@ -86,6 +90,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
 <div align="center">
     <img src=./img/signUp.jpg width="200">
 </div>
+
 ***
 
  - 회원가입 화면입니다.
@@ -98,6 +103,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/signUpEmailfail.jpg width="200">
     <img src=./img/signUpEmailSuccess.jpg width="200">
 </div>
+
 ***
 
  - 회원가입에 사용할 이메일을 작성합니다.
@@ -113,6 +119,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/signUpPasswordFail.jpg width="200">
     <img src=./img/signUpPasswordSuccess.jpg width="200">
 </div>
+
 ***
 
  - 비밀번호 입력을 하지 않고 일치확인 클릭 시 비어있다는 경고창을 보여줍니다.
@@ -128,6 +135,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/signUpCreateNicknameFail.jpg width="200">
     <img src=./img/signUpCreateNicknameSuccess.jpg width="200">
 </div>
+
 ***
 
  - 이메일과 비밀번호가 정상적으로 입력 후 다음으로 닉네임 생성View로 이동합니다.
@@ -143,6 +151,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/mainPlanView.jpg width="200">
     <img src=./img/mainSettingView.jpg width="200">
 </div>
+
 ***
 
  - 로그인이 성공적으로 진행되었다면 가장먼저 현재상태를 보여주는 View를 먼져 보여줍니다.
@@ -157,6 +166,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/planFragmentLayout.JPG width="200">
     <img src=./img/planFragmentViewpagerAdapter.JPG width="200">
 </div>
+
 ***
 
  - Plan에서는 TabLayout과 ViewPager2를 사용해서 레이아웃을 구성했습니다.
@@ -167,6 +177,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
 <div align="center">
     <img src=./img/todoListMain.jpg width="200">
 </div>
+
 ***
 
  - 작성한 todoList들을 RecyclerView를 사용해서 보여줍니다.
@@ -181,6 +192,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/todoListContent.jpg width="200">
     <img src=./img/todoListSaveContent.jpg width="200">
 </div>
+
 ***
 
  - todo를 작성할 수 있는 dialog입니다.
@@ -195,6 +207,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/todoListContentChange.jpg width="200">
     <img src=./img/todoListContentUpdate.jpg width="200">
 </div>
+
 ***
 
  - todoList의 content를 클릭하게되면 해당 todo를 수정할 수 있는 dialog창을 보여줍니다.
@@ -209,6 +222,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/todoListContentDeleteSelectAll.jpg width="200">
     <img src=./img/todoListContentDeleteEmpty.jpg width="200">
 </div>
+
 ***
 
  - 완료된 todo들은 체크박스를 클릭해서 선택해줍니다.
@@ -221,6 +235,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
 <div align="center">
     <img src=./img/memoMain.jpg width="200">
 </div>
+
 ***
 
  - 메모를 할 수 있는 공간입니다.
@@ -236,6 +251,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/addMemoTitle.jpg width="200">
     <img src=./img/addMemoSaveSuccess.jpg width="200">
 </div>
+
 ***
 
  - 메모를 작성할 수 있는 공간입니다.
@@ -253,6 +269,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/addMemoContentChange.jpg width="200">
     <img src=./img/addMemoUpdateResult.jpg width="200">
 </div>
+
 ***
 
  - 메모의 Content를 클릭하게 되면 메모를 수정할 수 있는 View로 이동합니다.
@@ -265,6 +282,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
     <img src=./img/memoDeleteSelect.jpg width="200">
     <img src=./img/memoDeleteOne.jpg width="200">
 </div>
+
 ***
 
  - 삭제하고자 하는 메모가 있다면 체크박스클 클릭합니다.
@@ -275,6 +293,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
 <div align="center">
     <img src=./img/CalendarMain.jpg width="200">
 </div>
+
 ***
 
  - 간단하게 해당 날짜에 한줄 일정을 추가할 수 있는 공간입니다.
@@ -288,6 +307,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
    <img src=./img/CalendarSelectDateContent.jpg width="200">
    <img src=./img/CalendarSelectDateContentSave.jpg width="200">
 </div>
+
 ***
 
  - 달력에서 간단한 일정을 추가하고자 하는 날짜를 선택하게 되면 일정을 추가할 수 있도록 입력창이 생깁니다.
@@ -302,6 +322,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
    <img src=./img/CalendarSelectDateUpdateContent.jpg width="200">
    <img src=./img/CalendarSelectDateUpdateContentResult.jpg width="200">
 </div>
+
 ***
 
  - 선택한 날짜에 스케줄이 있다면 변경이 가능합니다.
@@ -314,6 +335,7 @@ TodoList와 메모, 캘린더에 한 줄로 간단한 일정 메모를 할 수 �
    <img src=./img/CalendarDeleteSelect.jpg width="200">
    <img src=./img/CalendarDeleteSelectSuccess.jpg width="200">
 </div>
+
 ***
 
  - 선택한 날짜의 스케줄을 삭제할 수 있습니다.
