@@ -38,6 +38,7 @@
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@color/white"
+            android:singleLine="true"
             android:hint="@string/write_memo_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
