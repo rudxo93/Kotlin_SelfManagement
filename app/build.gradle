@@ -60,6 +60,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
     // Firebase DB
     implementation 'com.google.firebase:firebase-firestore-ktx:24.2.2'
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:30.4.0')
+
+    // Realtime Database library
+    implementation 'com.google.firebase:firebase-database-ktx'
 
     // ROOM
     def roomVersion = "2.4.0"

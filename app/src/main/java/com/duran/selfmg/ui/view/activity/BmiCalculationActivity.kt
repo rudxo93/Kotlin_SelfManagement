@@ -16,6 +16,9 @@ import com.duran.selfmg.data.model.HealthBmiEntity
 import com.duran.selfmg.databinding.ActivityBmiCalculationBinding
 import com.duran.selfmg.ui.viewmodel.HealthBmiViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +29,7 @@ class BmiCalculationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBmiCalculationBinding
     private lateinit var auth: FirebaseAuth // 계정인증
     private lateinit var healthBmiViewModel: HealthBmiViewModel
+    private lateinit var database: FirebaseDatabase
 
     private var isInfoOpen = false // Bmi 정보버튼은 닫혀있다.
     private var bmiFlag = 0
@@ -49,10 +53,14 @@ class BmiCalculationActivity : AppCompatActivity() {
 
         healthBmiViewModel = ViewModelProvider(this)[HealthBmiViewModel::class.java]
         auth = FirebaseAuth.getInstance()
+        database = Firebase.database
+        val myRef = database.getReference("userHealth")
+
+        myRef.child("bmi").push().setValue("Hello")
 
         val bmiType = intent.getStringExtra("type") // healthFragment에서 넘어온 type의 값을 저장
 
-        initTextUpdateType(bmiType) // healthFragment에서 넘어온 타입에 따라 버튼 변경
+        /*initTextUpdateType(bmiType) // healthFragment에서 넘어온 타입에 따라 버튼 변경*/
         initToolBarSetting() // 상단 toolbar
         initBtnBmiInfoClick() // 상단 BMI 정보보기 버튼 클릭
         initClickBtnBmiResult() // 측정하기 버튼
@@ -188,14 +196,14 @@ class BmiCalculationActivity : AppCompatActivity() {
 
     // ======================================= Update라면 마지막 결과 저장하기 버튼을 결과 변경하기 버튼으로 변경 =======================================
     private fun initTextUpdateType(bmiType: String?) {
-        if(bmiType == "AddBmi") {
+        if (bmiType == "AddBmi") {
             btnBmiResultSave.text = "결과 저장하기"
             bmiTypeFlag = 1 // -> insert
-            initBtnBmiResultSave(bmiTypeFlag) // BMI수치 결과 저장하기 버튼 클릭
+            /*initBtnBmiResultSave(bmiTypeFlag) // BMI수치 결과 저장하기 버튼 클릭*/
         } else if (bmiType == "UpdateBmi") {
             btnBmiResultSave.text = "결과 변경하기"
             bmiTypeFlag = 2 // -> update
-            initBtnBmiResultSave(bmiTypeFlag) // BMI수치 결과 저장하기 버튼 클릭
+            /*initBtnBmiResultSave(bmiTypeFlag) // BMI수치 결과 저장하기 버튼 클릭*/
         }
     }
 
@@ -219,7 +227,7 @@ class BmiCalculationActivity : AppCompatActivity() {
 
     // ======================================= BMI수치 결과 Flag값에 따라서 분류 =======================================
     private fun initSaveFlagCheck(bmiTypeFlag: Int) {
-        when(bmiFlag) {
+        when (bmiFlag) {
             1 -> { // 측정하기 버튼 클릭으로 측정한 데이터가 존재
                 initSaveBmiResult(bmiTypeFlag)
             }
@@ -236,17 +244,27 @@ class BmiCalculationActivity : AppCompatActivity() {
         var authUser = auth.currentUser?.email // 현재 접속중인 유저 이메일 정보
 
         Toast.makeText(this, "측정하신 BMI정보가 저장되었습니다.", Toast.LENGTH_SHORT).show()
-        when(bmiTypeFlag) {
+        when (bmiTypeFlag) {
             1 -> { // -> 신규 bmi 데이터 저장 -> insert
                 CoroutineScope(Dispatchers.IO).launch {
-                    val healthBmiEntity = HealthBmiEntity(0, authUser.toString(), bmiNum.toString(), bmiRange.toString())
+                    val healthBmiEntity = HealthBmiEntity(
+                        0,
+                        authUser.toString(),
+                        bmiNum.toString(),
+                        bmiRange.toString()
+                    )
                     healthBmiViewModel.insertBmi(healthBmiEntity)
                 }
             }
             2 -> { // -> 기존의 bmi 데이터 변경 -> update
                 healthBmi = intent?.getSerializableExtra("item") as HealthBmiEntity
                 CoroutineScope(Dispatchers.IO).launch {
-                    val updateHealthBmi = HealthBmiEntity(healthBmi!!.id, authUser.toString(), bmiNum.toString(), bmiRange.toString())
+                    val updateHealthBmi = HealthBmiEntity(
+                        healthBmi!!.id,
+                        authUser.toString(),
+                        bmiNum.toString(),
+                        bmiRange.toString()
+                    )
                     healthBmiViewModel.updateBmi(updateHealthBmi)
                 }
             }
