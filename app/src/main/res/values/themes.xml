@@ -14,4 +14,48 @@
         <!-- Customize your theme here. -->
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_back</item>
     </style>
+
+    <style name="bmi_calculation_title_textView" parent="android:Widget.TextView">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="bmi_calculation_editView" parent="android:Widget.EditText">
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">number</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="bmi_calculation_textView" parent="android:Widget.TextView">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="bmi_calculation_range_blue" parent="android:Widget.TextView">
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:textColor">@color/bmi_range_blue</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="bmi_calculation_range_black" parent="android:Widget.TextView">
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:textColor">@color/bmi_range_black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="bmi_calculation_range_red" parent="android:Widget.TextView">
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:textColor">@color/bmi_range_red</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="schedule_button" parent="android:Widget.Button">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+    </style>
+
 </resources>

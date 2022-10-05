@@ -42,8 +42,8 @@
             android:layout_height="60dp"
             android:layout_below="@+id/tv_add_schedule_select_date"
             android:background="@null"
-            android:singleLine="true"
             android:hint="@string/add_schedule_content"
+            android:singleLine="true"
             android:textSize="17sp"
             android:visibility="gone" />
 
@@ -57,19 +57,17 @@
 
             <Button
                 android:id="@+id/btn_schedule_upeate"
+                style="@style/schedule_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:text="@string/btn_schedule_update" />
 
             <Button
                 android:id="@+id/btn_schedule_delete"
+                style="@style/schedule_button"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:text="@string/btn_schedule_delete" />
 
@@ -85,10 +83,9 @@
 
             <Button
                 android:id="@+id/btn_schedule_insert"
+                style="@style/schedule_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:text="@string/btn_schedule_insert" />
 
         </LinearLayout>

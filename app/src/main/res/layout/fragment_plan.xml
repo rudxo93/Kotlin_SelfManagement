@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.view.fragment.PlanFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.view.fragment.PlanFragment">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/myplan_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/toolbar_division"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/toolbar_division"
             app:titleTextColor="@color/black">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:textColor="@color/black"
                 android:text="@string/plan_fragment_title"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -35,38 +35,38 @@
             android:id="@+id/toolbar_division"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/myplan_toolbar"
+            android:background="@color/colorDivision"
             app:layout_constraintBottom_toTopOf="@+id/plan_tabs"
-            android:background="@color/colorDivision" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/myplan_toolbar" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/plan_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tabs_division"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_division"
-            app:layout_constraintBottom_toTopOf="@+id/tabs_division"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_division" />
 
         <View
             android:id="@+id/tabs_division"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/plan_tabs"
+            android:background="@color/colorDivision"
             app:layout_constraintBottom_toTopOf="@+id/plan_viewpager"
-            android:background="@color/colorDivision" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plan_tabs" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/plan_viewpager"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabs_division"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs_division" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

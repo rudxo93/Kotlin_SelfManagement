@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.view.activity.BmiCalculationActivity">
 
-    <!--<data>
-        <variable
-            name="bmiViewModel"
-            type="com.duran.selfmg.ui.viewmodel.HealthBmiViewModel"/>
-    </data>-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -67,32 +61,24 @@
 
             <TextView
                 android:id="@+id/tv_bmi_height"
+                style="@style/bmi_calculation_title_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/bmi_calculation_height"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:text="@string/bmi_calculation_height" />
 
             <EditText
                 android:id="@+id/ed_bmi_input_height"
+                style="@style/bmi_calculation_editView"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:gravity="center"
-                android:hint="@string/bmi_calculation_height_hint"
-                android:inputType="number"
-                android:singleLine="true" />
+                android:hint="@string/bmi_calculation_height_hint" />
 
             <TextView
                 android:id="@+id/tv_bmi_height_cm"
+                style="@style/bmi_calculation_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/bmi_calculation_height_cm"
-                android:textSize="20sp" />
+                android:text="@string/bmi_calculation_height_cm" />
 
         </LinearLayout>
 
@@ -108,32 +94,24 @@
 
             <TextView
                 android:id="@+id/tv_bmi_weight"
+                style="@style/bmi_calculation_title_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/bmi_calculation_weight"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:text="@string/bmi_calculation_weight" />
 
             <EditText
                 android:id="@+id/ed_bmi_input_weight"
+                style="@style/bmi_calculation_editView"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:gravity="center"
-                android:hint="@string/bmi_calculation_weight_hint"
-                android:inputType="number"
-                android:singleLine="true" />
+                android:hint="@string/bmi_calculation_weight_hint" />
 
             <TextView
                 android:id="@+id/tv_bmi_weight_cm"
+                style="@style/bmi_calculation_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/bmi_calculation_weight_cm"
-                android:textSize="20sp" />
+                android:text="@string/bmi_calculation_weight_cm" />
 
         </LinearLayout>
 
@@ -149,99 +127,77 @@
 
             <TextView
                 android:id="@+id/tv_bmi_range_1"
+                style="@style/bmi_calculation_range_blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_1"
-                android:textColor="#2D81FF"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_1" />
 
             <TextView
+                style="@style/bmi_calculation_range_blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_division_1"
-                android:textColor="#2D81FF"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_division_1" />
 
             <TextView
                 android:id="@+id/tv_bmi_range_2"
+                style="@style/bmi_calculation_range_blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_2"
-                android:textColor="#2D81FF"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_2" />
 
             <TextView
+                style="@style/bmi_calculation_range_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_division_2"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_division_2" />
 
             <TextView
                 android:id="@+id/tv_bmi_range_3"
+                style="@style/bmi_calculation_range_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_3"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_3" />
 
             <TextView
+                style="@style/bmi_calculation_range_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_division_1"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_division_1" />
 
             <TextView
                 android:id="@+id/tv_bmi_range_4"
+                style="@style/bmi_calculation_range_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_4"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_4" />
 
             <TextView
+                style="@style/bmi_calculation_range_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_division_2"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_division_2" />
 
             <TextView
                 android:id="@+id/tv_bmi_range_5"
+                style="@style/bmi_calculation_range_red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_5"
-                android:textColor="#8A3131"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_5" />
 
             <TextView
+                style="@style/bmi_calculation_range_red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_division_1"
-                android:textColor="#8A3131"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_division_1" />
 
             <TextView
                 android:id="@+id/tv_bmi_range_6"
+                style="@style/bmi_calculation_range_red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="@string/bmi_calculation_range_6"
-                android:textColor="#8A3131"
-                android:textSize="12sp" />
+                android:text="@string/bmi_calculation_range_6" />
 
         </LinearLayout>
 
@@ -320,9 +276,9 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="@string/bmi_calculation_btn_result_save"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

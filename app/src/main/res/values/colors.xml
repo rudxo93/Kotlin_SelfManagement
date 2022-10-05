@@ -10,4 +10,7 @@
     <color name="base_app_color">#FFDC00</color>
 
     <color name="colorDivision">#e0e0e0</color>
+    <color name="bmi_range_blue">#2D81FF</color>
+    <color name="bmi_range_black">#000000</color>
+    <color name="bmi_range_red">#8A3131</color>
 </resources>
